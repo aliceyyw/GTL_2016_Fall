@@ -85,7 +85,7 @@ namespace CentralControl
 
         private void refreshTimer_Tick(object sender, EventArgs e)
         {
-            refreshTimer.Stop();
+           // refreshTimer.Stop();
             if (IsSocket)
             {
                 dianJi1TextBox.Text = PlateDevice.MPF_Current1.ToString();
@@ -276,5 +276,14 @@ namespace CentralControl
         {
 
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            dianJi1TextBox.Text = PlateDevice.MPF_Current1.ToString();
+        }
+
+       
+
+        
     }
 }

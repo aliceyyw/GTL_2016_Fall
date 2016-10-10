@@ -175,5 +175,10 @@ namespace VirtialDevices
         {
             send_cmd("Auto");
         }
+
+        private void stateComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

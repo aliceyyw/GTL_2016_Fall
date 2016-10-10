@@ -28,9 +28,12 @@ namespace CentralControl
 
         private void sendButton_Click(object sender, EventArgs e)
         {
+            
             String Num = "", Vol = "", msg = "";
             Num = textBox1.Text;
             Vol = textBox2.Text;
+            DispenDevice.MDF_NumsperStack = int.Parse(Num);
+            DispenDevice.MDF_VolsperDish = int.Parse(Vol);
             if (IsSocket)
             {
                 //if (DispenDevice.SubType == AutoDispenVirtualDevice.AutoDispenType.PeiYangMin)
@@ -330,6 +333,11 @@ namespace CentralControl
         }
 
         private void basicPanel_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void volumeLabel_Click(object sender, EventArgs e)
         {
 
         }

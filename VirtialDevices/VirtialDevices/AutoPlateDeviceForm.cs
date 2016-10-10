@@ -82,6 +82,12 @@ namespace VirtialDevices
 
         private void setButton_Click(object sender, EventArgs e)
         {
+
+            String c1, c2, c3, c4;
+            c1 = currency1TextBox.Text;
+            c2 = currency2TextBox.Text;
+            c3 = currency3TextBox.Text;
+            c4 = currency4TextBox.Text;
             if (IsSocket)
             {
                 if (false)
@@ -103,12 +109,13 @@ namespace VirtialDevices
                     PlateDevice.MPF_Current1 = double.Parse(currency1TextBox.Text);
                     PlateDevice.MPF_Current2 = double.Parse(currency2TextBox.Text);
                     PlateDevice.MPF_Current3 = double.Parse(currency3TextBox.Text);
-                    PlateDevice.MPF_Current4 = double.Parse(currency3TextBox.Text);
+                    PlateDevice.MPF_Current4 = double.Parse(currency4TextBox.Text);
                     PlateDevice.MPF_DispenTime = int.Parse(dispenTimeTextBox.Text);
                     PlateDevice.MPF_CurSamTime = int.Parse(sampleTimeTextBox.Text);
                     // * */
                 }
                 PlateDevice.startTimers();
+                //PlateDevice.sendMPF_Current(c1,c2,c3,c4);
             }
             else 
             {
@@ -173,6 +180,15 @@ namespace VirtialDevices
         private void button4_Click(object sender, EventArgs e)
         {
             send_cmd("Auto");
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+           double c1 = double.Parse(currency1TextBox.Text);
+          double c2 = double.Parse(currency2TextBox.Text);
+           double c3 = double.Parse(currency3TextBox.Text);
+           double c4 = double.Parse(currency4TextBox.Text);
+           PlateDevice.insert_MPF_Current("999", c1,c2,c3,c4);
         }
 
       

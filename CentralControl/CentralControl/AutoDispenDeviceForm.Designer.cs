@@ -62,6 +62,8 @@
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.label16 = new System.Windows.Forms.Label();
+            this.currentCmdTextBox = new System.Windows.Forms.TextBox();
             this.autoButton = new System.Windows.Forms.Button();
             this.stopButton = new System.Windows.Forms.Button();
             this.startButton = new System.Windows.Forms.Button();
@@ -74,8 +76,6 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.refreshTimer = new System.Windows.Forms.Timer(this.components);
-            this.currentCmdTextBox = new System.Windows.Forms.TextBox();
-            this.label16 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.basicPanel.SuspendLayout();
             this.s.SuspendLayout();
@@ -400,6 +400,24 @@
             this.panel2.Size = new System.Drawing.Size(596, 136);
             this.panel2.TabIndex = 0;
             // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Location = new System.Drawing.Point(488, 78);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(83, 12);
+            this.label16.TabIndex = 29;
+            this.label16.Text = "current_state";
+            // 
+            // currentCmdTextBox
+            // 
+            this.currentCmdTextBox.Enabled = false;
+            this.currentCmdTextBox.Location = new System.Drawing.Point(498, 100);
+            this.currentCmdTextBox.Name = "currentCmdTextBox";
+            this.currentCmdTextBox.ReadOnly = true;
+            this.currentCmdTextBox.Size = new System.Drawing.Size(70, 21);
+            this.currentCmdTextBox.TabIndex = 28;
+            // 
             // autoButton
             // 
             this.autoButton.Location = new System.Drawing.Point(349, 100);
@@ -481,6 +499,7 @@
             this.volumeLabel.Size = new System.Drawing.Size(41, 12);
             this.volumeLabel.TabIndex = 2;
             this.volumeLabel.Text = "label3";
+            this.volumeLabel.Click += new System.EventHandler(this.volumeLabel_Click);
             // 
             // label2
             // 
@@ -504,24 +523,6 @@
             // 
             this.refreshTimer.Interval = 1000;
             this.refreshTimer.Tick += new System.EventHandler(this.refreshTimer_Tick);
-            // 
-            // currentCmdTextBox
-            // 
-            this.currentCmdTextBox.Enabled = false;
-            this.currentCmdTextBox.Location = new System.Drawing.Point(498, 100);
-            this.currentCmdTextBox.Name = "currentCmdTextBox";
-            this.currentCmdTextBox.ReadOnly = true;
-            this.currentCmdTextBox.Size = new System.Drawing.Size(70, 21);
-            this.currentCmdTextBox.TabIndex = 28;
-            // 
-            // label16
-            // 
-            this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(488, 78);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(83, 12);
-            this.label16.TabIndex = 29;
-            this.label16.Text = "current_state";
             // 
             // AutoDispenDeviceForm
             // 

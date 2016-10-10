@@ -62,6 +62,8 @@
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.label16 = new System.Windows.Forms.Label();
+            this.currentCmdTextBox = new System.Windows.Forms.TextBox();
             this.autoButton = new System.Windows.Forms.Button();
             this.stopButton = new System.Windows.Forms.Button();
             this.startButton = new System.Windows.Forms.Button();
@@ -74,8 +76,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.refreshTimer = new System.Windows.Forms.Timer(this.components);
-            this.label16 = new System.Windows.Forms.Label();
-            this.currentCmdTextBox = new System.Windows.Forms.TextBox();
+            this.button1 = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.basicPanel.SuspendLayout();
             this.s.SuspendLayout();
@@ -252,6 +253,7 @@
             // s
             // 
             this.s.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.s.Controls.Add(this.button1);
             this.s.Controls.Add(this.stateComboBox);
             this.s.Controls.Add(this.yiJiaZhuListView);
             this.s.Controls.Add(this.yiJiaZhuLabel);
@@ -400,6 +402,24 @@
             this.panel2.Size = new System.Drawing.Size(596, 136);
             this.panel2.TabIndex = 0;
             // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Location = new System.Drawing.Point(485, 78);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(83, 12);
+            this.label16.TabIndex = 31;
+            this.label16.Text = "current_state";
+            // 
+            // currentCmdTextBox
+            // 
+            this.currentCmdTextBox.Enabled = false;
+            this.currentCmdTextBox.Location = new System.Drawing.Point(495, 100);
+            this.currentCmdTextBox.Name = "currentCmdTextBox";
+            this.currentCmdTextBox.ReadOnly = true;
+            this.currentCmdTextBox.Size = new System.Drawing.Size(70, 21);
+            this.currentCmdTextBox.TabIndex = 30;
+            // 
             // autoButton
             // 
             this.autoButton.Location = new System.Drawing.Point(349, 100);
@@ -505,23 +525,15 @@
             this.refreshTimer.Interval = 1000;
             this.refreshTimer.Tick += new System.EventHandler(this.refreshTimer_Tick);
             // 
-            // label16
+            // button1
             // 
-            this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(485, 78);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(83, 12);
-            this.label16.TabIndex = 31;
-            this.label16.Text = "current_state";
-            // 
-            // currentCmdTextBox
-            // 
-            this.currentCmdTextBox.Enabled = false;
-            this.currentCmdTextBox.Location = new System.Drawing.Point(495, 100);
-            this.currentCmdTextBox.Name = "currentCmdTextBox";
-            this.currentCmdTextBox.ReadOnly = true;
-            this.currentCmdTextBox.Size = new System.Drawing.Size(70, 21);
-            this.currentCmdTextBox.TabIndex = 30;
+            this.button1.Location = new System.Drawing.Point(92, 187);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 14;
+            this.button1.Text = "button1";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // AutoPlateDeviceForm
             // 
@@ -592,5 +604,6 @@
         private System.Windows.Forms.Label label18;
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.TextBox currentCmdTextBox;
+        private System.Windows.Forms.Button button1;
     }
 }

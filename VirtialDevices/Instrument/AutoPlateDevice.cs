@@ -6,6 +6,8 @@ using System.Text;
 using System.Xml;
 using System.Timers;
 using DeviceUtils;
+using System.Data;
+using System.Data.SqlClient;
 
 namespace Instrument
 {
@@ -50,6 +52,19 @@ namespace Instrument
 
         private System.Timers.Timer samTimer = null;
         private System.Timers.Timer dispenTimer = null;
+
+
+
+       
+
+        public void insert_MPF_Current(string device_id, double current1,double current2, double current3, double current4)
+        {
+            String sql = "insert into MPF_Current(Device_Id,CurrentTime,Current1,Current2,Current3,Current4,Device_Time) values(" + device_id + "," + "getdate()" + "," + current1 + "," + current2 + "," + current3 + "," + current4 + ",'" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + "')";
+            Console.WriteLine( DBUtil.executedNonQueryCmd(sql));
+            
+
+        }
+
 
         public void sendCmd(String cmd)
         {
@@ -160,6 +175,21 @@ namespace Instrument
             MPF_BarCode = barcode;
             this.sendMPFCodesReport(platecode, barcode);
         }
+
+        //向中控发送电流信息
+        public void sendMPF_Current(String c1, String c2, String c3, String c4)
+        {
+            Hashtable ht = new Hashtable();
+            ht.Add("SetType", "MPF_Current");
+            ht.Add("MPF_Current1", c1);
+            ht.Add("MPF_Current2", c2);
+            ht.Add("MPF_Current3", c3);
+            ht.Add("MPF_Current4", c4);
+            SendModBusMsg(ModbusMessage.MessageType.SET, ht);
+           
+        }
+
+
 
         private void dispenTimer_Elapsed(object sender, ElapsedEventArgs e)
         {
