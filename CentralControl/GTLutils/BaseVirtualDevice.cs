@@ -168,7 +168,7 @@ namespace GTLutils
         }
         /*
         *decodeDataMessage方法，处理数据库相关命令的函数
-        *有一个k-v对存储表名，
+        *有一个k-v对存储表名，给出 第一个k-v对的具体格式，例：“TableName”-“MPF_Current”
         */
         public virtual void decodeDataMessage(ModbusMessage s)
         {

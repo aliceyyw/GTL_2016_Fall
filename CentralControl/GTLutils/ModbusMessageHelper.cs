@@ -8,7 +8,7 @@ namespace GTLutils
 {
     public class ModbusMessage
     {
-
+        //需要加入DATA的type
         public enum MessageType { CMD, RESPONSE, GET, SET, REPORT };
 
         public static MessageType byteToMessageType(byte f)
