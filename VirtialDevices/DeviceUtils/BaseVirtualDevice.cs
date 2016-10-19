@@ -14,8 +14,8 @@ namespace DeviceUtils
         private Socket mySocket;
         private Thread myThread;
 
-        public delegate void cmdDelegate();
-        public event cmdDelegate cmdEvent;
+        public delegate void cmdDelegate();   //声明一个委托
+        public event cmdDelegate cmdEvent;  //委托实例化
         private string cmd;
         public string Glb_Cmd
         {
@@ -27,7 +27,6 @@ namespace DeviceUtils
             {
                 cmd = value;
                 cmdEvent();
-
             }
         }
 

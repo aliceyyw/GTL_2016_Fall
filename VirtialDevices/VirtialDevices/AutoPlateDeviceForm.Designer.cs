@@ -61,7 +61,6 @@
             this.totalNumberTextBox = new System.Windows.Forms.TextBox();
             this.totalNumberLabel = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.button5 = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -70,7 +69,6 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.button5);
             this.groupBox1.Controls.Add(this.currency4TextBox);
             this.groupBox1.Controls.Add(this.label8);
             this.groupBox1.Controls.Add(this.setButton);
@@ -111,7 +109,7 @@
             // 
             // setButton
             // 
-            this.setButton.Location = new System.Drawing.Point(220, 338);
+            this.setButton.Location = new System.Drawing.Point(103, 303);
             this.setButton.Name = "setButton";
             this.setButton.Size = new System.Drawing.Size(75, 20);
             this.setButton.TabIndex = 25;
@@ -256,6 +254,7 @@
             this.groupBox3.TabIndex = 3;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "命令";
+            this.groupBox3.Visible = false;
             // 
             // button4
             // 
@@ -373,16 +372,6 @@
             this.panel1.Size = new System.Drawing.Size(770, 427);
             this.panel1.TabIndex = 0;
             // 
-            // button5
-            // 
-            this.button5.Location = new System.Drawing.Point(35, 335);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(113, 23);
-            this.button5.TabIndex = 28;
-            this.button5.Text = "MPR_Current插表";
-            this.button5.UseVisualStyleBackColor = true;
-            this.button5.Click += new System.EventHandler(this.button5_Click);
-            // 
             // AutoPlateDeviceForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -438,6 +427,5 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.TextBox currency4TextBox;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.Button button5;
     }
 }

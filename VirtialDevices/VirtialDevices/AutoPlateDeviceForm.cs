@@ -38,7 +38,7 @@ namespace VirtialDevices
 
         public void PlateDevice_cmdEvent()
         {
-            currentCmdTextBox.Text = PlateDevice.Glb_Cmd;
+            //currentCmdTextBox.Text = PlateDevice.Glb_Cmd;
         }
 
         private void AutoDispenDeviceForm_Load(object sender, EventArgs e)
@@ -106,16 +106,14 @@ namespace VirtialDevices
                 {
                     //*
                     PlateDevice.MPF_RunningError = stateComboBox.SelectedIndex;
-                    PlateDevice.MPF_Current1 = double.Parse(currency1TextBox.Text);
-                    PlateDevice.MPF_Current2 = double.Parse(currency2TextBox.Text);
-                    PlateDevice.MPF_Current3 = double.Parse(currency3TextBox.Text);
-                    PlateDevice.MPF_Current4 = double.Parse(currency4TextBox.Text);
+                    PlateDevice.MPF_Current1 = double.Parse(c1);
+                    PlateDevice.MPF_Current2 = double.Parse(c2);
+                    PlateDevice.MPF_Current3 = double.Parse(c3);
+                    PlateDevice.MPF_Current4 = double.Parse(c4);
                     PlateDevice.MPF_DispenTime = int.Parse(dispenTimeTextBox.Text);
                     PlateDevice.MPF_CurSamTime = int.Parse(sampleTimeTextBox.Text);
-                    // * */
                 }
                 PlateDevice.startTimers();
-                //PlateDevice.sendMPF_Current(c1,c2,c3,c4);
             }
             else 
             {
@@ -181,18 +179,5 @@ namespace VirtialDevices
         {
             send_cmd("Auto");
         }
-
-        private void button5_Click(object sender, EventArgs e)
-        {
-           double c1 = double.Parse(currency1TextBox.Text);
-          double c2 = double.Parse(currency2TextBox.Text);
-           double c3 = double.Parse(currency3TextBox.Text);
-           double c4 = double.Parse(currency4TextBox.Text);
-           PlateDevice.insert_MPF_Current("999", c1,c2,c3,c4);
-        }
-
-      
-
-        
     }
 }

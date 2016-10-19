@@ -22,25 +22,26 @@ namespace Instrument
 
     public class CloneSelectionDevice : BaseVirtualDevice
     {
+        ///上位机发向仪器
         //平皿和孔板选择
         public int SCP_LightType = 0;
         public int SCP_DishType = 0;
+        public int SCP_PlateType = 0;
+        public int SCP_ProbeMethod = 0;
         public int SCP_NeedleFlag = 0;
         public int SCP_NeedleNum = 0;
         public int SCP_DishNeedleFlag = 0;
         public int SCP_CloneNum = 0;
         public int SCP_PlateFlag = 0;
-        public int SCP_PlateType = 0;
         public int SCP_SpaceFlag = 0;
-        public int SCP_ProbeMethod = 0;
-        public static int SCP_TestRowNum = 12;
+        public static int SCP_TestRowNum = 12;  //Miwa 文档里没找到
 
         //过程设置
         public int SCP_PickStopTime = 0;
         public int SCP_InoStopTime = 0;
         public int SCP_ShockCount = 0;
 
-        //相机参数
+        //相机参数 Miwa 文档里没找到
         //色彩处理
         public int SCP_Gamma = 0;
         public int SCP_Contrast = 0;
@@ -68,40 +69,52 @@ namespace Instrument
 
         //灭菌与清洗
         public UInt32 SCP_HeatTime = 0;
-        public UInt32 SCP_FlushTime = 0;
         public UInt32 SCP_CoolTime = 0;
-        public UInt32 SCP_FlushNo = 0;
         public UInt32 SCP_ExhaustTime = 0;
+        public UInt32 SCP_FlushTime = 0;
+        public UInt32 SCP_FlushNo = 0;
 
-        //区域定位
+        //筛选过程
         public int SCP_CircleLoc = 0;
-        public int SCP_MatrixLoc = 0;
-        public int SCP_Calibrate = 0;
-        public int SCP_X = 0;
-        public int SCP_Y = 0;
-        public int SCP_Radius = 0;
-        public int SCP_CenterX = 0;
-        public int SCP_CenterY = 0;
-        public int SCP_Length = 0;
-        public int SCP_Width = 0;
+        public int SCP_X = 403;
+        public int SCP_Y = 281;
+        public int SCP_Radius = 245;
+        public int SCP_MatrixLoc = 1;
+        public int SCP_CenterX = 400;
+        public int SCP_CenterY = 300;
+        public int SCP_Length = 320;
+        public int SCP_Width = 220;
+        //Miwa 新加字段，根据数据总结
+        public int SCP_CalibLoc = 1;
+        //Miwa 新加字段，根据数据总结
         public int SCP_OriginPoint = 0;
         public int SCP_ControlPoint = 0;
+        public int SCP_Calibrate = 0;
 
         //筛选条件
+        public int SCP_ColorFlag = 1;
+        //Miwa 新加字段，根据数据总结
+        public int SCP_RedMin = 0;
+        public int SCP_RedMax = 255;
+        public int SCP_GreenMin = 0;
+        public int SCP_GreenMax = 255;
+        public int SCP_BlueMin = 0;
+        public int SCP_BlueMax = 255;
+        public double SCP_SizeMin = 100;
+        public double SCP_SizeMax = 1000;
+
+        //Miwa 新加字段，根据数据总结
+        public int SCP_AreaFilter = 0;
         public double SCP_MaxPARate = 0.0;
         public double SCP_MinPARate = 0.0;
-        public double SCP_SizeMax = 3.0;
-        public double SCP_SizeMin = 2.0;
         public double SCP_MaxLength = 3.0;
         public double SCP_MinLength = 2.5;
         public double SCP_MaxShort = 7.0;
         public double SCP_MinShort = 6.0;
         public double SCP_MaxRate = 4.0;
         public double SCP_MinRate = 3.0;
-        public int SCP_AreaFilter = 0;
         public int SCP_PARate = 0;
         public int SCP_LengthFilter = 0;
-        public int SCP_ColorFlag = 0;
         public Int16 SCP_R = 18;
         public Int16 SCP_G = 21;
         public Int16 SCP_B = 75;
