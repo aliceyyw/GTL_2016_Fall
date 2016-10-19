@@ -28,10 +28,12 @@ namespace Instrument
         /// <summary>
         /// MPF parameters
         /// </summary>
+        /// 上位机发给仪器
         public int MPF_PlateNum;
         public double MPF_Volsperwell;
         public int MPF_CurSamTime;
         public string MPF_Cmd;
+        //仪器发给上位机
         public int MPF_Whichplate = 1;
         public int MPF_RunningError;
         public int MPF_DispenTime;
@@ -39,7 +41,9 @@ namespace Instrument
         public double MPF_Current2;
         public double MPF_Current3;
         public double MPF_Current4;
-        public string MPF_BarCode;
+        public string MPF_BarCode;  //Miwa 需要区分是放入还是放出，加上状态就好了
+
+        private int MDF_RemianedDish = 0; //控制剩余的培养皿数量
 
         /// <summary>
         /// Others
@@ -52,18 +56,6 @@ namespace Instrument
 
         private System.Timers.Timer samTimer = null;
         private System.Timers.Timer dispenTimer = null;
-
-
-
-       
-
-        public void insert_MPF_Current(string device_id, double current1,double current2, double current3, double current4)
-        {
-            String sql = "insert into MPF_Current(Device_Id,CurrentTime,Current1,Current2,Current3,Current4,Device_Time) values(" + device_id + "," + "getdate()" + "," + current1 + "," + current2 + "," + current3 + "," + current4 + ",'" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + "')";
-            Console.WriteLine( DBUtil.executedNonQueryCmd(sql));
-            
-
-        }
 
 
         public void sendCmd(String cmd)
@@ -135,7 +127,10 @@ namespace Instrument
         {
             lock (KeyObject)
             {
-                return 97 - MPF_Whichplate;
+                if ((MPF_PlateNum - MDF_RemianedDish) >= 0)
+                    return MPF_PlateNum - MDF_RemianedDish;  //中控端按下开始按钮后，剩余培养皿数量依次递减
+                else
+                    return 0;
             }
         }
 
@@ -157,6 +152,7 @@ namespace Instrument
                     MPF_Whichplate = 1;
                     dispenTimer.Stop();
                 }
+                MDF_RemianedDish += Convert.ToInt32(MPF_Volsperwell);
             }
         }
 
@@ -188,9 +184,6 @@ namespace Instrument
             SendModBusMsg(ModbusMessage.MessageType.SET, ht);
            
         }
-
-
-
         private void dispenTimer_Elapsed(object sender, ElapsedEventArgs e)
         {
             String msg = "";
@@ -251,31 +244,36 @@ namespace Instrument
             }
         }
 
-        //public override void decodeCmdMessage(ModbusMessage msg)
-        //{
-        //    String cmd = (String)msg.Data["Cmd"];
-        //    if ("Start".Equals(cmd))
-        //    {
-        //        //dispenTimer.Start();
-        //        this.MPF_Cmd = "Start";
-        //    }
-        //    if ("Reset".Equals(cmd))
-        //    {
-        //        MPF_Whichplate = 1;
-        //        this.MPF_Cmd = "Reset";
-        //    }
-        //    if ("Stop".Equals(cmd))
-        //    {
-        //        //dispenTimer.Stop();
-        //        this.MPF_Cmd = "Stop";
-        //    }
-        //    if ("Auto".Equals(cmd))
-        //    {
-        //        this.MPF_Cmd = "Auto";
-        //    }
-
-        //    this.sendOKResponse();
-        //}
+        public override void decodeCmdMessage(ModbusMessage msg)
+        {
+            String cmd = (String)msg.Data["Cmd"];
+            if ("Start".Equals(cmd))
+            {
+                dispenTimer.Start();
+                this.MPF_Cmd = "Start";
+            }
+            if ("Reset".Equals(cmd))
+            {
+                MPF_Whichplate = 1;
+                MDF_RemianedDish = 0;
+                this.MPF_Cmd = "Reset";
+            }
+            if ("Stop".Equals(cmd))
+            {
+                dispenTimer.Stop();
+                this.MPF_Cmd = "Stop";
+            }
+            if ("Auto".Equals(cmd))
+            {
+                //先复位
+                MPF_Whichplate = 1;
+                MDF_RemianedDish = 0;
+                //再开始
+                dispenTimer.Start();
+                this.MPF_Cmd = "Auto";
+            }
+            this.sendOKResponse();
+        }
 
         public override void decodeSetMessage(ModbusMessage msg)
         {

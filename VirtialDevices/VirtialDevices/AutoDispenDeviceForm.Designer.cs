@@ -46,7 +46,6 @@
             this.settingPanel = new System.Windows.Forms.Panel();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.currentCmdTextBox = new System.Windows.Forms.TextBox();
-            this.label7 = new System.Windows.Forms.Label();
             this.setButton = new System.Windows.Forms.Button();
             this.sampleTimeTextBox = new System.Windows.Forms.TextBox();
             this.dispenTimeTextBox = new System.Windows.Forms.TextBox();
@@ -91,6 +90,7 @@
             this.groupBox3.TabIndex = 2;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "命令";
+            this.groupBox3.Visible = false;
             // 
             // button4
             // 
@@ -217,7 +217,6 @@
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.currentCmdTextBox);
-            this.groupBox1.Controls.Add(this.label7);
             this.groupBox1.Controls.Add(this.setButton);
             this.groupBox1.Controls.Add(this.sampleTimeTextBox);
             this.groupBox1.Controls.Add(this.dispenTimeTextBox);
@@ -245,16 +244,8 @@
             this.currentCmdTextBox.Name = "currentCmdTextBox";
             this.currentCmdTextBox.Size = new System.Drawing.Size(70, 21);
             this.currentCmdTextBox.TabIndex = 27;
+            this.currentCmdTextBox.Visible = false;
             this.currentCmdTextBox.TextChanged += new System.EventHandler(this.currentCmdTextBox_TextChanged);
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(18, 258);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(47, 12);
-            this.label7.TabIndex = 26;
-            this.label7.Text = "command";
             // 
             // setButton
             // 
@@ -420,7 +411,6 @@
         private System.Windows.Forms.Label totalNumberLabel;
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.TextBox currentCmdTextBox;
-        private System.Windows.Forms.Label label7;
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.Button button3;
