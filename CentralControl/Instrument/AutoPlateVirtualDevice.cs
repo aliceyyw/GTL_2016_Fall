@@ -126,26 +126,36 @@ namespace Instrument
             if ("MPF_Current".Equals(reportType))
             {
                 ArrayList list = new ArrayList();
+
                 list.Add(this.Code.Substring(0, 8)); //Device_Id
                 list.Add(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")); //CurrentTime
                 if (msg.Data.Contains("CREATER_ID")) list.Add(msg.Data["CREATER_ID"]);
                 else list.Add("NULL");   // CREATER_ID, can be null
 
                 MPF_Current1 = double.Parse((String)msg.Data["MPF_Current1"]);
-                list.Add(msg.Data["MPF_Current1"]);
+                list.Add(MPF_Current1.ToString());
                 MPF_Current2 = double.Parse((String)msg.Data["MPF_Current2"]);
-                list.Add(msg.Data["MPF_Current2"]);
+                list.Add(MPF_Current2.ToString());
                 MPF_Current3 = double.Parse((String)msg.Data["MPF_Current3"]);
-                list.Add(msg.Data["MPF_Current3"]);
+                list.Add(MPF_Current3.ToString());
                 MPF_Current4 = double.Parse((String)msg.Data["MPF_Current4"]);
-                list.Add(msg.Data["MPF_Current4"]);
-                list.Add(msg.Data["Device_Time"]);  //devicetime
-                list.Add("NULL");  //flow id
-                list.Add("NULL");  //task id
-                list.Add("NULL");  //creater_id
+                list.Add(MPF_Current4.ToString());
+                if (msg.Data.Contains("Device_Time")) list.Add(msg.Data["Device_Time"]);
+                else list.Add("NULL");  //devicetime
+                if (msg.Data.Contains("TASK_ID")) list.Add(msg.Data["TASK_ID"]);
+                else list.Add("NULL");  //task id
+                if (msg.Data.Contains("FLOW_ID")) list.Add(msg.Data["FLOW_ID"]);
+                else list.Add("NULL");  //flow id
+                if (msg.Data.Contains("CREATE_DATE")) list.Add(msg.Data["CREATE_DATE"]);
+                else list.Add("NULL");  //creater_id
                 Database.insertTable(reportType, list);
-                Console.WriteLine(Database.insertTable(reportType, list));
+                //Console.WriteLine(Database.insertTable(reportType, list));
             }
+            if ("MPF_Volumne".Equals(reportType))
+            {
+                ArrayList list = new ArrayList();
+            }
+
             if ("MPF".Equals(reportType))
             {
                 String PlateNum = (String)msg.Data["MPF_Whichplate"];
