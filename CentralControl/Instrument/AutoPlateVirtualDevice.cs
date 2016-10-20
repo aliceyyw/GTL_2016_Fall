@@ -122,14 +122,29 @@ namespace Instrument
         public override void decodeReportMessage(ModbusMessage msg)//解码报告消息
         {
             String reportType = (String)msg.Data["ReportType"];
-
+            
             if ("MPF_Current".Equals(reportType))
             {
+                ArrayList list = new ArrayList();
+                list.Add(this.Code.Substring(0, 8)); //Device_Id
+                list.Add(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")); //CurrentTime
+                if (msg.Data.Contains("CREATER_ID")) list.Add(msg.Data["CREATER_ID"]);
+                else list.Add("NULL");   // CREATER_ID, can be null
 
                 MPF_Current1 = double.Parse((String)msg.Data["MPF_Current1"]);
+                list.Add(msg.Data["MPF_Current1"]);
                 MPF_Current2 = double.Parse((String)msg.Data["MPF_Current2"]);
+                list.Add(msg.Data["MPF_Current2"]);
                 MPF_Current3 = double.Parse((String)msg.Data["MPF_Current3"]);
+                list.Add(msg.Data["MPF_Current3"]);
                 MPF_Current4 = double.Parse((String)msg.Data["MPF_Current4"]);
+                list.Add(msg.Data["MPF_Current4"]);
+                list.Add(msg.Data["Device_Time"]);  //devicetime
+                list.Add("NULL");  //flow id
+                list.Add("NULL");  //task id
+                list.Add("NULL");  //creater_id
+                Database.insertTable(reportType, list);
+                Console.WriteLine(Database.insertTable(reportType, list));
             }
             if ("MPF".Equals(reportType))
             {

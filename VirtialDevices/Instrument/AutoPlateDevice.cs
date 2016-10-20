@@ -90,11 +90,14 @@ namespace Instrument
         {
             Hashtable ht = new Hashtable();
             ht.Add("ReportType", "MPF_Current");
+            //ht.Add("Device_Id",this.Code.Substring(0,8));
+            String devicetime = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
             String[] s = { "MPF_Current1", "MPF_Current2", "MPF_Current3", "MPF_Current4" };
             for (int i = 0; i < s.Length; i++)
             {
                 ht.Add(s[i], currency[i]);
             }
+            ht.Add("Device_Time", devicetime);
             SendModBusMsg(ModbusMessage.MessageType.REPORT, ht);
         }
 

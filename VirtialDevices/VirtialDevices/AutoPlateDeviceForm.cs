@@ -88,6 +88,7 @@ namespace VirtialDevices
             c2 = currency2TextBox.Text;
             c3 = currency3TextBox.Text;
             c4 = currency4TextBox.Text;
+            
             if (IsSocket)
             {
                 if (false)
@@ -114,6 +115,8 @@ namespace VirtialDevices
                     PlateDevice.MPF_CurSamTime = int.Parse(sampleTimeTextBox.Text);
                 }
                 PlateDevice.startTimers();
+               // String[] currency = new String[] { PlateDevice.MPF_Current1.ToString(), PlateDevice.MPF_Current2.ToString(), PlateDevice.MPF_Current3.ToString(), PlateDevice.MPF_Current4.ToString() };
+               // PlateDevice.sendMPFCurrencyReport(currency);
             }
             else 
             {
