@@ -150,7 +150,7 @@ namespace Instrument
                 if (msg.Data.Contains("CREATE_DATE")) list.Add(msg.Data["CREATE_DATE"]);
                 else list.Add("NULL");  //creater_id
                 Database.insertTable(reportType, list);
-                //Console.WriteLine(Database.insertTable(reportType, list));
+                Console.WriteLine(Database.insertTable(reportType, list));
             }
             if ("MPF_Volumne".Equals(reportType))
             {

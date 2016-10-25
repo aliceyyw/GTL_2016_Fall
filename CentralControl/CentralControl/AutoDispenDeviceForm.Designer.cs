@@ -287,6 +287,7 @@
             this.yiJiaZhuListView.TabIndex = 12;
             this.yiJiaZhuListView.UseCompatibleStateImageBehavior = false;
             this.yiJiaZhuListView.View = System.Windows.Forms.View.Details;
+            this.yiJiaZhuListView.SelectedIndexChanged += new System.EventHandler(this.yiJiaZhuListView_SelectedIndexChanged);
             // 
             // yiJiaZhuLabel
             // 

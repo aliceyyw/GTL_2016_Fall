@@ -85,16 +85,26 @@ namespace Instrument
             SendModBusMsg(ModbusMessage.MessageType.REPORT, ht);
         }
 
+        public void sendMDFVolumeReport(String WhichStack, String WhichDish, String BarCode)
+        {
+            Hashtable ht = new Hashtable();
+            ht.Add("ReportType", "MDF_Volume");
+            ht.Add("MDF_WhichStack", WhichStack);
+            ht.Add("MDF_WhichDish", WhichDish);
+            ht.Add("MDF_BarCode", BarCode);
+            SendModBusMsg(ModbusMessage.MessageType.REPORT, ht);
+        }
         public void sendMDFCurrencyReport(String[] currency)
         {
             Hashtable ht = new Hashtable();
-
+            String devicetime = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
             ht.Add("ReportType", "MDF_Current");
             String[] s = { "MDF_Current1", "MDF_Current2", "MDF_Current3", "MDF_Current4" };
             for (int i = 0; i < s.Length; i++)
             {
                 ht.Add(s[i], currency[i]);
             }
+            ht.Add("Device_Time", devicetime);
             SendModBusMsg(ModbusMessage.MessageType.REPORT, ht);
         }
 

@@ -126,11 +126,52 @@ namespace Instrument
             String reportType = (String)msg.Data["ReportType"];
             if ("MDF_Current".Equals(reportType))
             {
+                ArrayList list = new ArrayList();
 
-                MDF_Current1 = double.Parse((String)msg.Data["MDF_Current1"]);
-                MDF_Current2 = double.Parse((String)msg.Data["MDF_Current2"]);
-                MDF_Current3 = double.Parse((String)msg.Data["MDF_Current3"]);
-                MDF_Current4 = double.Parse((String)msg.Data["MDF_Current4"]);
+                list.Add(this.Code.Substring(0, 8)); //Device_Id
+                list.Add(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")); //CurrentTime
+                if (msg.Data.ContainsKey("CREATER_ID")) // CREATER_ID, can be null
+                    list.Add(msg.Data["CREATER_ID"]);
+                else 
+                    list.Add("NULL");
+                if (msg.Data.ContainsKey("MDF_Current1"))
+                {
+                    MDF_Current1 = double.Parse((String)msg.Data["MDF_Current1"]);
+                }
+                if (msg.Data.ContainsKey("MDF_Current2"))
+                {
+                    MDF_Current2 = double.Parse((String)msg.Data["MDF_Current2"]);
+                }
+                if (msg.Data.ContainsKey("MDF_Current3"))
+                {
+                    MDF_Current3 = double.Parse((String)msg.Data["MDF_Current3"]);
+                }
+                if (msg.Data.ContainsKey("MDF_Current4"))
+                {
+                    MDF_Current4 = double.Parse((String)msg.Data["MDF_Current4"]);
+                }
+                list.Add(MDF_Current1.ToString());
+                list.Add(MDF_Current2.ToString());
+                list.Add(MDF_Current3.ToString());
+                list.Add(MDF_Current4.ToString());
+                if (msg.Data.ContainsKey("Device_Time")) 
+                    list.Add(msg.Data["Device_Time"]);
+                else 
+                    list.Add("NULL");  //devicetime
+                if (msg.Data.ContainsKey("TASK_ID")) 
+                    list.Add(msg.Data["TASK_ID"]);
+                else 
+                    list.Add("NULL");  //task id
+                if (msg.Data.ContainsKey("FLOW_ID")) 
+                    list.Add(msg.Data["FLOW_ID"]);
+                else 
+                    list.Add("NULL");  //flow id
+                if (msg.Data.ContainsKey("CREATE_DATE")) 
+                    list.Add(msg.Data["CREATE_DATE"]);
+                else 
+                    list.Add("NULL");  //creater_id
+                Database.insertTable(reportType, list);
+                Console.WriteLine(Database.insertTable(reportType, list));
             }
             if ("MDF".Equals(reportType))
             {
@@ -149,10 +190,44 @@ namespace Instrument
                 {
                     needRefreshMessages = true;
                 }
+                //插入数据库准备
+                ArrayList list = new ArrayList();
+
+                list.Add(this.Code.Substring(0, 8)); //Device_Id
+                list.Add(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")); //CurrentTime
+                if (msg.Data.ContainsKey("CREATER_ID")) // CREATER_ID, can be null
+                    list.Add(msg.Data["CREATER_ID"]);
+                else 
+                    list.Add("NULL");
+                if (msg.Data.ContainsKey("TASK_ID")) 
+                    list.Add(msg.Data["TASK_ID"]);
+                else 
+                    list.Add("NULL");  //task id
+                if (msg.Data.ContainsKey("FLOW_ID")) 
+                    list.Add(msg.Data["FLOW_ID"]);
+                else 
+                    list.Add("NULL");  //flow id
+                if (msg.Data.ContainsKey("MDF_BarCode"))
+                    list.Add(msg.Data["MDF_BarCode"]);
+                else
+                    list.Add("platebarcode");  //platebarcode
+                if (msg.Data.ContainsKey("MDF_BarCode"))
+                    list.Add(msg.Data["MDF_BarCode"]);
+                else
+                    list.Add("sourcebarcode");  //sourcebarcode
+                if (msg.Data.ContainsKey("MDF_VolsperDish"))
+                    list.Add(msg.Data["MDF_VolsperDish"]);
+                else 
+                    list.Add("2.0");  //volume
+                list.Add(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));//devicetime
+                if (msg.Data.ContainsKey("CREATE_DATE"))
+                    list.Add(msg.Data["CREATE_DATE"]);
+                else
+                    list.Add("NULL");  //creater_id
+                Database.insertTable("MDF_Volume", list);
+                Console.WriteLine(Database.insertTable("MDF_Volume", list));
             }
         }
-
-       
 
         public override void decodeSetMessage(ModbusMessage msg)
         {
