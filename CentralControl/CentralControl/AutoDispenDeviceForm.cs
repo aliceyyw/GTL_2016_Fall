@@ -341,5 +341,10 @@ namespace CentralControl
         {
 
         }
+
+        private void yiJiaZhuListView_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

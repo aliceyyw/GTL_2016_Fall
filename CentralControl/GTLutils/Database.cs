@@ -28,7 +28,7 @@ namespace GTLutils
                 if (s.Equals("NULL"))
                     str.Append(s + ",");
                 else
-                    str.Append("'"+s+"'" + ",");
+                    str.Append("'" + s + "'" + ",");
             }
             int len = str.Length;
             str.Remove(len - 1, 1);

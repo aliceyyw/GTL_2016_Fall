@@ -10,7 +10,7 @@ namespace CentralControl
 {
     public class DBUtil
     {
-        //private static String ConnectionString = "data source = LAB229\\SQLEXPRESS;initial catalog = gtltest; user id = gtltest;password = jiaoda";
+        //private static String ConnectionString = "data source = DESKTOP-LO36HO0\\Miwa;initial catalog = GTL";
         private static String ConnectionString = "server=localhost;database=GTL;Trusted_Connection=SSPI";
 
         private static SqlConnection getConnection() 
