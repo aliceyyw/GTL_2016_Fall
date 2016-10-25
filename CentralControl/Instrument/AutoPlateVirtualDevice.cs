@@ -142,21 +142,50 @@ namespace Instrument
                 MPF_Current4 = double.Parse((String)msg.Data["MPF_Current4"]);
                 list.Add(MPF_Current4.ToString());
                 if (msg.Data.Contains("Device_Time")) list.Add(msg.Data["Device_Time"]);
-                else list.Add("NULL");  //devicetime
+                else list.Add(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));  //devicetime
                 if (msg.Data.Contains("TASK_ID")) list.Add(msg.Data["TASK_ID"]);
                 else list.Add("NULL");  //task id
                 if (msg.Data.Contains("FLOW_ID")) list.Add(msg.Data["FLOW_ID"]);
                 else list.Add("NULL");  //flow id
                 if (msg.Data.Contains("CREATE_DATE")) list.Add(msg.Data["CREATE_DATE"]);
                 else list.Add("NULL");  //creater_id
-                Database.insertTable(reportType, list);
-                Console.WriteLine(Database.insertTable(reportType, list));
+                Database.insertTable(reportType, list);               
             }
-            if ("MPF_Volumne".Equals(reportType))
+            if ("MPF_Volume".Equals(reportType))
             {
                 ArrayList list = new ArrayList();
                 list.Add(this.Code.Substring(0, 8));//Device_Id
+                list.Add(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")); //CurrentTime
+                if (msg.Data.Contains("CREATER_ID")) list.Add(msg.Data["CREATER_ID"]);
+                else list.Add("NULL");   // CREATER_ID
+                if (msg.Data.Contains("TASK_ID")) list.Add(msg.Data["TASK_ID"]);
+                else list.Add("NULL");  //task id
+                if (msg.Data.Contains("FLOW_ID")) list.Add(msg.Data["FLOW_ID"]);
+                else list.Add("NULL");  //flow id
+                if (msg.Data.Contains("MPF_OutBarCode"))
+                {
+                    MPF_OutBarCode = msg.Data["MPF_OutBarCode"].ToString();
+                    list.Add(MPF_OutBarCode);
+                }
+                else list.Add("123456789");  //Platebarcode对应OutBarCode
+                if (msg.Data.Contains("MPF_InBarCode"))
+                {
+                    MPF_InBarCode = msg.Data["MPF_InBarCode"].ToString();
+                    list.Add(MPF_OutBarCode);
+                }
+                else list.Add("123456789");//Sourcebarcode对应InBarCode
+                if (msg.Data.Contains("MPF_Volsperwell"))
+                {
+                    MPF_Volsperwell = double.Parse((String)msg.Data["MPF_Volsperwell"]);
+                    list.Add(MPF_Volsperwell.ToString());
+                }
+                else  list.Add("2.0");   //Volume
+                if (msg.Data.Contains("Device_Time")) list.Add(msg.Data["Device_Time"]);
+                else list.Add(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));  //devicetime
+                if (msg.Data.Contains("CREATE_DATE")) list.Add(msg.Data["CREATE_DATE"]);
+                else list.Add("NULL");  //creater_id
 
+                Database.insertTable(reportType, list);
             }
 
             if ("MPF".Equals(reportType))

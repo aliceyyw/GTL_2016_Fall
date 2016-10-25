@@ -171,7 +171,7 @@ namespace Instrument
                 else 
                     list.Add("NULL");  //creater_id
                 Database.insertTable(reportType, list);
-                Console.WriteLine(Database.insertTable(reportType, list));
+               
             }
             if ("MDF".Equals(reportType))
             {
@@ -225,7 +225,7 @@ namespace Instrument
                 else
                     list.Add("NULL");  //creater_id
                 Database.insertTable("MDF_Volume", list);
-                Console.WriteLine(Database.insertTable("MDF_Volume", list));
+                
             }
         }
 
