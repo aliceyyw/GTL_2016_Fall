@@ -41,8 +41,8 @@ namespace Instrument
         public double MPF_Current2;
         public double MPF_Current3;
         public double MPF_Current4;
-        public string MPF_BarCode;  //Miwa 需要区分是放入还是放出，加上状态就好了
-
+        public string MPF_InBarCode;  //Miwa 需要区分是放入还是放出，加上状态就好了
+        public string MPF_OutBarCode;
         private int MDF_RemianedDish = 0; //控制剩余的培养皿数量
 
         /// <summary>
@@ -171,7 +171,8 @@ namespace Instrument
             barcode = BarCodeGenerator.generateBarCode();
             increaseDispenStatus();
             String msg;
-            MPF_BarCode = barcode;
+            MPF_InBarCode = barcode;
+            MPF_OutBarCode = barcode;
             this.sendMPFCodesReport(platecode, barcode);
         }
 

@@ -35,7 +35,8 @@ namespace Instrument
         public double MPF_Current2;
         public double MPF_Current3;
         public double MPF_Current4;
-        public string MPF_BarCode;
+        public string MPF_InBarCode;
+        public string MPF_OutBarCode;
 
         /// <summary>
         /// Others
@@ -154,6 +155,8 @@ namespace Instrument
             if ("MPF_Volumne".Equals(reportType))
             {
                 ArrayList list = new ArrayList();
+                list.Add(this.Code.Substring(0, 8));//Device_Id
+
             }
 
             if ("MPF".Equals(reportType))

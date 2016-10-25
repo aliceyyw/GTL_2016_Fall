@@ -35,7 +35,8 @@ namespace Instrument
         public int MDF_CurSamTime;
         public int MDF_WhichStack = 1;
         public int MDF_WhichDish = 1;
-        public string MDF_BarCode;
+        public string MDF_InBarCode;
+        public string MDF_OutBarCode;
         public string MDF_Cmd;
 
         /// <summary>

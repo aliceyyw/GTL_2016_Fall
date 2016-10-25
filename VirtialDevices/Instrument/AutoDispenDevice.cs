@@ -38,7 +38,8 @@ namespace Instrument
         public int MDF_CurSamTime;
         public int MDF_WhichStack = 1;
         public int MDF_WhichDish = 1;
-        public string MDF_BarCode;
+        public string MDF_InBarCode;
+        public string MDF_OutBarCode;
         public string MDF_Cmd;
 
         /// <summary>
@@ -166,7 +167,8 @@ namespace Instrument
             Barcode = BarCodeGenerator.generateBarCode();
             increaseDispenStatus();
             String msg;
-            MDF_BarCode = Barcode;
+            MDF_InBarCode = Barcode;
+            MDF_OutBarCode = Barcode;
             this.sendMDFCodesReport(Stackcode, Petricode, Barcode);
         }
 
