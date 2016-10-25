@@ -190,6 +190,10 @@ namespace Instrument
                 {
                     needRefreshMessages = true;
                 }
+                
+            }
+            if ("MDF_Volume".Equals(reportType))
+            {
                 //插入数据库准备
                 ArrayList list = new ArrayList();
 
@@ -197,35 +201,49 @@ namespace Instrument
                 list.Add(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")); //CurrentTime
                 if (msg.Data.ContainsKey("CREATER_ID")) // CREATER_ID, can be null
                     list.Add(msg.Data["CREATER_ID"]);
-                else 
+                else
                     list.Add("NULL");
-                if (msg.Data.ContainsKey("TASK_ID")) 
+                if (msg.Data.ContainsKey("TASK_ID"))
                     list.Add(msg.Data["TASK_ID"]);
-                else 
+                else
                     list.Add("NULL");  //task id
-                if (msg.Data.ContainsKey("FLOW_ID")) 
+                if (msg.Data.ContainsKey("FLOW_ID"))
                     list.Add(msg.Data["FLOW_ID"]);
-                else 
+                else
                     list.Add("NULL");  //flow id
-                if (msg.Data.ContainsKey("MDF_BarCode"))
-                    list.Add(msg.Data["MDF_BarCode"]);
-                else
-                    list.Add("platebarcode");  //platebarcode
-                if (msg.Data.ContainsKey("MDF_BarCode"))
-                    list.Add(msg.Data["MDF_BarCode"]);
-                else
-                    list.Add("sourcebarcode");  //sourcebarcode
+                //if (msg.Data.ContainsKey("MDF_BarCode"))
+                //    list.Add(msg.Data["MDF_BarCode"]);
+                //else
+                //    list.Add("platebarcode");  //platebarcode
+                //if (msg.Data.ContainsKey("MDF_BarCode"))
+                //    list.Add(msg.Data["MDF_BarCode"]);
+                //else
+                //    list.Add("sourcebarcode");  //sourcebarcode
+                if (msg.Data.Contains("MDF_OutBarCode"))
+                {
+                    MDF_OutBarCode = msg.Data["MDF_OutBarCode"].ToString();
+                    list.Add(MDF_OutBarCode);
+                }
+                else list.Add("123456789");  //Platebarcode对应OutBarCode
+                if (msg.Data.Contains("MDF_InBarCode"))
+                {
+                    MDF_InBarCode = msg.Data["MDF_InBarCode"].ToString();
+                    list.Add(MDF_OutBarCode);
+                }
+
                 if (msg.Data.ContainsKey("MDF_VolsperDish"))
                     list.Add(msg.Data["MDF_VolsperDish"]);
-                else 
+                else
                     list.Add("2.0");  //volume
-                list.Add(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));//devicetime
+
+                if (msg.Data.Contains("Device_Time")) list.Add(msg.Data["Device_Time"]);
+                else list.Add(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));  //devicetime
+
                 if (msg.Data.ContainsKey("CREATE_DATE"))
                     list.Add(msg.Data["CREATE_DATE"]);
                 else
                     list.Add("NULL");  //creater_id
                 Database.insertTable("MDF_Volume", list);
-                
             }
         }
 
