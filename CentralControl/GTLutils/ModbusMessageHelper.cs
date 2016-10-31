@@ -118,7 +118,6 @@ namespace GTLutils
             {
                 cmd[3] = (byte)len;
                 cmd[2] = (byte)(len >> 8);
-
             }
            
             cmd[4] = dev;
