@@ -109,6 +109,7 @@ namespace DeviceUtils
             byte[] cmd = new byte[7+data.Length];
             cmd[0] = 0x55;
             cmd[1] = 0xAA;
+<<<<<<< 53c838acbde595c27898897f310cd0fd66f86d67
             if (data.Length >= 255)
             {
                 cmd[2] = 0xff;  //cmd[2]传255
@@ -119,6 +120,23 @@ namespace DeviceUtils
                 cmd[2] = (byte)(data.Length);
                 cmd[3] = 0x00;
             }
+=======
+            
+            ushort len = (ushort)data.Length;
+            if (len <= 255)
+            {
+                cmd[2] = 0;
+                cmd[3] = (byte)len;
+            }
+            else
+            {
+                cmd[3] = (byte)len;
+                cmd[2] = (byte)(len >> 8);
+                
+            }
+          
+            
+>>>>>>> 539326d0ecd1ed0a251c1e14cc0abf0ad6a04d5e
             cmd[4] = dev;
             cmd[5] = func;
             for (int i = 0; i < data.Length; i++) 
@@ -137,9 +155,10 @@ namespace DeviceUtils
 
         private static bool check_modbus_message(byte[] cmd) 
         {
-            if (cmd.Length < 6) return false;
-            int len = cmd[2];
-            if (len != cmd.Length - 3) return false;
+            if (cmd.Length < 7) return false;
+            int len = (int)(cmd[2]<<8);
+            len += (int)cmd[3];
+            if (len != cmd.Length-7) return false;
             byte crc = 0x00;
             for (int i = 0; i < cmd.Length - 1; i++) 
             {
@@ -154,13 +173,14 @@ namespace DeviceUtils
             ModbusMessage res = new ModbusMessage();
             byte[] cmd = StringByteHelper.StringToBytes(msg);
             if (!check_modbus_message(cmd)) return null;
-            res.Dev = cmd[3];
-            res.MsgType = ModbusMessage.byteToMessageType(cmd[4]);
-            int len = cmd[2] - 3;
+            res.Dev = cmd[4];
+            res.MsgType = ModbusMessage.byteToMessageType(cmd[5]);
+            int len = (int)(cmd[2] << 8);
+            len += (int)cmd[3];
             byte[] data = new byte[len];
             for(int i=0;i<len;i++)
             {
-                data[i] = cmd[i+5];
+                data[i] = cmd[i+6];
             }
             String s = Encoding.Default.GetString(data);
             Hashtable map = new Hashtable();

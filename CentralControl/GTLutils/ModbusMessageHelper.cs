@@ -105,31 +105,46 @@ namespace GTLutils
 
         public static String createModbusMessage(byte func, byte[] data, byte dev = 0x88)// 新建发送的消息
         {
-            byte[] cmd = new byte[6 + data.Length];
+            byte[] cmd = new byte[7 + data.Length];
             cmd[0] = 0x55;
             cmd[1] = 0xAA;
-            cmd[2] = (byte)(data.Length + 3);
-            cmd[3] = dev;
-            cmd[4] = func;
+            ushort len = (ushort)data.Length;
+            if (len <= 255)
+            {
+                cmd[2] = 0;
+                cmd[3] = (byte)len;
+            }
+            else
+            {
+                cmd[3] = (byte)len;
+                cmd[2] = (byte)(len >> 8);
+
+            }
+           
+            
+            
+            cmd[4] = dev;
+            cmd[5] = func;
             for (int i = 0; i < data.Length; i++)
             {
-                cmd[i + 5] = data[i];
+                cmd[i + 6] = data[i];
             }
             byte crc = 0x00;
-            for (int i = 0; i < data.Length + 5; i++)
+            for (int i = 0; i < data.Length + 6; i++)
             {
                 crc ^= cmd[i];
             }
-            cmd[data.Length + 5] = crc;
+            cmd[data.Length + 6] = crc;
             return StringByteHelper.BytesToString(cmd,0,cmd.Length);
         }
 
 
         private static bool check_modbus_message(byte[] cmd)//消息检验
         {
-            if (cmd.Length < 6) return false;
-            int len = cmd[2];
-            if (len != cmd.Length - 3) return false;
+            if (cmd.Length < 7) return false;
+            int len = (int)(cmd[2] << 8);
+            len += (int)cmd[3];
+            if (len != cmd.Length-7) return false;
             byte crc = 0x00;
             for (int i = 0; i < cmd.Length - 1; i++)
             {
@@ -144,13 +159,14 @@ namespace GTLutils
             ModbusMessage res = new ModbusMessage();
             byte[] cmd = StringByteHelper.StringToBytes(msg);
             if (!check_modbus_message(cmd)) return null;
-            res.Dev = cmd[3];
-            res.MsgType = ModbusMessage.byteToMessageType(cmd[4]);
-            int len = cmd[2] - 3;
+            res.Dev = cmd[4];
+            res.MsgType = ModbusMessage.byteToMessageType(cmd[5]);
+            int len = (int)(cmd[2] << 8);
+            len += (int)cmd[3];
             byte[] data = new byte[len];
             for (int i = 0; i < len; i++)
             {
-                data[i] = cmd[i + 5];
+                data[i] = cmd[i + 6];
             }
             String s = Encoding.Default.GetString(data);
             Hashtable map = new Hashtable();
