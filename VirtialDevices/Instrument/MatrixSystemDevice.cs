@@ -81,7 +81,7 @@ namespace Instrument
 
     public class MatrixSystemDevice : BaseVirtualDevice
     {
-        //---------------------上位机发---------------------
+        //---------------------上位机发给仪器---------------------
 
         //仪器系统
         public int HAC_Sys_Mode = 0;
@@ -91,6 +91,9 @@ namespace Instrument
         //匀光
         public int HAC_Light_pwm = 0;
         public int HAC_Light_allighText = 0;
+
+        //OD检测
+        public float[][] HAC_OD_checkBoxs = null;
 
         //湿温度
         public int HAC_TH_tempset = 0;
@@ -116,20 +119,12 @@ namespace Instrument
         public int HAC_Motor_elecspeed = 0;
         public int HAC_Motor_slope = 0;
 
-        //-----------------------仪器发--------------------
+        //-----------------------仪器发向上位机--------------------
 
         //仪器系统
         public int HAC_Sys_DeviceInfo = 0;
         public int HAC_Sys_Status = 0;
         public int HAC_Sys_Batch_Info = 0;
-
-        //匀光
-        public int HAC_Light_Status = 0;
-        public int HAC_Light_address = 0;
-        public int HAC_Light_light = 0;
-        public int HAC_Light_xzoom = 0;
-        public int HAC_Light_yzoom = 0;
-        public int HAC_Light_currentpwm = 0;
 
         //湿温度
         public int HAC_TH_Status = 0;
@@ -139,6 +134,27 @@ namespace Instrument
         public int HAC_TH_humidity1 = 0;
         public int HAC_TH_humidity2 = 0;
 
+        //匀光
+        public int HAC_Light_Status = 0;
+        public int HAC_Light_address = 0;
+        public int HAC_Light_light = 0;
+        public int HAC_Light_xzoom = 0;
+        public int HAC_Light_yzoom = 0;
+        public int HAC_Light_currentpwm = 0;
+
+        //OD检测
+        public int HAC_OD_Status = 0;
+        public int HAC_OD_InfoTime = 0;
+        public int[][] HAC_OD_rowl = null;
+
+        //动平衡
+        public int HAC_Vib_Status = 0;
+        public double HAC_Vib_unbalanceAmp = 0;
+        public int HAC_Vib_unbalanceAngle = 0;
+        public int HAC_Vib_AccAxisX = 0;
+        public int HAC_Vib_AccAxisY = 0;
+        public int HAC_Vib_AccAxisZ = 0;
+
         //电机
         public int HAC_Motor_Status = 0;
         public int HAC_Motor_Power = 0;
@@ -147,23 +163,6 @@ namespace Instrument
         public string HAC_InBarCode = "";
         public int HAC_PlateLocation = 0;
         public string HAC_OutBarCode = "";
-
-        //动平衡
-        public int HAC_Vib_Status = 0;
-        public double HAC_Vib_unbalanceAmp = 0;
-        public int HAC_Vib_unbalanceAngle= 0;
-        public int HAC_Vib_AccAxisX= 0;
-        public int HAC_Vib_AccAxisY= 0;
-        public int HAC_Vib_AccAxisZ= 0;
-
-
-        //--------------OD-------------------
-
-        public float[][] HAC_OD_checkBoxs = null;
-
-        public int HAC_OD_Status = 0;
-        public int HAC_OD_InfoTime = 0;
-        public int[][] HAC_OD_rowl = null;
 
         int interval = 4; 
         private System.Timers.Timer getODTimer = null;
