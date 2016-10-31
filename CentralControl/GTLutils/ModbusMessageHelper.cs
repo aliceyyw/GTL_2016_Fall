@@ -120,8 +120,6 @@ namespace GTLutils
                 cmd[2] = (byte)(len >> 8);
             }
            
-            
-            
             cmd[4] = dev;
             cmd[5] = func;
             for (int i = 0; i < data.Length; i++)
