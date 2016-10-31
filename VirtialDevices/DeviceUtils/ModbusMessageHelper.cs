@@ -106,22 +106,31 @@ namespace DeviceUtils
 
         public static String createModbusMessage(byte func, byte[] data,byte dev = 0x88) 
         {
-            byte[] cmd = new byte[6+data.Length];
+            byte[] cmd = new byte[7+data.Length];
             cmd[0] = 0x55;
             cmd[1] = 0xAA;
-            cmd[2] = (byte)(data.Length + 3);
-            cmd[3] = dev;
-            cmd[4] = func;
+            if (data.Length >= 255)
+            {
+                cmd[2] = 0xff;  //cmd[2]传255
+                cmd[3] = (byte)(data.Length- 255);  //cmd[3]传length-255
+            }
+            else
+            {
+                cmd[2] = (byte)(data.Length);
+                cmd[3] = 0x00;
+            }
+            cmd[4] = dev;
+            cmd[5] = func;
             for (int i = 0; i < data.Length; i++) 
             {
-                cmd[i + 5] = data[i];
+                cmd[i + 6] = data[i];
             }
             byte crc = 0x00;
-            for (int i = 0; i < data.Length + 5; i++) 
+            for (int i = 0; i < data.Length + 6; i++) 
             {
                 crc ^= cmd[i];
             }
-            cmd[data.Length + 5] = crc;
+            cmd[data.Length + 6] = crc;
             return StringByteHelper.BytesToString(cmd,0,cmd.Length);
         }
 

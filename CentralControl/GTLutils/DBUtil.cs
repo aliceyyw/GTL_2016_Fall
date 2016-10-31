@@ -17,6 +17,7 @@ namespace CentralControl
         {
             SqlConnection conn = new SqlConnection();
             conn.ConnectionString = ConnectionString;
+            Console.Out.Write("连接成功");
             return conn;
         }
 

@@ -183,6 +183,7 @@ namespace Instrument
             MDF_InBarCode = Barcode;
             MDF_OutBarCode = Barcode;
             this.sendMDFCodesReport(Stackcode, Petricode, Barcode);
+            this.sendMDFVolumeReport(Stackcode, Petricode, Barcode);  //插入数据库操作
         }
 
         private void DispenTimer_Elapsed(object sender, ElapsedEventArgs e)

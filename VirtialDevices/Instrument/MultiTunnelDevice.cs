@@ -50,31 +50,53 @@ namespace Instrument
 
     public class MultiTunnelDevice : BaseVirtualDevice
     {
-
-        public static int MMA_TestRowIndex = 8;
-        public static int MMA_TestColumnIndex = 12;
-
-        public enum MMA_TestMethod { OD, Flu, Che };
-        private bool MMA_SendBarCodeFlag = true;
+        //上位机发给仪器
         private String MMA_currentBarCode = null;
         private String MMA_preBarCode = null;
-        private MMA_TestMethod MMA_TestMode = MMA_TestMethod.OD;
-        private float[][] MMA_DetectValues = null;
-        private System.Timers.Timer MMA_Timer = null;
-        private bool MMA_PlateDetect = false;
-        private int MMA_MeasureTime;
+        //加样仪
+        private int MMA_TipIdx = 0; //吸头索引
+        private string MMA_TargetIdx = "1-5"; //值范围是0--27，数据格式1,2或1-5等，用“，”或“-”区分，“-”表示连续。
+        private int MMA_ContainerType = 0; //容器类型
+        private int MMA_Volume = 0; //加样体积
+        private string MMA_SampleIdx = "";//加样孔板的索引，96孔板，8孔一组，10个孔板，共120组,范围0-119
+        private int MMA_SampleType = 0; //标准样品0/测量样品1/空白样品2
+        private int MMA_HeatFlag = 0; //0不需要加热/1需要加热
         private float MMA_Temp;
-        private float MMA_WaveLengthUp;
-        private float MMA_WaveLengthDown;
+        private int MMA_VibrateFlag;//振动标志
+        private float MMA_VibrateTime; //振动时间
+        //酶标仪
+        public enum MMA_TestMethod { OD, Flu, Che };  //检测方式
+        private MMA_TestMethod MMA_TestMode = MMA_TestMethod.OD;  //检测模式
+        private int MMA_TestType = 0; //终点0/动态1
+        private int MMA_LightType; //光波类型
+        private int MMA_WaveLength; //光波波长
+        private int MMA_OrificeType = 0; //孔板类型，0 96孔板/1 48孔板
+        private int MMA_MeasureArea; //检测区域
+        private int MMA_Time; //时间
+        private int MMA_IntegralTime;  //积分时间
+        public static int MMA_TestRowIndex = 8; //检测行数
+        public static int MMA_TestColumnIndex = 12;  //检测列数
+        private float MMA_WaveLengthUp;  //波长上限
+        private float MMA_WaveLengthDown;  //波长下限
+        private int MMA_MeasureTime;  //处理时间
 
-        private bool[] MMA_PlateFlag;
-        private float[] MMA_PlateTemp;
-        private float[] MMA_ODValue;
-        private float[] MMA_FluCount;
-        private float[] MMA_CheCount;
-        private float MMA_Wave;
+        //仪器发给上位机
+        //加样仪
+        private bool[] MMA_PlateFlag;//有无放孔板*10
+        private float[] MMA_PlateTemp; //当前温度*10
+        //酶标仪
+        private float[] MMA_ODValue;  //OD值*96
+        private float[] MMA_FluCount;  //荧光检测参数*96
+        private float[] MMA_CheCount;  //化学发光检测参数*96
+        private float MMA_Wave;  //波长范围 
+        private float MDF_CurrentTemp; //当前温度
+        private bool MMA_PlateDetect = false;  //有无放孔板 true表示有 false表示无
+        private string MMA_InBarCode = "";
+        private string MMA_OutBarCode = "";
+        private bool MMA_SendBarCodeFlag = true; //是否需要发送条码
+        private float[][] MMA_DetectValues = null; //当前检测参数
 
-
+        private System.Timers.Timer MMA_Timer = null;
 
         public static MMA_TestMethod stringToJianCeMoShi(String mode)
         {
@@ -109,8 +131,6 @@ namespace Instrument
                 this.MMA_TestMode = value;
             }
         }
-
-
 
         public void setDetectValues(float[][] v)
         {
