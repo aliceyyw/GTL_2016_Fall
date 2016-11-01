@@ -211,14 +211,6 @@ namespace Instrument
                     list.Add(msg.Data["FLOW_ID"]);
                 else
                     list.Add("NULL");  //flow id
-                //if (msg.Data.ContainsKey("MDF_BarCode"))
-                //    list.Add(msg.Data["MDF_BarCode"]);
-                //else
-                //    list.Add("platebarcode");  //platebarcode
-                //if (msg.Data.ContainsKey("MDF_BarCode"))
-                //    list.Add(msg.Data["MDF_BarCode"]);
-                //else
-                //    list.Add("sourcebarcode");  //sourcebarcode
                 if (msg.Data.Contains("MDF_OutBarCode"))
                 {
                     MDF_OutBarCode = msg.Data["MDF_OutBarCode"].ToString();
@@ -228,9 +220,9 @@ namespace Instrument
                 if (msg.Data.Contains("MDF_InBarCode"))
                 {
                     MDF_InBarCode = msg.Data["MDF_InBarCode"].ToString();
-                    list.Add(MDF_OutBarCode);
+                    list.Add(MDF_InBarCode);
                 }
-
+                else list.Add("123456789");  //sourcebarcode对应inBarCode
                 if (msg.Data.ContainsKey("MDF_VolsperDish"))
                     list.Add(msg.Data["MDF_VolsperDish"]);
                 else

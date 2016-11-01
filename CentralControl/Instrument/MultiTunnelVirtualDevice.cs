@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -62,39 +63,54 @@ namespace Instrument
 
     public class MultiTunnelVirtualDevice : BaseVirtualDevice
     {
-        public static int MMA_TestRowIndex = 8;
-        public static int MMA_TestColumnIndex = 12;
-
-        public enum MMA_TestMethod { OD, Flu, Che };
-        private String MMA_currentBarCode = null;
-        private String MMA_preBarCode = null;
-        private MMA_TestMethod MMA_TestMode = MMA_TestMethod.OD;
         private float[][] MMA_CurrentValues = null;
         private float[][] MMA_PreValues = null;
-        private bool MMA_PlateDetect = false;
-        private int MMA_MeasureTime;
+
+        //上位机发给仪器
+        private String MMA_currentBarCode = null;
+        private String MMA_preBarCode = null;
+        //加样仪
+        private int MMA_TipIdx = 0; //吸头索引
+        private string MMA_TargetIdx = "1-5"; //值范围是0--27，数据格式1,2或1-5等，用“，”或“-”区分，“-”表示连续。
+        private int MMA_ContainerType = 0; //容器类型
+        private int MMA_Volume = 0; //加样体积
+        private string MMA_SampleIdx = "";//加样孔板的索引，96孔板，8孔一组，10个孔板，共120组,范围0-119
+        private int MMA_SampleType = 0; //标准样品0/测量样品1/空白样品2
+        private int MMA_HeatFlag = 0; //0不需要加热/1需要加热
         private float MMA_Temp;
-        private float MMA_WaveLengthUp;
-        private float MMA_WaveLengthDown;
+        private int MMA_VibrateFlag;//振动标志
+        private float MMA_VibrateTime; //振动时间
+        //酶标仪
+        public enum MMA_TestMethod { OD, Flu, Che };  //检测方式
+        private MMA_TestMethod MMA_TestMode = MMA_TestMethod.OD;  //检测模式
+        private int MMA_TestType = 0; //终点0/动态1
+        private int MMA_LightType; //光波类型
+        private int MMA_WaveLength; //光波波长
+        private int MMA_OrificeType = 0; //孔板类型，0 96孔板/1 48孔板
+        private int MMA_MeasureArea; //检测区域
+        private int MMA_Time; //时间
+        private int MMA_IntegralTime;  //积分时间
+        public static int MMA_TestRowIndex = 8; //检测行数
+        public static int MMA_TestColumnIndex = 12;  //检测列数
+        private float MMA_WaveLengthUp;  //波长上限
+        private float MMA_WaveLengthDown;  //波长下限
+        private int MMA_MeasureTime;  //处理时间
 
-
-        private int MMA_TipIdx;
-        private string MMA_TargetIdx;
-        private int MMA_ContainerType;
-        private int MMA_Volume;
-        private string MMA_SampleIdx;
-        private int MMA_SampleType;
-        private int MMA_HeatFlag;
-        private int MMA_VibrateFlag;
-        private int MMA_TestType;
-        private int MMA_LightType;
-        private int MMA_WaveLength;
-        private int MMA_OrificeType;
-        private int MMA_MeasureArea;
-        private int MMA_Time;
-        private int MMA_IntegralTime;
-
-
+        //仪器发给上位机
+        //加样仪
+        private bool[] MMA_PlateFlag;//有无放孔板*10
+        private float[] MMA_PlateTemp; //当前温度*10
+        //酶标仪
+        private float[] MMA_ODValue;  //OD值*96
+        private float[] MMA_FluCount;  //荧光检测参数*96
+        private float[] MMA_CheCount;  //化学发光检测参数*96
+        private float MMA_Wave;  //波长范围 
+        private float MDF_CurrentTemp; //当前温度
+        private bool MMA_PlateDetect = false;  //有无放孔板 true表示有 false表示无
+        private string MMA_InBarCode = "";
+        private string MMA_OutBarCode = "";
+        private bool MMA_SendBarCodeFlag = true; //是否需要发送条码
+        private float[][] MMA_DetectValues = null; //当前检测参数
 
         public static MMA_TestMethod stringToJianCeMoShi(String mode)
         {
@@ -326,9 +342,169 @@ namespace Instrument
                         MMA_currentBarCode = null;
                     }
                 }
+                if ("MMA_CHEMLIGHT".Equals(reportType))
+                {
+                    //插入数据库准备
+                    ArrayList list = new ArrayList();
+                    list.Add(this.Code.Substring(0, 8)); //Device_Id
+                    list.Add(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")); //CurrentTime
+                    if (msg.Data.ContainsKey("CREATER_ID")) // CREATER_ID, can be null
+                        list.Add(msg.Data["CREATER_ID"]);
+                    else
+                        list.Add("NULL");
+                    if (msg.Data.ContainsKey("TASK_ID"))
+                        list.Add(msg.Data["TASK_ID"]);
+                    else
+                        list.Add("NULL");  //task id
+                    if (msg.Data.ContainsKey("FLOW_ID"))
+                        list.Add(msg.Data["FLOW_ID"]);
+                    else
+                        list.Add("NULL");  //flow id
+                    if (msg.Data.Contains("MMA_currentBarCode"))
+                    {
+                        MMA_currentBarCode = msg.Data["MMA_currentBarCode"].ToString();
+                        list.Add(MMA_currentBarCode);
+                    }
+                    else list.Add("123456789");  //MMA_currentBarCode
+                    if (msg.Data.Contains("MMA_X"))
+                    {
+                        list.Add(msg.Data["MMA_X"].ToString());
+                    }
+                    else list.Add("2.0");  //x坐标
+                    if (msg.Data.ContainsKey("MMA_Y"))
+                        list.Add(msg.Data["MMA_Y"]);
+                    else
+                        list.Add("2.0");  //y坐标
+                    if (msg.Data.ContainsKey("MMA_ChemLight"))
+                        list.Add(msg.Data["MMA_ChemLight"]);
+                    else
+                        list.Add("2.0");  //chemlight
+                    if (msg.Data.Contains("Device_Time")) 
+                        list.Add(msg.Data["Device_Time"]);
+                    else 
+                        list.Add(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));  //devicetime
+                    if (msg.Data.ContainsKey("MMA_Temp"))
+                    {
+                        MMA_Temp = float.Parse(msg.Data["MMA_Temp"].ToString());
+                        list.Add(MMA_Temp);
+                    }
+                    else
+                        list.Add("2.0");  //温度
+                    if (msg.Data.ContainsKey("CREATE_DATE"))
+                        list.Add(msg.Data["CREATE_DATE"]);
+                    else
+                        list.Add("NULL");  //creater_date
+                    Database.insertTable("MMA_CHEMLIGHT", list);
+                }
+                if ("MMA_LUMIN".Equals(reportType))
+                {
+                    //插入数据库准备
+                    ArrayList list = new ArrayList();
+                    list.Add(this.Code.Substring(0, 8)); //Device_Id
+                    list.Add(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")); //CurrentTime
+                    if (msg.Data.ContainsKey("CREATER_ID")) // CREATER_ID, can be null
+                        list.Add(msg.Data["CREATER_ID"]);
+                    else
+                        list.Add("NULL");
+                    if (msg.Data.ContainsKey("TASK_ID"))
+                        list.Add(msg.Data["TASK_ID"]);
+                    else
+                        list.Add("NULL");  //task id
+                    if (msg.Data.ContainsKey("FLOW_ID"))
+                        list.Add(msg.Data["FLOW_ID"]);
+                    else
+                        list.Add("NULL");  //flow id
+                    if (msg.Data.Contains("MMA_currentBarCode"))
+                    {
+                        MMA_currentBarCode = msg.Data["MMA_currentBarCode"].ToString();
+                        list.Add(MMA_currentBarCode);
+                    }
+                    else list.Add("123456789");  //MMA_currentBarCode
+                    if (msg.Data.Contains("MMA_X"))
+                    {
+                        list.Add(msg.Data["MMA_X"].ToString());
+                    }
+                    else list.Add("2.0");  //x坐标
+                    if (msg.Data.ContainsKey("MMA_Y"))
+                        list.Add(msg.Data["MMA_Y"]);
+                    else
+                        list.Add("2.0");  //y坐标
+                    if (msg.Data.ContainsKey("MMA_Lumin"))
+                        list.Add(msg.Data["MMA_Lumin"]);
+                    else
+                        list.Add("2.0");  //chemlight
+                    if (msg.Data.Contains("Device_Time"))
+                        list.Add(msg.Data["Device_Time"]);
+                    else
+                        list.Add(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));  //devicetime
+                    if (msg.Data.ContainsKey("MMA_Temp"))
+                    {
+                        MMA_Temp = float.Parse(msg.Data["MMA_Temp"].ToString());
+                        list.Add(MMA_Temp);
+                    }
+                    else
+                        list.Add("2.0");  //温度
+                    if (msg.Data.ContainsKey("CREATE_DATE"))
+                        list.Add(msg.Data["CREATE_DATE"]);
+                    else
+                        list.Add("NULL");  //creater_date
+                    Database.insertTable("MMA_LUMIN", list);
+                }
+                if ("MMA_OD".Equals(reportType))
+                {
+                    //插入数据库准备
+                    ArrayList list = new ArrayList();
+                    list.Add(this.Code.Substring(0, 8)); //Device_Id
+                    list.Add(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")); //CurrentTime
+                    if (msg.Data.ContainsKey("CREATER_ID")) // CREATER_ID, can be null
+                        list.Add(msg.Data["CREATER_ID"]);
+                    else
+                        list.Add("NULL");
+                    if (msg.Data.ContainsKey("TASK_ID"))
+                        list.Add(msg.Data["TASK_ID"]);
+                    else
+                        list.Add("NULL");  //task id
+                    if (msg.Data.ContainsKey("FLOW_ID"))
+                        list.Add(msg.Data["FLOW_ID"]);
+                    else
+                        list.Add("NULL");  //flow id
+                    if (msg.Data.Contains("MMA_currentBarCode"))
+                    {
+                        MMA_currentBarCode = msg.Data["MMA_currentBarCode"].ToString();
+                        list.Add(MMA_currentBarCode);
+                    }
+                    else list.Add("123456789");  //MMA_currentBarCode
+                    if (msg.Data.Contains("MMA_X"))
+                    {
+                        list.Add(msg.Data["MMA_X"].ToString());
+                    }
+                    else list.Add("2.0");  //x坐标
+                    if (msg.Data.ContainsKey("MMA_Y"))
+                        list.Add(msg.Data["MMA_Y"]);
+                    else
+                        list.Add("2.0");  //y坐标
+                    if (msg.Data.ContainsKey("MMA_OD"))
+                        list.Add(msg.Data["MMA_OD"]);
+                    else
+                        list.Add("2.0");  //od
+                    if (msg.Data.Contains("Device_Time"))
+                        list.Add(msg.Data["Device_Time"]);
+                    else
+                        list.Add(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));  //devicetime
+                    if (msg.Data.ContainsKey("MMA_Temp"))
+                    {
+                        MMA_Temp = float.Parse(msg.Data["MMA_Temp"].ToString());
+                        list.Add(MMA_Temp);
+                    }
+                    else
+                        list.Add("2.0");  //温度
+                    if (msg.Data.ContainsKey("CREATE_DATE"))
+                        list.Add(msg.Data["CREATE_DATE"]);
+                    else
+                        list.Add("NULL");  //creater_date
+                    Database.insertTable("MMA_OD", list);
+                }
             }
         }
-
-       
     }
 }
