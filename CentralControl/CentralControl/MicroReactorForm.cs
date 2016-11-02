@@ -14,8 +14,7 @@ namespace CentralControl
     public partial class MicroReactorForm : Form
     {
         public MicroStorageVirtualDevice mrDevice;
-        int curSelectModule;
-        int size;
+        int CurrentSelected;
 
         public ControlForm FatherForm;
         public bool IsSocket;
@@ -23,12 +22,11 @@ namespace CentralControl
         public MicroReactorForm()
         {
             mrDevice = new MicroStorageVirtualDevice();
-            curSelectModule = 1;
-            size = 8;
+            CurrentSelected = 1;
             InitializeComponent();
         }
 
-
+        //Global_cmd 具体实现的触发事件，将事件添加给委托的语句在ControlForm中。
         public void MicroReactorDevice_cmdEvent()
         {
             currentCmdTextBox.Text = mrDevice.Glb_Cmd;
@@ -36,7 +34,7 @@ namespace CentralControl
 
         private void comboBox1_textChanged(object sender, EventArgs e)
         {
-            curSelectModule = parseInt(this.comboBox1.Text);
+            CurrentSelected = parseInt(this.comboBox1.Text);
             refresh();
         }
 
@@ -49,443 +47,42 @@ namespace CentralControl
         private void timer1_Tick(object sender, EventArgs e)
         {
             timer1.Stop();
-            curSelectModule = parseInt(this.comboBox1.Text);
-            showData(curSelectModule);
+            CurrentSelected = parseInt(this.comboBox1.Text);
+            showData(CurrentSelected);
             timer1.Start();
         }
 
         private void showData(int curSelectModule)
         {
-            switch (curSelectModule)
-            {
-                case 1:
-                    if (mrDevice.MMR_Module1)
-                    {
-                        this.textBox6.Text = mrDevice.MMR_ModTemp1.ToString();
-                        this.textBox7.Text = mrDevice.MMR_ModPh1.ToString();
-                        this.textBox8.Text = mrDevice.MMR_ModDO1.ToString();
-                        button2.Text = "停止";
-                    }
-
-                    else
-                    {
-                        this.textBox6.Text = "0";
-                        this.textBox7.Text = "0";
-                        this.textBox8.Text = "0";
-                        button2.Text = "开始 ";
-                    }
-                    break;
-                case 2:
-                    if (mrDevice.MMR_Module2)
-                    {
-                        this.textBox6.Text = mrDevice.MMR_ModTemp2.ToString();
-                        this.textBox7.Text = mrDevice.MMR_ModPh2.ToString();
-                        this.textBox8.Text = mrDevice.MMR_ModDO2.ToString();
-                        button2.Text = "停止";
-                    }
-
-                    else
-                    {
-                        this.textBox6.Text = "0";
-                        this.textBox7.Text = "0";
-                        this.textBox8.Text = "0";
-                        button2.Text = "开始 ";
-                    }
-                    break;
-                case 3:
-                    if (mrDevice.MMR_Module3)
-                    {
-                        this.textBox6.Text = mrDevice.MMR_ModTemp3.ToString();
-                        this.textBox7.Text = mrDevice.MMR_ModPh3.ToString();
-                        this.textBox8.Text = mrDevice.MMR_ModDO3.ToString();
-                        button2.Text = "停止";
-                    }
-
-                    else
-                    {
-                        this.textBox6.Text = "0";
-                        this.textBox7.Text = "0";
-                        this.textBox8.Text = "0";
-                        button2.Text = "开始 ";
-                    }
-                    break;
-                case 4:
-                    if (mrDevice.MMR_Module4)
-                    {
-                        this.textBox6.Text = mrDevice.MMR_ModTemp4.ToString();
-                        this.textBox7.Text = mrDevice.MMR_ModPh4.ToString();
-                        this.textBox8.Text = mrDevice.MMR_ModDO4.ToString();
-                        button2.Text = "停止";
-                    }
-
-                    else
-                    {
-                        this.textBox6.Text = "0";
-                        this.textBox7.Text = "0";
-                        this.textBox8.Text = "0";
-                        button2.Text = "开始 ";
-                    }
-                    break;
-                case 5:
-                    if (mrDevice.MMR_Module5)
-                    {
-                        this.textBox6.Text = mrDevice.MMR_ModTemp5.ToString();
-                        this.textBox7.Text = mrDevice.MMR_ModPh5.ToString();
-                        this.textBox8.Text = mrDevice.MMR_ModDO5.ToString();
-                        button2.Text = "停止";
-                    }
-
-                    else
-                    {
-                        this.textBox6.Text = "0";
-                        this.textBox7.Text = "0";
-                        this.textBox8.Text = "0";
-                        button2.Text = "开始 ";
-                    }
-                    break;
-                case 6:
-                    if (mrDevice.MMR_Module6)
-                    {
-                        this.textBox6.Text = mrDevice.MMR_ModTemp6.ToString();
-                        this.textBox7.Text = mrDevice.MMR_ModPh6.ToString();
-                        this.textBox8.Text = mrDevice.MMR_ModDO6.ToString();
-                        button2.Text = "停止";
-                    }
-
-                    else
-                    {
-                        this.textBox6.Text = "0";
-                        this.textBox7.Text = "0";
-                        this.textBox8.Text = "0";
-                        button2.Text = "开始 ";
-                    }
-                    break;
-                case 7:
-                    if (mrDevice.MMR_Module7)
-                    {
-                        this.textBox6.Text = mrDevice.MMR_ModTemp7.ToString();
-                        this.textBox7.Text = mrDevice.MMR_ModPh7.ToString();
-                        this.textBox8.Text = mrDevice.MMR_ModDO7.ToString();
-                        button2.Text = "停止";
-                    }
-
-                    else
-                    {
-                        this.textBox6.Text = "0";
-                        this.textBox7.Text = "0";
-                        this.textBox8.Text = "0";
-                        button2.Text = "开始 ";
-                    }
-                    break;
-                case 8:
-                    if (mrDevice.MMR_Module8)
-                    {
-                        this.textBox6.Text = mrDevice.MMR_ModTemp8.ToString();
-                        this.textBox7.Text = mrDevice.MMR_ModPh8.ToString();
-                        this.textBox8.Text = mrDevice.MMR_ModDO8.ToString();
-                        button2.Text = "停止";
-                    }
-
-                    else
-                    {
-                        this.textBox6.Text = "0";
-                        this.textBox7.Text = "0";
-                        this.textBox8.Text = "0";
-                        button2.Text = "开始 ";
-                    }
-                    break;
-                default:
-                    break;
-
-            }
-
+            //功能： 根据当前选中的模块，如果模块valid，则显示中控从仪器接收的那些数据，并把按钮2变成停止
+            //目前只有 温度，PH和DO
+            //如果是invalid，就显示0 ，然后设成开始
+          
         }
         private void refresh()
         {
-
-            switch (curSelectModule)
-            {
-                case 1:
-                    this.textBox1.Text = mrDevice.MMR_ModuleSpeed1.ToString();
-                    this.textBox3.Text = mrDevice.MMR_ModuleTemp1.ToString();
-                    this.textBox5.Text = mrDevice.MMR_ModuleSampleTime1.ToString();
-                    this.textBox2.Text = mrDevice.MMR_ModuleAir1.ToString();
-                    this.textBox4.Text = mrDevice.MMR_ModulemPa1.ToString();
-                    if (mrDevice.MMR_Module1) button2.Text = "停止";
-                    else button2.Text = "开始 ";
-                    break;
-                case 2:
-                    this.textBox1.Text = mrDevice.MMR_ModuleSpeed2.ToString();
-                    this.textBox3.Text = mrDevice.MMR_ModuleTemp2.ToString();
-                    this.textBox5.Text = mrDevice.MMR_ModuleSampleTime2.ToString();
-                    this.textBox2.Text = mrDevice.MMR_ModuleAir2.ToString();
-                    this.textBox4.Text = mrDevice.MMR_ModulemPa2.ToString();
-                    if (mrDevice.MMR_Module2) button2.Text = "停止";
-                    else button2.Text = "开始 ";
-                    break;
-                case 3:
-                    this.textBox1.Text = mrDevice.MMR_ModuleSpeed3.ToString();
-                    this.textBox3.Text = mrDevice.MMR_ModuleTemp3.ToString();
-                    this.textBox5.Text = mrDevice.MMR_ModuleSampleTime3.ToString();
-                    this.textBox2.Text = mrDevice.MMR_ModuleAir3.ToString();
-                    this.textBox4.Text = mrDevice.MMR_ModulemPa3.ToString();
-                    if (mrDevice.MMR_Module3) button2.Text = "停止";
-                    else button2.Text = "开始 ";
-                    break;
-                case 4:
-                    this.textBox1.Text = mrDevice.MMR_ModuleSpeed4.ToString();
-                    this.textBox3.Text = mrDevice.MMR_ModuleTemp4.ToString();
-                    this.textBox5.Text = mrDevice.MMR_ModuleSampleTime4.ToString();
-                    this.textBox2.Text = mrDevice.MMR_ModuleAir4.ToString();
-                    this.textBox4.Text = mrDevice.MMR_ModulemPa4.ToString();
-                    if (mrDevice.MMR_Module4) button2.Text = "停止";
-                    else button2.Text = "开始 ";
-                    break;
-                case 5:
-                    this.textBox1.Text = mrDevice.MMR_ModuleSpeed5.ToString();
-                    this.textBox3.Text = mrDevice.MMR_ModuleTemp5.ToString();
-                    this.textBox5.Text = mrDevice.MMR_ModuleSampleTime5.ToString();
-                    this.textBox2.Text = mrDevice.MMR_ModuleAir5.ToString();
-                    this.textBox4.Text = mrDevice.MMR_ModulemPa5.ToString();
-                    if (mrDevice.MMR_Module5) button2.Text = "停止";
-                    else button2.Text = "开始 ";
-                    break;
-                case 6:
-                    this.textBox1.Text = mrDevice.MMR_ModuleSpeed6.ToString();
-                    this.textBox3.Text = mrDevice.MMR_ModuleTemp6.ToString();
-                    this.textBox5.Text = mrDevice.MMR_ModuleSampleTime6.ToString();
-                    this.textBox2.Text = mrDevice.MMR_ModuleAir6.ToString();
-                    this.textBox4.Text = mrDevice.MMR_ModulemPa6.ToString();
-                    if (mrDevice.MMR_Module6) button2.Text = "停止";
-                    else button2.Text = "开始 ";
-                    break;
-                case 7:
-                    this.textBox1.Text = mrDevice.MMR_ModuleSpeed7.ToString();
-                    this.textBox3.Text = mrDevice.MMR_ModuleTemp7.ToString();
-                    this.textBox5.Text = mrDevice.MMR_ModuleSampleTime7.ToString();
-                    this.textBox2.Text = mrDevice.MMR_ModuleAir7.ToString();
-                    this.textBox4.Text = mrDevice.MMR_ModulemPa7.ToString();
-                    if (mrDevice.MMR_Module7) button2.Text = "停止";
-                    else button2.Text = "开始 ";
-                    break;
-                case 8:
-                    this.textBox1.Text = mrDevice.MMR_ModuleSpeed8.ToString();
-                    this.textBox3.Text = mrDevice.MMR_ModuleTemp8.ToString();
-                    this.textBox5.Text = mrDevice.MMR_ModuleSampleTime8.ToString();
-                    this.textBox2.Text = mrDevice.MMR_ModuleAir8.ToString();
-                    this.textBox4.Text = mrDevice.MMR_ModulemPa8.ToString();
-                    if (mrDevice.MMR_Module8) button2.Text = "停止";
-                    else button2.Text = "开始 ";
-                    break;
-                default:
-                    break;
-
-            }
-
+            //根据当前选中的模块，显示中控——>仪器的属性，从自己的变量里读
+            //如果该模块valid， 就变成停止
+            //如果该模块invalid，就是开始
+           
         }
 
 
 
         private void start_Click(object sender, EventArgs e)
         {
-            if (IsSocket)
-            {
-                switch (curSelectModule)
-                {
-                    case 1:
-                        if (!mrDevice.MMR_Module1)
-                        {
-                            String msg = MRDeviceMessageCreator.createStartMsg(curSelectModule);
-                            mrDevice.SendMsg(msg);
-                            mrDevice.MMR_Module1 = true;
-                        }
-                        else
-                        {
-                            String msg = MRDeviceMessageCreator.createStopMsg(curSelectModule);
-                            mrDevice.SendMsg(msg);
-                            mrDevice.MMR_Module1 = false;
-                        }
-                        break;
-
-                    case 2:
-                        if (!mrDevice.MMR_Module2)
-                        {
-                            String msg = MRDeviceMessageCreator.createStartMsg(curSelectModule);
-                            mrDevice.SendMsg(msg);
-                            mrDevice.MMR_Module2 = true;
-                        }
-                        else
-                        {
-                            String msg = MRDeviceMessageCreator.createStopMsg(curSelectModule);
-                            mrDevice.SendMsg(msg);
-                            mrDevice.MMR_Module2 = false;
-                        }
-                        break;
-                    case 3:
-                        if (!mrDevice.MMR_Module3)
-                        {
-                            String msg = MRDeviceMessageCreator.createStartMsg(curSelectModule);
-                            mrDevice.SendMsg(msg);
-                            mrDevice.MMR_Module3 = true;
-                        }
-                        else
-                        {
-                            String msg = MRDeviceMessageCreator.createStopMsg(curSelectModule);
-                            mrDevice.SendMsg(msg);
-                            mrDevice.MMR_Module3 = false;
-                        }
-                        break;
-                    case 4:
-                        if (!mrDevice.MMR_Module4)
-                        {
-                            String msg = MRDeviceMessageCreator.createStartMsg(curSelectModule);
-                            mrDevice.SendMsg(msg);
-                            mrDevice.MMR_Module4 = true;
-                        }
-                        else
-                        {
-                            String msg = MRDeviceMessageCreator.createStopMsg(curSelectModule);
-                            mrDevice.SendMsg(msg);
-                            mrDevice.MMR_Module4 = false;
-                        }
-                        break;
-                    case 5:
-                        if (!mrDevice.MMR_Module5)
-                        {
-                            String msg = MRDeviceMessageCreator.createStartMsg(curSelectModule);
-                            mrDevice.SendMsg(msg);
-                            mrDevice.MMR_Module5 = true;
-                        }
-                        else
-                        {
-                            String msg = MRDeviceMessageCreator.createStopMsg(curSelectModule);
-                            mrDevice.SendMsg(msg);
-                            mrDevice.MMR_Module5 = false;
-                        }
-                        break;
-                    case 6:
-                        if (!mrDevice.MMR_Module6)
-                        {
-                            String msg = MRDeviceMessageCreator.createStartMsg(curSelectModule);
-                            mrDevice.SendMsg(msg);
-                            mrDevice.MMR_Module6 = true;
-                        }
-                        else
-                        {
-                            String msg = MRDeviceMessageCreator.createStopMsg(curSelectModule);
-                            mrDevice.SendMsg(msg);
-                            mrDevice.MMR_Module6 = false;
-                        }
-                        break;
-                    case 7:
-                        if (!mrDevice.MMR_Module7)
-                        {
-                            String msg = MRDeviceMessageCreator.createStartMsg(curSelectModule);
-                            mrDevice.SendMsg(msg);
-                            mrDevice.MMR_Module7 = true;
-                        }
-                        else
-                        {
-                            String msg = MRDeviceMessageCreator.createStopMsg(curSelectModule);
-                            mrDevice.SendMsg(msg);
-                            mrDevice.MMR_Module7 = false;
-                        }
-                        break;
-                    case 8:
-                        if (!mrDevice.MMR_Module8)
-                        {
-                            String msg = MRDeviceMessageCreator.createStartMsg(curSelectModule);
-                            mrDevice.SendMsg(msg);
-                            mrDevice.MMR_Module8 = true;
-                        }
-                        else
-                        {
-                            String msg = MRDeviceMessageCreator.createStopMsg(curSelectModule);
-                            mrDevice.SendMsg(msg);
-                            mrDevice.MMR_Module8 = false;
-                        }
-                        break;
-                }
-
-            }
+            /*一个会在开始和停止之间切换的按钮，应该是标志当前模块是否为开始状态
+             * 发了一条SET类型的start给仪器，仪器收到后就会把该模块置为valid，然后回一条response
+             顺便把本地的也改成true
+             * 反之亦然
+             */
+            
+           
         }
 
         private void send_Click(object sender, EventArgs e)
         {
-            mrDevice.MMR_CurentSelectIndex = parseInt(this.comboBox1.Text);
-            mrDevice.MMR_CurSpeed = Int32.Parse(this.textBox1.Text);
-            mrDevice.MMR_CurTemp = Int32.Parse(this.textBox3.Text);
-            mrDevice.MMR_CurTime = Int32.Parse(this.textBox5.Text);
-            mrDevice.MMR_CurAir = Int32.Parse(this.textBox2.Text);
-            mrDevice.MMR_CurPressure = Int32.Parse(this.textBox4.Text);
-            switch (curSelectModule)
-            {
-                case 1:
-                    mrDevice.MMR_ModuleSpeed1 = mrDevice.MMR_CurSpeed;
-                    mrDevice.MMR_ModuleTemp1 = mrDevice.MMR_CurTemp;
-                    mrDevice.MMR_ModuleSampleTime1 = mrDevice.MMR_CurTime;
-                    mrDevice.MMR_ModuleAir1 = mrDevice.MMR_CurAir;
-                    mrDevice.MMR_ModulemPa1 = mrDevice.MMR_CurPressure;
-                    break;
-                case 2:
-                    mrDevice.MMR_ModuleSpeed2 = mrDevice.MMR_CurSpeed;
-                    mrDevice.MMR_ModuleTemp2 = mrDevice.MMR_CurTemp;
-                    mrDevice.MMR_ModuleSampleTime2 = mrDevice.MMR_CurTime;
-                    mrDevice.MMR_ModuleAir2 = mrDevice.MMR_CurAir;
-                    mrDevice.MMR_ModulemPa2 = mrDevice.MMR_CurPressure;
-                    break;
-                case 3:
-                    mrDevice.MMR_ModuleSpeed3 = mrDevice.MMR_CurSpeed;
-                    mrDevice.MMR_ModuleTemp3 = mrDevice.MMR_CurTemp;
-                    mrDevice.MMR_ModuleSampleTime3 = mrDevice.MMR_CurTime;
-                    mrDevice.MMR_ModuleAir3 = mrDevice.MMR_CurAir;
-                    mrDevice.MMR_ModulemPa3 = mrDevice.MMR_CurPressure;
-                    break;
-                case 4:
-                    mrDevice.MMR_ModuleSpeed4 = mrDevice.MMR_CurSpeed;
-                    mrDevice.MMR_ModuleTemp4 = mrDevice.MMR_CurTemp;
-                    mrDevice.MMR_ModuleSampleTime4 = mrDevice.MMR_CurTime;
-                    mrDevice.MMR_ModuleAir4 = mrDevice.MMR_CurAir;
-                    mrDevice.MMR_ModulemPa4 = mrDevice.MMR_CurPressure;
-                    break;
-                case 5:
-                    mrDevice.MMR_ModuleSpeed5 = mrDevice.MMR_CurSpeed;
-                    mrDevice.MMR_ModuleTemp5 = mrDevice.MMR_CurTemp;
-                    mrDevice.MMR_ModuleSampleTime5 = mrDevice.MMR_CurTime;
-                    mrDevice.MMR_ModuleAir5 = mrDevice.MMR_CurAir;
-                    mrDevice.MMR_ModulemPa5 = mrDevice.MMR_CurPressure;
-                    break;
-                case 6:
-                    mrDevice.MMR_ModuleSpeed6 = mrDevice.MMR_CurSpeed;
-                    mrDevice.MMR_ModuleTemp6 = mrDevice.MMR_CurTemp;
-                    mrDevice.MMR_ModuleSampleTime6 = mrDevice.MMR_CurTime;
-                    mrDevice.MMR_ModuleAir6 = mrDevice.MMR_CurAir;
-                    mrDevice.MMR_ModulemPa6 = mrDevice.MMR_CurPressure;
-                    break;
-                case 7:
-                    mrDevice.MMR_ModuleSpeed7 = mrDevice.MMR_CurSpeed;
-                    mrDevice.MMR_ModuleTemp7 = mrDevice.MMR_CurTemp;
-                    mrDevice.MMR_ModuleSampleTime7 = mrDevice.MMR_CurTime;
-                    mrDevice.MMR_ModuleAir7 = mrDevice.MMR_CurAir;
-                    mrDevice.MMR_ModulemPa7 = mrDevice.MMR_CurPressure;
-                    break;
-                case 8:
-                    mrDevice.MMR_ModuleSpeed8 = mrDevice.MMR_CurSpeed;
-                    mrDevice.MMR_ModuleTemp8 = mrDevice.MMR_CurTemp;
-                    mrDevice.MMR_ModuleSampleTime8 = mrDevice.MMR_CurTime;
-                    mrDevice.MMR_ModuleAir8 = mrDevice.MMR_CurAir;
-                    mrDevice.MMR_ModulemPa8 = mrDevice.MMR_CurPressure;
-                    break;
-                default:
-                    break;
-
-            }
-            if (IsSocket)
-            {
-                String msg = MRDeviceMessageCreator.createSettingMsg(mrDevice.MMR_CurentSelectIndex, mrDevice.MMR_CurSpeed, mrDevice.MMR_CurTemp, mrDevice.MMR_CurTime, mrDevice.MMR_CurAir, mrDevice.MMR_CurPressure);
-                mrDevice.SendMsg(msg);
-            }
-
+            //就是发送一条SET给仪器
         }
 
         private int parseInt(String text)
@@ -499,19 +96,13 @@ namespace CentralControl
             if (text.Equals("模块7")) return 7;
             if (text.Equals("模块8")) return 8;
             return 0;
-
         }
 
 
-        private void bindingNavigator1_RefreshItems(object sender, EventArgs e)
-        {
+       
 
-        }
 
-        private void numericUpDown1_ValueChanged(object sender, EventArgs e)
-        {
-
-        }
+        //global_cmd 设置，可改写对面的事件方法，在特定信息里实例化
         private void send_cmd(String cmd)
         {
             mrDevice.SendModBusMsg(ModbusMessage.MessageType.CMD, "Cmd", cmd);

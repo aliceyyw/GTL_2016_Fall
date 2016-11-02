@@ -8,280 +8,51 @@ namespace Instrument
 {
     public class MicroStorageDevice : BaseVirtualDevice
     {
-        public static String createResponseMsg(int moduleNum, int tpR, int phR, int doR)
-        {
-            ModbusMessageDataCreator creator = new ModbusMessageDataCreator();
-            creator.addKeyPair("SetType", "Response");
-            creator.addKeyPair("moduleNum", moduleNum.ToString());
-            creator.addKeyPair("tpR", tpR.ToString());
-            creator.addKeyPair("phR", phR.ToString());
-            creator.addKeyPair("doR", doR.ToString());
-            return ModbusMessageHelper.createModbusMessage(ModbusMessage.messageTypeToByte(ModbusMessage.MessageType.RESPONSE), creator.getDataBytes());
-        }
 
+
+        private const int ModuleNum = 8; //8个模块
+        public int MMR_CurentSelectedIndex;
+        
+        public bool[] MMR_ValidModule = { false, false, false, false, false, false, false, false };  //初始全为false
+        /* 数据字典中出现的8种属性
+        * 数组长度和模块数量一致， 本来赋了一些随机的初值
+        */
+        public float[] MMR_PH = new float[ModuleNum];
+        public float[] MMR_Temperature = new float[ModuleNum];
+        public float[] MMR_Flow = new float[ModuleNum];
+        public float[] MMR_DO = new float[ModuleNum];
+        public float[] MMR_Rspeed = new float[ModuleNum];
+        public float[] MMR_Pressure = new float[ModuleNum];
+        public float[] MMR_TailOxygen = new float[ModuleNum];
+        public float[] MMR_TailCarbon = new float[ModuleNum];
+
+        //如果仪器收到了中控将某一模块valid的命令
+        //就会回复一条respond，然后包括了自己的 PH DO和温度
+        //中控发给仪器的是set类型消息
+       
 
         private void decodeSetMessage(ModbusMessage msg)
         {
             String setType = (String)msg.Data["SetType"];
+            /* setting消息
+             * 接收的是中控端发来的一些属性，根据模块号给自己的属性赋值
+             */
+            
+            /*
+             * Start消息，就是中控那边关于某个模块是否valid的一个设置信息
+             * respond自己的某三个属性用在这里很奇怪
+             */
 
-            if ("Setting".Equals(setType))
-            {
-                MMR_CurentSelectIndex = Int32.Parse((String)msg.Data["moduleNum"]);
-                MMR_CurSpeed = Int32.Parse((String)msg.Data["speed"]);
-                MMR_CurTemp = Int32.Parse((String)msg.Data["temp"]);
-                MMR_CurTime = Int32.Parse((String)msg.Data["time"]);
-                MMR_CurAir = Int32.Parse((String)msg.Data["air"]);
-                MMR_CurPressure = Int32.Parse((String)msg.Data["pressure"]);
-
-                switch (MMR_CurentSelectIndex)
-                {
-                    case 1:
-                        MMR_ModuleSpeed1 = MMR_CurSpeed;
-                        MMR_ModuleTemp1 = MMR_CurTemp;
-                        MMR_ModuleSampleTime1 = MMR_CurTime;
-                        MMR_ModuleAir1 = MMR_CurAir;
-                        MMR_ModulemPa1 = MMR_CurPressure;
-                        break;
-                    case 2:
-                        MMR_ModuleSpeed2 = MMR_CurSpeed;
-                        MMR_ModuleTemp2 = MMR_CurTemp;
-                        MMR_ModuleSampleTime2 = MMR_CurTime;
-                        MMR_ModuleAir2 = MMR_CurAir;
-                        MMR_ModulemPa2 = MMR_CurPressure;
-                        break;
-                    case 3:
-                        MMR_ModuleSpeed3 = MMR_CurSpeed;
-                        MMR_ModuleTemp3 = MMR_CurTemp;
-                        MMR_ModuleSampleTime3 = MMR_CurTime;
-                        MMR_ModuleAir3 = MMR_CurAir;
-                        MMR_ModulemPa3 = MMR_CurPressure;
-                        break;
-                    case 4:
-                        MMR_ModuleSpeed4 = MMR_CurSpeed;
-                        MMR_ModuleTemp4 = MMR_CurTemp;
-                        MMR_ModuleSampleTime4 = MMR_CurTime;
-                        MMR_ModuleAir4 = MMR_CurAir;
-                        MMR_ModulemPa4 = MMR_CurPressure;
-                        break;
-                    case 5:
-                        MMR_ModuleSpeed5 = MMR_CurSpeed;
-                        MMR_ModuleTemp5 = MMR_CurTemp;
-                        MMR_ModuleSampleTime5 = MMR_CurTime;
-                        MMR_ModuleAir5 = MMR_CurAir;
-                        MMR_ModulemPa5 = MMR_CurPressure;
-                        break;
-                    case 6:
-                        MMR_ModuleSpeed6 = MMR_CurSpeed;
-                        MMR_ModuleTemp6 = MMR_CurTemp;
-                        MMR_ModuleSampleTime6 = MMR_CurTime;
-                        MMR_ModuleAir6 = MMR_CurAir;
-                        MMR_ModulemPa6 = MMR_CurPressure;
-                        break;
-                    case 7:
-                        MMR_ModuleSpeed7 = MMR_CurSpeed;
-                        MMR_ModuleTemp7 = MMR_CurTemp;
-                        MMR_ModuleTime7 = MMR_CurTime;
-                        MMR_ModuleAir7 = MMR_CurAir;
-                        MMR_ModulemPa7 = MMR_CurPressure;
-                        break;
-                    case 8:
-                        MMR_ModuleSpeed8 = MMR_CurSpeed;
-                        MMR_ModuleTemp8 = MMR_CurTemp;
-                        MMR_ModuleTime8 = MMR_CurTime;
-                        MMR_ModuleAir8 = MMR_CurAir;
-                        MMR_ModulemPa8 = MMR_CurPressure;
-                        break;
-                    default:
-                        break;
-
-                }
-
-            }
-
-
-            if ("Start".Equals(setType))
-            {
-                int mnum = Int32.Parse((String)msg.Data["moduleNum"]);
-                switch (mnum)
-                {
-                    case 1:
-                        MMR_Module1 = true;
-                        String msg2 = createResponseMsg(mnum, MMR_ModTemp1, MMR_ModPh1, MMR_ModDo1);
-                        SendMsg(msg2);
-                        break;
-                    case 2:
-                        MMR_Module2 = true;
-                        String msg3 = createResponseMsg(mnum, MMR_ModTemp2, MMR_ModPh2, MMR_ModDo2);
-                        SendMsg(msg3);
-                        break;
-                    case 3:
-                        MMR_Module3 = true;
-                        String msg4 = createResponseMsg(mnum, MMR_ModTemp3, MMR_Modph3, MMR_ModDo3);
-                        SendMsg(msg4);
-                        break;
-                    case 4:
-                        MMR_Module4 = true;
-                        String msg5 = createResponseMsg(mnum, MMR_ModTemp4, MMR_Modph4, MMR_ModDo4);
-                        SendMsg(msg5);
-                        break;
-                    case 5:
-                        MMR_Module5 = true;
-                        String msg6 = createResponseMsg(mnum, MMR_ModTemp5, MMR_Modph5, MMR_ModDo5);
-                        SendMsg(msg6);
-                        break;
-                    case 6:
-                        MMR_Module6 = true;
-                        String msg7 = createResponseMsg(mnum, MMR_ModTemp6, MMR_Modph6, MMR_ModDo6);
-                        SendMsg(msg7);
-                        break;
-                    case 7:
-                        MMR_Module7 = true;
-                        String msg8 = createResponseMsg(mnum, MMR_ModTemp7, MMR_Modph7, MMR_ModDo7);
-                        SendMsg(msg8);
-                        break;
-                    case 8:
-                        MMR_Module8 = true;
-                        String msg9 = createResponseMsg(mnum, MMR_ModTemp8, MMR_Modph8, MMR_ModDo8);
-                        SendMsg(msg9);
-                        break;
-                }
-            }
-
-            if ("Stop".Equals(setType))
-            {
-                int mnum2 = Int32.Parse((String)msg.Data["moduleNum"]);
-                switch (mnum2)
-                {
-                    case 1:
-                        MMR_Module1 = false;
-                        break;
-                    case 2:
-                        MMR_Module2 = false;
-                        break;
-                    case 3:
-                        MMR_Module3 = false;
-                        break;
-                    case 4:
-                        MMR_Module4 = false;
-                        break;
-                    case 5:
-                        MMR_Module5 = false;
-                        break;
-                    case 6:
-                        MMR_Module6 = false;
-                        break;
-                    case 7:
-                        MMR_Module7 = false;
-                        break;
-                    case 8:
-                        MMR_Module8 = false;
-                        break;
-                }
-            }
-
-
+            /*
+              * Stopt消息，就是中控那边关于某个模块invalid的一个设置信息
+              * 如果是关掉模块，就不需要respond
+              */
+           
         }
        
 
+       
 
-        public int MMR_CurentSelectIndex;
-        public bool MMR_Module1 = false;
-        public bool MMR_Module2 = false;
-        public bool MMR_Module3 = false;
-        public bool MMR_Module4 = false;
-        public bool MMR_Module5 = false;
-        public bool MMR_Module6 = false;
-        public bool MMR_Module7 = false;
-        public bool MMR_Module8 = false;
-
-        public int MMR_CurSpeed;
-        public int MMR_CurTemp;
-        public int MMR_CurAir;
-        public int MMR_CurPressure;
-        public int MMR_CurTime;
-        public int MMR_CurtpR;
-        public int MMR_CurphR;
-        public int MMR_CurdoR;
-
-        /*public int MMR_ModuleSpeed1;
-        public int MMR_ModuleTemp1;
-        public int MMR_ModuleAir1;
-        public int MMR_ModulemPa1;
-        public int MMR_ModuleSampleTime1;
-        public int MMR_ModTemp1;
-        public int MMR_ModPh1;
-        public int MMR_ModDO1;
-         */
-        public int MMR_ModuleSpeed1 = 0;
-        public int MMR_ModuleTemp1 = 0;
-        public int MMR_ModuleAir1 = 0;
-        public int MMR_ModulemPa1 = 0;
-        public int MMR_ModuleSampleTime1 = 0;
-        public int MMR_ModTemp1 = 30;
-        public int MMR_ModPh1 = 6;
-        public int MMR_ModDo1 = 20;
-
-        public int MMR_ModuleSpeed2 = 0;
-        public int MMR_ModuleTemp2 = 0;
-        public int MMR_ModuleAir2 = 0;
-        public int MMR_ModulemPa2 = 0;
-        public int MMR_ModuleSampleTime2 = 0;
-        public int MMR_ModTemp2 = 30;
-        public int MMR_ModPh2 = 7;
-        public int MMR_ModDo2 = 18;
-
-        public int MMR_ModuleSpeed3 = 0;
-        public int MMR_ModuleTemp3 = 0;
-        public int MMR_ModuleAir3 = 0;
-        public int MMR_ModulemPa3 = 0;
-        public int MMR_ModuleSampleTime3 = 0;
-        public int MMR_ModTemp3 = 31;
-        public int MMR_Modph3 = 6;
-        public int MMR_ModDo3 = 23;
-
-        public int MMR_ModuleSpeed4 = 0;
-        public int MMR_ModuleTemp4 = 0;
-        public int MMR_ModuleAir4 = 0;
-        public int MMR_ModulemPa4 = 0;
-        public int MMR_ModuleSampleTime4 = 0;
-        public int MMR_ModTemp4 = 26;
-        public int MMR_Modph4 = 6;
-        public int MMR_ModDo4 = 20;
-
-        public int MMR_ModuleSpeed5 = 0;
-        public int MMR_ModuleTemp5 = 0;
-        public int MMR_ModuleAir5 = 0;
-        public int MMR_ModulemPa5 = 0;
-        public int MMR_ModuleSampleTime5 = 0;
-        public int MMR_ModTemp5 = 31;
-        public int MMR_Modph5 = 7;
-        public int MMR_ModDo5 = 25;
-
-        public int MMR_ModuleSpeed6 = 0;
-        public int MMR_ModuleTemp6 = 0;
-        public int MMR_ModuleAir6 = 0;
-        public int MMR_ModulemPa6 = 0;
-        public int MMR_ModuleSampleTime6 = 0;
-        public int MMR_ModTemp6 = 31;
-        public int MMR_Modph6 = 6;
-        public int MMR_ModDo6 = 28;
-
-        public int MMR_ModuleSpeed7 = 0;
-        public int MMR_ModuleTemp7 = 0;
-        public int MMR_ModuleAir7 = 0;
-        public int MMR_ModulemPa7 = 0;
-        public int MMR_ModuleTime7 = 0;
-        public int MMR_ModTemp7 = 33;
-        public int MMR_Modph7 = 6;
-        public int MMR_ModDo7 = 19;
-
-        public int MMR_ModuleSpeed8 = 0;
-        public int MMR_ModuleTemp8 = 0;
-        public int MMR_ModuleAir8 = 0;
-        public int MMR_ModulemPa8 = 0;
-        public int MMR_ModuleTime8 = 0;
-        public int MMR_ModTemp8 = 34;
-        public int MMR_Modph8 = 6;
-        public int MMR_ModDo8 = 25;
+       
     }
 }
