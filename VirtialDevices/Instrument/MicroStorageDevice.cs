@@ -26,6 +26,7 @@ namespace Instrument
         public float[] MMR_TailOxygen = new float[ModuleNum];
         public float[] MMR_TailCarbon = new float[ModuleNum];
 
+        public string MMR_Barcode;
         //如果仪器收到了中控将某一模块valid的命令
         //就会回复一条respond，然后包括了自己的 PH DO和温度
         //中控发给仪器的是set类型消息
