@@ -10,7 +10,7 @@ namespace Instrument
     public class MicroStorageVirtualDevice : BaseVirtualDevice
     {
         private const int ModuleNum=8; //8个模块
-        public int MMR_CurentSelectedIndex;   
+        //public int MMR_CurentSelectedIndex;   
         public bool[] MMR_ValidModule ={false,false,false,false,false,false,false,false};  //初始全为false
         /*
          * 数据字典中的设定属性，从中控向仪器

@@ -26,6 +26,16 @@ namespace CentralControl
             InitializeComponent();
         }
 
+        public void TurnOn()  //该模块可用，‘开始’不能按，只能按‘停止’
+        {
+            StartBtn.Enabled = false;
+            StopBtn.Enabled = true;
+        }
+        public void TurnOff() //模块不可用，‘开始’能按，‘停止’不能按
+        {
+            StartBtn.Enabled = true;
+            StopBtn.Enabled = false;
+        }
         //Global_cmd 具体实现的触发事件，将事件添加给委托的语句在ControlForm中。
         public void MicroReactorDevice_cmdEvent()
         {
@@ -34,7 +44,7 @@ namespace CentralControl
 
         private void comboBox1_textChanged(object sender, EventArgs e)
         {
-            CurrentSelected = parseInt(this.comboBox1.Text);
+            CurrentSelected = ModuleParseInt(this.comboBox1.Text);
             refresh();
         }
 
@@ -47,7 +57,7 @@ namespace CentralControl
         private void timer1_Tick(object sender, EventArgs e)
         {
             timer1.Stop();
-            CurrentSelected = parseInt(this.comboBox1.Text);
+            CurrentSelected = ModuleParseInt(this.comboBox1.Text);
             showData(CurrentSelected);
             timer1.Start();
         }
@@ -61,6 +71,13 @@ namespace CentralControl
         }
         private void refresh()
         {
+            CurrentSelected = ModuleParseInt(comboBox1.Text);
+            if (mrDevice.MMR_ValidModule[CurrentSelected - 1] == true)
+                TurnOn();
+            else
+                TurnOff();
+
+
             //根据当前选中的模块，显示中控——>仪器的属性，从自己的变量里读
             //如果该模块valid， 就变成停止
             //如果该模块invalid，就是开始
@@ -82,10 +99,10 @@ namespace CentralControl
 
         private void send_Click(object sender, EventArgs e)
         {
-            //就是发送一条SET给仪器
+            //就是发送一条SET给仪器,设置一些属性
         }
 
-        private int parseInt(String text)
+        private int ModuleParseInt(String text)
         {
             if (text.Equals("模块1")) return 1;
             if (text.Equals("模块2")) return 2;
@@ -125,6 +142,21 @@ namespace CentralControl
         private void button10_Click(object sender, EventArgs e)
         {
             send_cmd("Auto");
+        }
+
+        private void groupBox3_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void StartBtn_Click(object sender, EventArgs e)
+        {
+            TurnOn();
+        }
+
+        private void StopBtn_Click(object sender, EventArgs e)
+        {
+            TurnOff();
         }
     }
 }

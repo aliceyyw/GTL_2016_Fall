@@ -11,9 +11,10 @@ namespace Instrument
 
 
         private const int ModuleNum = 8; //8个模块
-        public int MMR_CurentSelectedIndex;
-        
+        //public int MMR_CurentSelectedIndex;
+        //下列都从中控端接收
         public bool[] MMR_ValidModule = { false, false, false, false, false, false, false, false };  //初始全为false
+        public int[] MMR_Sample_Time = new int[ModuleNum];
         /* 数据字典中出现的8种属性
         * 数组长度和模块数量一致， 本来赋了一些随机的初值
         */

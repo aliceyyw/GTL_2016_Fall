@@ -76,13 +76,7 @@ namespace VirtialDevices
 
         }
 
-        private void cancelButton_click(object sender, EventArgs e)
-        {
-            this.Close();
-            FatherForm.Enabled = true;
-        }
-       
-        
+            
 
 
         //仪器到中控好像是不需要cmd的，暂且保留
@@ -108,6 +102,11 @@ namespace VirtialDevices
         private void button10_Click(object sender, EventArgs e)
         {
             send_cmd("Auto");
+        }
+
+        private void MicroReactorForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+             FatherForm.Enabled = true;
         }
 
     }
