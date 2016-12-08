@@ -432,7 +432,7 @@ namespace Instrument
                     if (msg.Data.ContainsKey("MMA_Lumin"))
                         list.Add(msg.Data["MMA_Lumin"]);
                     else
-                        list.Add("2.0");  //chemlight
+                        list.Add("2.0");  //lumin
                     if (msg.Data.Contains("Device_Time"))
                         list.Add(msg.Data["Device_Time"]);
                     else
