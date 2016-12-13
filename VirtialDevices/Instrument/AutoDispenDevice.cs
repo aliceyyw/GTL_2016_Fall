@@ -75,13 +75,14 @@ namespace Instrument
             SendModBusMsg(ModbusMessage.MessageType.RESPONSE, "Result", "OK");
         }
 
-        public void sendMDFCodesReport(String WhichStack, String WhichDish, String BarCode)
+        public void sendMDFCodesReport(String WhichStack, String WhichDish, String InBarCode, String OutBarCode)
         {
             Hashtable ht = new Hashtable();
             ht.Add("ReportType", "MDF");
             ht.Add("MDF_WhichStack", WhichStack);
             ht.Add("MDF_WhichDish", WhichDish);
-            ht.Add("MDF_BarCode", BarCode);
+            ht.Add("MDF_InBarCode", InBarCode);
+            ht.Add("MDF_OutBarCode", OutBarCode);
             SendModBusMsg(ModbusMessage.MessageType.REPORT, ht);
         }
 
@@ -182,7 +183,7 @@ namespace Instrument
             String msg;
             MDF_InBarCode = Barcode;
             MDF_OutBarCode = Barcode;
-            this.sendMDFCodesReport(Stackcode, Petricode, Barcode);
+            this.sendMDFCodesReport(Stackcode, Petricode, MDF_InBarCode, MDF_OutBarCode);
             this.sendMDFVolumeReport(Stackcode, Petricode, Barcode);  //插入数据库操作
         }
 

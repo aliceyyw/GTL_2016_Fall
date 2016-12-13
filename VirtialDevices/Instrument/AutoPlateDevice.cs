@@ -77,12 +77,13 @@ namespace Instrument
             SendModBusMsg(ModbusMessage.MessageType.RESPONSE, "Result", "OK");
         }
 
-        public void sendMPFCodesReport(String Whichplate, String BarCode)
+        public void sendMPFCodesReport(String Whichplate, String InBarCode, String OutBarCode)
         {
             Hashtable ht = new Hashtable();
             ht.Add("ReportType", "MPF");
             ht.Add("MPF_Whichplate", Whichplate);
-            ht.Add("MPF_BarCode", BarCode);
+            ht.Add("MPF_InBarCode", InBarCode);
+            ht.Add("MPF_OutBarCode", OutBarCode);
             SendModBusMsg(ModbusMessage.MessageType.REPORT, ht);
         }
 
@@ -173,7 +174,7 @@ namespace Instrument
             String msg;
             MPF_InBarCode = barcode;
             MPF_OutBarCode = barcode;
-            this.sendMPFCodesReport(platecode, barcode);
+            this.sendMPFCodesReport(platecode, MPF_InBarCode, MPF_OutBarCode);
         }
 
         //向中控发送电流信息

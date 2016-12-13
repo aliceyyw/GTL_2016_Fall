@@ -191,10 +191,11 @@ namespace Instrument
             if ("MPF".Equals(reportType))
             {
                 String PlateNum = (String)msg.Data["MPF_Whichplate"];
-                String Barcode = (String)msg.Data["MPF_BarCode"];
+                String InBarcode = (String)msg.Data["MPF_InBarCode"];
+                String OutBarcode = (String)msg.Data["MPF_OutBarCode"];
                 MPFDispenMessage disMsg = new MPFDispenMessage();
                 disMsg.PlateNum = PlateNum;
-                disMsg.Barcode = Barcode;
+                disMsg.Barcode = InBarcode;
                 lock (DispenMessages)
                 {
                     DispenMessages.Add(disMsg);

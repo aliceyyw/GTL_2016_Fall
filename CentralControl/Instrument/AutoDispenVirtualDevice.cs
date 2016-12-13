@@ -128,7 +128,8 @@ namespace Instrument
             {
                 ArrayList list = new ArrayList();
 
-                list.Add(this.Code.Substring(0, 8)); //Device_Id
+                //list.Add(this.Code.Substring(0, 8)); //Device_Id
+                list.Add(this.IdentifyID);
                 list.Add(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")); //CurrentTime
                 if (msg.Data.ContainsKey("CREATER_ID")) // CREATER_ID, can be null
                     list.Add(msg.Data["CREATER_ID"]);
@@ -177,11 +178,12 @@ namespace Instrument
             {
                 String Stackcode = (String)msg.Data["MDF_WhichStack"];
                 String Petricode = (String)msg.Data["MDF_WhichDish"];
-                String Barcode = (String)msg.Data["MDF_BarCode"];
+                String InBarcode = (String)msg.Data["MDF_InBarCode"];
+                String OutBarcode = (String)msg.Data["MDF_OutBarCode"];
                 MDFDispenMessage xinXi = new MDFDispenMessage();
                 xinXi.Stackcode = Stackcode;
                 xinXi.Petricode = Petricode;
-                xinXi.Barcode = Barcode;
+                xinXi.Barcode = InBarcode;
                 lock (DispenMessages)
                 {
                     DispenMessages.Add(xinXi);
