@@ -16,12 +16,11 @@ namespace CentralControl
     {
         public ControlForm FatherForm;
         public bool IsSocket;
-        public CloneSelectionVirtualDevice DeviceInfo;
-
+        public CloneSelectionVirtualDevice CloneSelectionDevice;
 
         public void CloneSelectionDevice_cmdEvent()
         {
-            currentCmdTextBox.Text = DeviceInfo.Glb_Cmd;
+            currentCmdTextBox.Text = CloneSelectionDevice.Glb_Cmd;
         }
 
         private void setButton_Click(object sender, EventArgs e)
@@ -32,15 +31,14 @@ namespace CentralControl
             if (IsSocket)
             {
                 String msg = CloneSelectionDeviceMessageCreator.createSetLowAndUpp(Lower, Upper);
-                DeviceInfo.SendMsg(msg);
+                CloneSelectionDevice.SendMsg(msg);
             }
             else
             {
           
             }
-
-            DeviceInfo.setZhouChangMianJiBi_Max(Upper);
-            DeviceInfo.setZhouChangMianJiBi_Min(Lower);
+            CloneSelectionDevice.setZhouChangMianJiBi_Max(Upper);
+            CloneSelectionDevice.setZhouChangMianJiBi_Min(Lower);
         }
 
         private void setMianJiButton_Click(object sender, EventArgs e)
@@ -51,15 +49,40 @@ namespace CentralControl
             if (IsSocket)
             {
                 String msg = CloneSelectionDeviceMessageCreator.createSetMianJiLowAndUpp(Lower, Upper);
-                DeviceInfo.SendMsg(msg);
+                CloneSelectionDevice.SendMsg(msg);
             }
             else
             {
 
             }
+            CloneSelectionDevice.SCP_SizeMax = Convert.ToDouble(Upper);
+            CloneSelectionDevice.SCP_SizeMin = Convert.ToDouble(Lower);
         }
 
+        private void setKongBanXuanZeButton_Click(object sender, EventArgs e)
+        {
+            String tiaoXuanTingLiuShiJian = "", jieZhongZhenDong = "", jieZhongTingLiuShiJian = "", lightType = "", PingminType = "", KongbanType = "", GongzuoFanngshi = "", tiaoXuanZongShu = "";
+            tiaoXuanTingLiuShiJian = tiaoXuanTingLiuShiJianTextBox.Text;
+            jieZhongZhenDong = jieZhongZhenDongTextBox.Text;
+            jieZhongTingLiuShiJian = jieZhongTingLiuShiJianTextBox.Text;
+            lightType = LightcomboBox.SelectedIndex.ToString();
+            GongzuoFanngshi = GongzuoFanngshicomboBox1.SelectedIndex.ToString();
+            KongbanType = KongbanTypecomboBox1.SelectedIndex.ToString();
+            PingminType = PingminTypecomboBox.SelectedIndex.ToString();
+            tiaoXuanZongShu = tiaoXuanZongShuTextBox.Text;
+            if (IsSocket)
+            {
+                String msg = CloneSelectionDeviceMessageCreator.createSetKongBanXuanZe(tiaoXuanTingLiuShiJian, jieZhongZhenDong, jieZhongTingLiuShiJian, lightType, PingminType, KongbanType, GongzuoFanngshi, tiaoXuanZongShu);
+                CloneSelectionDevice.SendMsg(msg);
+            }
+            else
+            {
 
+            }
+            CloneSelectionDevice.SCP_PickStopTime = Convert.ToInt32(tiaoXuanTingLiuShiJian);
+            CloneSelectionDevice.SCP_ShockCount = Convert.ToInt32(jieZhongZhenDong);
+            CloneSelectionDevice.SCP_InoStopTime = Convert.ToInt32(jieZhongTingLiuShiJian);
+        }
         private void setMieJunButton_Click(object sender, EventArgs e)
         {
             String arg1 = "", arg2 = "", arg3 = "", arg4 = "", arg5 = "";
@@ -71,12 +94,68 @@ namespace CentralControl
             if (IsSocket)
             {
                 String msg = CloneSelectionDeviceMessageCreator.createSetMieJun(arg1, arg2, arg3, arg4, arg5);
-                DeviceInfo.SendMsg(msg);
+                CloneSelectionDevice.SendMsg(msg);
             }
             else
             {
 
             }
+            CloneSelectionDevice.SCP_HeatTime = Convert.ToUInt32(arg1);
+            CloneSelectionDevice.SCP_FlushNo = Convert.ToUInt32(arg2);
+            CloneSelectionDevice.SCP_CoolTime = Convert.ToUInt32(arg3);
+            CloneSelectionDevice.SCP_FlushTime = Convert.ToUInt32(arg4);
+        }
+
+        private void setChangDuanJing_Click(object sender, EventArgs e)
+        {
+            String changJingLower = "", changJingUpper = "", duanJingLower = "", duanJingUpper = "", biZhiLower = "", biZhiUpper = "";
+            changJingLower = this.changJingLowerTextBox.Text;
+            changJingUpper = this.changJingUpperTextBox.Text;
+            duanJingUpper = this.duanJingUpperTextBox.Text;
+            duanJingLower = this.duanJingLowerTextBox.Text;
+            biZhiLower = this.jingBiZhiLowerTextBox.Text;
+            biZhiUpper = this.jingBiZhiUpperTextBox.Text;
+            if (IsSocket)
+            {
+                String msg = CloneSelectionDeviceMessageCreator.createSetChangDuanJing(changJingUpper, changJingLower, duanJingUpper, duanJingLower, biZhiUpper, biZhiLower);
+                CloneSelectionDevice.SendMsg(msg);
+            }
+            else
+            {
+                //ChangDuanJingShaiXuan
+            }
+            CloneSelectionDevice.SCP_MaxLength = Convert.ToDouble(changJingUpper);
+            CloneSelectionDevice.SCP_MinLength = Convert.ToDouble(changJingLower);
+            CloneSelectionDevice.SCP_MaxShort = Convert.ToDouble(duanJingUpper);
+            CloneSelectionDevice.SCP_MinShort = Convert.ToDouble(duanJingLower);
+            CloneSelectionDevice.SCP_MaxRate = Convert.ToDouble(biZhiUpper);
+            CloneSelectionDevice.SCP_MinRate = Convert.ToDouble(biZhiLower);
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            String RUpper = "", RLower = "", GUpper = "", GLower = "", BUpper = "", BLower = "";
+            RUpper = this.colorRUpperTextBox.Text;
+            RLower = this.colorRLowerTextBox.Text;
+            GUpper = this.colorGUpperTextBox.Text;
+            GLower = this.colorGLowertextBox.Text;
+            BUpper = this.colorBUpperTextBox.Text;
+            BLower = this.colorBLowertextBox.Text;
+            if (IsSocket)
+            {
+                String msg = CloneSelectionDeviceMessageCreator.createSetColor(RUpper, RLower, GUpper, GLower, BUpper, BLower);
+                CloneSelectionDevice.SendMsg(msg);
+            }
+            else
+            {
+                //ChangDuanJingShaiXuan
+            }
+            CloneSelectionDevice.SCP_RedMax = Convert.ToInt32(RUpper);
+            CloneSelectionDevice.SCP_RedMin = Convert.ToInt32(RLower);
+            CloneSelectionDevice.SCP_GreenMax = Convert.ToInt32(GUpper);
+            CloneSelectionDevice.SCP_GreenMax = Convert.ToInt32(GLower);
+            CloneSelectionDevice.SCP_BlueMax = Convert.ToInt32(BUpper);
+            CloneSelectionDevice.SCP_BlueMin = Convert.ToInt32(BLower);
         }
 
         private void PicButton_Click(object sender, EventArgs e)
@@ -130,7 +209,7 @@ namespace CentralControl
 
         private void send_cmd(String cmd)
         {
-            DeviceInfo.SendModBusMsg(ModbusMessage.MessageType.CMD, "Cmd", cmd);
+            CloneSelectionDevice.SendModBusMsg(ModbusMessage.MessageType.CMD, "Cmd", cmd);
         }
 
         private void button7_Click(object sender, EventArgs e)
@@ -151,6 +230,36 @@ namespace CentralControl
         private void button10_Click(object sender, EventArgs e)
         {
             send_cmd("Auto");
+        }
+
+        private void refreshTimer_Tick(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void LightcomboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void GongzuoFanngshicomboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void KongbanTypecomboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void PingminTypecomboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void closeButton_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

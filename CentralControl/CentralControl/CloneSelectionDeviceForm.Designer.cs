@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.panel1 = new System.Windows.Forms.Panel();
             this.closeButton = new System.Windows.Forms.Button();
             this.tabControl1 = new System.Windows.Forms.TabControl();
@@ -40,16 +41,13 @@
             this.button8 = new System.Windows.Forms.Button();
             this.button7 = new System.Windows.Forms.Button();
             this.panel3 = new System.Windows.Forms.Panel();
-            this.button4 = new System.Windows.Forms.Button();
+            this.button11 = new System.Windows.Forms.Button();
             this.jieZhongZhenDongTextBox = new System.Windows.Forms.TextBox();
             this.jieZhongTingLiuShiJianTextBox = new System.Windows.Forms.TextBox();
             this.tiaoXuanTingLiuShiJianTextBox = new System.Windows.Forms.TextBox();
             this.tiaoXuanZongShuTextBox = new System.Windows.Forms.TextBox();
-            this.gongZuoFangShiTextBox = new System.Windows.Forms.TextBox();
-            this.kongBanLeiXingTextBox = new System.Windows.Forms.TextBox();
-            this.pingMinLeiXingTextBox = new System.Windows.Forms.TextBox();
-            this.zhaoMingFangShiTextBox = new System.Windows.Forms.TextBox();
             this.panel4 = new System.Windows.Forms.Panel();
+            this.button4 = new System.Windows.Forms.Button();
             this.qingXiCiShuTextBox = new System.Windows.Forms.TextBox();
             this.qingXiShiJianTextBox = new System.Windows.Forms.TextBox();
             this.chouQiTextBox = new System.Windows.Forms.TextBox();
@@ -98,12 +96,6 @@
             this.label25 = new System.Windows.Forms.Label();
             this.label24 = new System.Windows.Forms.Label();
             this.label23 = new System.Windows.Forms.Label();
-            this.colorBTextBox = new System.Windows.Forms.TextBox();
-            this.colorGTextBox = new System.Windows.Forms.TextBox();
-            this.colorRTextBox = new System.Windows.Forms.TextBox();
-            this.label22 = new System.Windows.Forms.Label();
-            this.label21 = new System.Windows.Forms.Label();
-            this.label20 = new System.Windows.Forms.Label();
             this.label19 = new System.Windows.Forms.Label();
             this.label18 = new System.Windows.Forms.Label();
             this.tabPage3 = new System.Windows.Forms.TabPage();
@@ -128,6 +120,23 @@
             this.junLuoPictureBox = new System.Windows.Forms.PictureBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.refreshTimer = new System.Windows.Forms.Timer(this.components);
+            this.LightcomboBox = new System.Windows.Forms.ComboBox();
+            this.PingminTypecomboBox = new System.Windows.Forms.ComboBox();
+            this.KongbanTypecomboBox1 = new System.Windows.Forms.ComboBox();
+            this.GongzuoFanngshicomboBox1 = new System.Windows.Forms.ComboBox();
+            this.colorGLowertextBox = new System.Windows.Forms.TextBox();
+            this.colorGUpperTextBox = new System.Windows.Forms.TextBox();
+            this.colorBLowertextBox = new System.Windows.Forms.TextBox();
+            this.label39 = new System.Windows.Forms.Label();
+            this.label40 = new System.Windows.Forms.Label();
+            this.label41 = new System.Windows.Forms.Label();
+            this.colorBUpperTextBox = new System.Windows.Forms.TextBox();
+            this.colorRLowerTextBox = new System.Windows.Forms.TextBox();
+            this.colorRUpperTextBox = new System.Windows.Forms.TextBox();
+            this.label22 = new System.Windows.Forms.Label();
+            this.label21 = new System.Windows.Forms.Label();
+            this.label20 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -159,6 +168,7 @@
             this.closeButton.TabIndex = 2;
             this.closeButton.Text = "关闭";
             this.closeButton.UseVisualStyleBackColor = true;
+            this.closeButton.Click += new System.EventHandler(this.closeButton_Click);
             // 
             // tabControl1
             // 
@@ -258,15 +268,15 @@
             // 
             // panel3
             // 
-            this.panel3.Controls.Add(this.button4);
+            this.panel3.Controls.Add(this.GongzuoFanngshicomboBox1);
+            this.panel3.Controls.Add(this.KongbanTypecomboBox1);
+            this.panel3.Controls.Add(this.PingminTypecomboBox);
+            this.panel3.Controls.Add(this.LightcomboBox);
+            this.panel3.Controls.Add(this.button11);
             this.panel3.Controls.Add(this.jieZhongZhenDongTextBox);
             this.panel3.Controls.Add(this.jieZhongTingLiuShiJianTextBox);
             this.panel3.Controls.Add(this.tiaoXuanTingLiuShiJianTextBox);
             this.panel3.Controls.Add(this.tiaoXuanZongShuTextBox);
-            this.panel3.Controls.Add(this.gongZuoFangShiTextBox);
-            this.panel3.Controls.Add(this.kongBanLeiXingTextBox);
-            this.panel3.Controls.Add(this.pingMinLeiXingTextBox);
-            this.panel3.Controls.Add(this.zhaoMingFangShiTextBox);
             this.panel3.Controls.Add(this.panel4);
             this.panel3.Controls.Add(this.label11);
             this.panel3.Controls.Add(this.label10);
@@ -281,15 +291,15 @@
             this.panel3.Size = new System.Drawing.Size(621, 353);
             this.panel3.TabIndex = 0;
             // 
-            // button4
+            // button11
             // 
-            this.button4.Location = new System.Drawing.Point(52, 321);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(75, 21);
-            this.button4.TabIndex = 22;
-            this.button4.Text = "设定";
-            this.button4.UseVisualStyleBackColor = true;
-            this.button4.Click += new System.EventHandler(this.setMieJunButton_Click);
+            this.button11.Location = new System.Drawing.Point(30, 164);
+            this.button11.Name = "button11";
+            this.button11.Size = new System.Drawing.Size(75, 21);
+            this.button11.TabIndex = 26;
+            this.button11.Text = "设定";
+            this.button11.UseVisualStyleBackColor = true;
+            this.button11.Click += new System.EventHandler(this.setKongBanXuanZeButton_Click);
             // 
             // jieZhongZhenDongTextBox
             // 
@@ -321,43 +331,12 @@
             this.tiaoXuanZongShuTextBox.Name = "tiaoXuanZongShuTextBox";
             this.tiaoXuanZongShuTextBox.Size = new System.Drawing.Size(154, 21);
             this.tiaoXuanZongShuTextBox.TabIndex = 18;
-            this.tiaoXuanZongShuTextBox.Text = "5";
-            // 
-            // gongZuoFangShiTextBox
-            // 
-            this.gongZuoFangShiTextBox.Location = new System.Drawing.Point(439, 20);
-            this.gongZuoFangShiTextBox.Name = "gongZuoFangShiTextBox";
-            this.gongZuoFangShiTextBox.Size = new System.Drawing.Size(154, 21);
-            this.gongZuoFangShiTextBox.TabIndex = 17;
-            this.gongZuoFangShiTextBox.Text = "并行";
-            // 
-            // kongBanLeiXingTextBox
-            // 
-            this.kongBanLeiXingTextBox.Location = new System.Drawing.Point(111, 73);
-            this.kongBanLeiXingTextBox.Name = "kongBanLeiXingTextBox";
-            this.kongBanLeiXingTextBox.Size = new System.Drawing.Size(154, 21);
-            this.kongBanLeiXingTextBox.TabIndex = 16;
-            this.kongBanLeiXingTextBox.Text = "双层薄膜";
-            // 
-            // pingMinLeiXingTextBox
-            // 
-            this.pingMinLeiXingTextBox.Location = new System.Drawing.Point(111, 46);
-            this.pingMinLeiXingTextBox.Name = "pingMinLeiXingTextBox";
-            this.pingMinLeiXingTextBox.Size = new System.Drawing.Size(154, 21);
-            this.pingMinLeiXingTextBox.TabIndex = 15;
-            this.pingMinLeiXingTextBox.Text = "平直";
-            // 
-            // zhaoMingFangShiTextBox
-            // 
-            this.zhaoMingFangShiTextBox.Location = new System.Drawing.Point(111, 19);
-            this.zhaoMingFangShiTextBox.Name = "zhaoMingFangShiTextBox";
-            this.zhaoMingFangShiTextBox.Size = new System.Drawing.Size(154, 21);
-            this.zhaoMingFangShiTextBox.TabIndex = 14;
-            this.zhaoMingFangShiTextBox.Text = "二级柔光";
+            this.tiaoXuanZongShuTextBox.Text = "96";
             // 
             // panel4
             // 
             this.panel4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel4.Controls.Add(this.button4);
             this.panel4.Controls.Add(this.qingXiCiShuTextBox);
             this.panel4.Controls.Add(this.qingXiShiJianTextBox);
             this.panel4.Controls.Add(this.chouQiTextBox);
@@ -369,10 +348,20 @@
             this.panel4.Controls.Add(this.label16);
             this.panel4.Controls.Add(this.label14);
             this.panel4.Controls.Add(this.label13);
-            this.panel4.Location = new System.Drawing.Point(3, 183);
+            this.panel4.Location = new System.Drawing.Point(3, 191);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(615, 119);
+            this.panel4.Size = new System.Drawing.Size(623, 162);
             this.panel4.TabIndex = 13;
+            // 
+            // button4
+            // 
+            this.button4.Location = new System.Drawing.Point(22, 121);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(75, 21);
+            this.button4.TabIndex = 22;
+            this.button4.Text = "设定";
+            this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.setMieJunButton_Click);
             // 
             // qingXiCiShuTextBox
             // 
@@ -548,6 +537,18 @@
             // 
             // panel5
             // 
+            this.panel5.Controls.Add(this.colorGLowertextBox);
+            this.panel5.Controls.Add(this.colorGUpperTextBox);
+            this.panel5.Controls.Add(this.colorBLowertextBox);
+            this.panel5.Controls.Add(this.label39);
+            this.panel5.Controls.Add(this.label40);
+            this.panel5.Controls.Add(this.label41);
+            this.panel5.Controls.Add(this.colorBUpperTextBox);
+            this.panel5.Controls.Add(this.colorRLowerTextBox);
+            this.panel5.Controls.Add(this.colorRUpperTextBox);
+            this.panel5.Controls.Add(this.label22);
+            this.panel5.Controls.Add(this.label21);
+            this.panel5.Controls.Add(this.label20);
             this.panel5.Controls.Add(this.button3);
             this.panel5.Controls.Add(this.button2);
             this.panel5.Controls.Add(this.button1);
@@ -575,12 +576,6 @@
             this.panel5.Controls.Add(this.label25);
             this.panel5.Controls.Add(this.label24);
             this.panel5.Controls.Add(this.label23);
-            this.panel5.Controls.Add(this.colorBTextBox);
-            this.panel5.Controls.Add(this.colorGTextBox);
-            this.panel5.Controls.Add(this.colorRTextBox);
-            this.panel5.Controls.Add(this.label22);
-            this.panel5.Controls.Add(this.label21);
-            this.panel5.Controls.Add(this.label20);
             this.panel5.Controls.Add(this.label19);
             this.panel5.Controls.Add(this.label18);
             this.panel5.Location = new System.Drawing.Point(6, 6);
@@ -590,12 +585,13 @@
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(310, 360);
+            this.button3.Location = new System.Drawing.Point(311, 363);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(75, 21);
+            this.button3.Size = new System.Drawing.Size(75, 23);
             this.button3.TabIndex = 33;
             this.button3.Text = "设定";
             this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.setChangDuanJing_Click);
             // 
             // button2
             // 
@@ -609,23 +605,25 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(57, 160);
+            this.button1.Location = new System.Drawing.Point(58, 235);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 21);
             this.button1.TabIndex = 31;
             this.button1.Text = "设定";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // jingBiZhiUpperTextBox
             // 
-            this.jingBiZhiUpperTextBox.Location = new System.Drawing.Point(396, 332);
+            this.jingBiZhiUpperTextBox.Location = new System.Drawing.Point(396, 287);
             this.jingBiZhiUpperTextBox.Name = "jingBiZhiUpperTextBox";
             this.jingBiZhiUpperTextBox.Size = new System.Drawing.Size(100, 21);
             this.jingBiZhiUpperTextBox.TabIndex = 30;
+            this.jingBiZhiUpperTextBox.Text = "0";
             // 
             // confirmButton
             // 
-            this.confirmButton.Location = new System.Drawing.Point(57, 322);
+            this.confirmButton.Location = new System.Drawing.Point(57, 364);
             this.confirmButton.Name = "confirmButton";
             this.confirmButton.Size = new System.Drawing.Size(75, 23);
             this.confirmButton.TabIndex = 1;
@@ -635,43 +633,48 @@
             // 
             // jingBiZhiLowerTextBox
             // 
-            this.jingBiZhiLowerTextBox.Location = new System.Drawing.Point(396, 305);
+            this.jingBiZhiLowerTextBox.Location = new System.Drawing.Point(396, 314);
             this.jingBiZhiLowerTextBox.Name = "jingBiZhiLowerTextBox";
             this.jingBiZhiLowerTextBox.Size = new System.Drawing.Size(100, 21);
             this.jingBiZhiLowerTextBox.TabIndex = 29;
+            this.jingBiZhiLowerTextBox.Text = "0";
             // 
             // duanJingUpperTextBox
             // 
-            this.duanJingUpperTextBox.Location = new System.Drawing.Point(396, 278);
+            this.duanJingUpperTextBox.Location = new System.Drawing.Point(396, 235);
             this.duanJingUpperTextBox.Name = "duanJingUpperTextBox";
             this.duanJingUpperTextBox.Size = new System.Drawing.Size(100, 21);
             this.duanJingUpperTextBox.TabIndex = 28;
+            this.duanJingUpperTextBox.Text = "0";
             // 
             // duanJingLowerTextBox
             // 
-            this.duanJingLowerTextBox.Location = new System.Drawing.Point(396, 251);
+            this.duanJingLowerTextBox.Location = new System.Drawing.Point(396, 261);
             this.duanJingLowerTextBox.Name = "duanJingLowerTextBox";
             this.duanJingLowerTextBox.Size = new System.Drawing.Size(100, 21);
             this.duanJingLowerTextBox.TabIndex = 27;
+            this.duanJingLowerTextBox.Text = "0";
             // 
             // changJingUpperTextBox
             // 
-            this.changJingUpperTextBox.Location = new System.Drawing.Point(396, 224);
+            this.changJingUpperTextBox.Location = new System.Drawing.Point(396, 183);
             this.changJingUpperTextBox.Name = "changJingUpperTextBox";
             this.changJingUpperTextBox.Size = new System.Drawing.Size(100, 21);
             this.changJingUpperTextBox.TabIndex = 26;
+            this.changJingUpperTextBox.Text = "0";
             // 
             // changJingLowerTextBox
             // 
-            this.changJingLowerTextBox.Location = new System.Drawing.Point(396, 197);
+            this.changJingLowerTextBox.Location = new System.Drawing.Point(396, 209);
             this.changJingLowerTextBox.Name = "changJingLowerTextBox";
             this.changJingLowerTextBox.Size = new System.Drawing.Size(100, 21);
             this.changJingLowerTextBox.TabIndex = 25;
+            this.changJingLowerTextBox.Text = "0";
             // 
             // label35
             // 
             this.label35.AutoSize = true;
-            this.label35.Location = new System.Drawing.Point(309, 337);
+            this.label35.Location = new System.Drawing.Point(309, 292);
             this.label35.Name = "label35";
             this.label35.Size = new System.Drawing.Size(65, 12);
             this.label35.TabIndex = 24;
@@ -680,7 +683,7 @@
             // label34
             // 
             this.label34.AutoSize = true;
-            this.label34.Location = new System.Drawing.Point(309, 311);
+            this.label34.Location = new System.Drawing.Point(309, 320);
             this.label34.Name = "label34";
             this.label34.Size = new System.Drawing.Size(65, 12);
             this.label34.TabIndex = 23;
@@ -689,7 +692,7 @@
             // label33
             // 
             this.label33.AutoSize = true;
-            this.label33.Location = new System.Drawing.Point(309, 283);
+            this.label33.Location = new System.Drawing.Point(309, 240);
             this.label33.Name = "label33";
             this.label33.Size = new System.Drawing.Size(65, 12);
             this.label33.TabIndex = 22;
@@ -698,7 +701,7 @@
             // label32
             // 
             this.label32.AutoSize = true;
-            this.label32.Location = new System.Drawing.Point(309, 256);
+            this.label32.Location = new System.Drawing.Point(309, 266);
             this.label32.Name = "label32";
             this.label32.Size = new System.Drawing.Size(65, 12);
             this.label32.TabIndex = 21;
@@ -707,7 +710,7 @@
             // label31
             // 
             this.label31.AutoSize = true;
-            this.label31.Location = new System.Drawing.Point(309, 229);
+            this.label31.Location = new System.Drawing.Point(309, 188);
             this.label31.Name = "label31";
             this.label31.Size = new System.Drawing.Size(65, 12);
             this.label31.TabIndex = 20;
@@ -716,7 +719,7 @@
             // label30
             // 
             this.label30.AutoSize = true;
-            this.label30.Location = new System.Drawing.Point(309, 202);
+            this.label30.Location = new System.Drawing.Point(309, 214);
             this.label30.Name = "label30";
             this.label30.Size = new System.Drawing.Size(65, 12);
             this.label30.TabIndex = 19;
@@ -725,7 +728,7 @@
             // label29
             // 
             this.label29.AutoSize = true;
-            this.label29.Location = new System.Drawing.Point(309, 169);
+            this.label29.Location = new System.Drawing.Point(309, 167);
             this.label29.Name = "label29";
             this.label29.Size = new System.Drawing.Size(113, 12);
             this.label29.TabIndex = 18;
@@ -733,14 +736,14 @@
             // 
             // biZhiUpperTextBox
             // 
-            this.biZhiUpperTextBox.Location = new System.Drawing.Point(127, 280);
+            this.biZhiUpperTextBox.Location = new System.Drawing.Point(127, 322);
             this.biZhiUpperTextBox.Name = "biZhiUpperTextBox";
             this.biZhiUpperTextBox.Size = new System.Drawing.Size(100, 21);
             this.biZhiUpperTextBox.TabIndex = 17;
             // 
             // biZhiLowerTextBox
             // 
-            this.biZhiLowerTextBox.Location = new System.Drawing.Point(127, 252);
+            this.biZhiLowerTextBox.Location = new System.Drawing.Point(127, 294);
             this.biZhiLowerTextBox.Name = "biZhiLowerTextBox";
             this.biZhiLowerTextBox.Size = new System.Drawing.Size(100, 21);
             this.biZhiLowerTextBox.TabIndex = 16;
@@ -748,7 +751,7 @@
             // label28
             // 
             this.label28.AutoSize = true;
-            this.label28.Location = new System.Drawing.Point(56, 286);
+            this.label28.Location = new System.Drawing.Point(56, 328);
             this.label28.Name = "label28";
             this.label28.Size = new System.Drawing.Size(65, 12);
             this.label28.TabIndex = 15;
@@ -757,7 +760,7 @@
             // label27
             // 
             this.label27.AutoSize = true;
-            this.label27.Location = new System.Drawing.Point(56, 255);
+            this.label27.Location = new System.Drawing.Point(56, 297);
             this.label27.Name = "label27";
             this.label27.Size = new System.Drawing.Size(65, 12);
             this.label27.TabIndex = 14;
@@ -766,7 +769,7 @@
             // label26
             // 
             this.label26.AutoSize = true;
-            this.label26.Location = new System.Drawing.Point(56, 226);
+            this.label26.Location = new System.Drawing.Point(56, 268);
             this.label26.Name = "label26";
             this.label26.Size = new System.Drawing.Size(137, 12);
             this.label26.TabIndex = 13;
@@ -812,54 +815,6 @@
             this.label23.Size = new System.Drawing.Size(101, 12);
             this.label23.TabIndex = 8;
             this.label23.Text = "面积筛选选项设定";
-            // 
-            // colorBTextBox
-            // 
-            this.colorBTextBox.Location = new System.Drawing.Point(83, 124);
-            this.colorBTextBox.Name = "colorBTextBox";
-            this.colorBTextBox.Size = new System.Drawing.Size(49, 21);
-            this.colorBTextBox.TabIndex = 7;
-            // 
-            // colorGTextBox
-            // 
-            this.colorGTextBox.Location = new System.Drawing.Point(83, 92);
-            this.colorGTextBox.Name = "colorGTextBox";
-            this.colorGTextBox.Size = new System.Drawing.Size(49, 21);
-            this.colorGTextBox.TabIndex = 6;
-            // 
-            // colorRTextBox
-            // 
-            this.colorRTextBox.Location = new System.Drawing.Point(83, 61);
-            this.colorRTextBox.Name = "colorRTextBox";
-            this.colorRTextBox.Size = new System.Drawing.Size(49, 21);
-            this.colorRTextBox.TabIndex = 5;
-            // 
-            // label22
-            // 
-            this.label22.AutoSize = true;
-            this.label22.Location = new System.Drawing.Point(57, 126);
-            this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(23, 12);
-            this.label22.TabIndex = 4;
-            this.label22.Text = "B：";
-            // 
-            // label21
-            // 
-            this.label21.AutoSize = true;
-            this.label21.Location = new System.Drawing.Point(56, 95);
-            this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(23, 12);
-            this.label21.TabIndex = 3;
-            this.label21.Text = "G：";
-            // 
-            // label20
-            // 
-            this.label20.AutoSize = true;
-            this.label20.Location = new System.Drawing.Point(56, 64);
-            this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(23, 12);
-            this.label20.TabIndex = 2;
-            this.label20.Text = "R：";
             // 
             // label19
             // 
@@ -1047,6 +1002,153 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "菌落图像";
             // 
+            // refreshTimer
+            // 
+            this.refreshTimer.Tick += new System.EventHandler(this.refreshTimer_Tick);
+            // 
+            // LightcomboBox
+            // 
+            this.LightcomboBox.FormattingEnabled = true;
+            this.LightcomboBox.Items.AddRange(new object[] {
+            "测光源",
+            "背光源",
+            "侧光源和背光源"});
+            this.LightcomboBox.Location = new System.Drawing.Point(111, 15);
+            this.LightcomboBox.Name = "LightcomboBox";
+            this.LightcomboBox.Size = new System.Drawing.Size(154, 20);
+            this.LightcomboBox.TabIndex = 27;
+            this.LightcomboBox.SelectedIndexChanged += new System.EventHandler(this.LightcomboBox_SelectedIndexChanged);
+            // 
+            // PingminTypecomboBox
+            // 
+            this.PingminTypecomboBox.FormattingEnabled = true;
+            this.PingminTypecomboBox.Items.AddRange(new object[] {
+            "10CM平皿"});
+            this.PingminTypecomboBox.Location = new System.Drawing.Point(111, 47);
+            this.PingminTypecomboBox.Name = "PingminTypecomboBox";
+            this.PingminTypecomboBox.Size = new System.Drawing.Size(154, 20);
+            this.PingminTypecomboBox.TabIndex = 28;
+            this.PingminTypecomboBox.SelectedIndexChanged += new System.EventHandler(this.PingminTypecomboBox_SelectedIndexChanged);
+            // 
+            // KongbanTypecomboBox1
+            // 
+            this.KongbanTypecomboBox1.FormattingEnabled = true;
+            this.KongbanTypecomboBox1.Items.AddRange(new object[] {
+            "96孔板"});
+            this.KongbanTypecomboBox1.Location = new System.Drawing.Point(111, 77);
+            this.KongbanTypecomboBox1.Name = "KongbanTypecomboBox1";
+            this.KongbanTypecomboBox1.Size = new System.Drawing.Size(154, 20);
+            this.KongbanTypecomboBox1.TabIndex = 29;
+            this.KongbanTypecomboBox1.SelectedIndexChanged += new System.EventHandler(this.KongbanTypecomboBox1_SelectedIndexChanged);
+            // 
+            // GongzuoFanngshicomboBox1
+            // 
+            this.GongzuoFanngshicomboBox1.FormattingEnabled = true;
+            this.GongzuoFanngshicomboBox1.Items.AddRange(new object[] {
+            "单针",
+            "多针"});
+            this.GongzuoFanngshicomboBox1.Location = new System.Drawing.Point(439, 18);
+            this.GongzuoFanngshicomboBox1.Name = "GongzuoFanngshicomboBox1";
+            this.GongzuoFanngshicomboBox1.Size = new System.Drawing.Size(154, 20);
+            this.GongzuoFanngshicomboBox1.TabIndex = 30;
+            this.GongzuoFanngshicomboBox1.SelectedIndexChanged += new System.EventHandler(this.GongzuoFanngshicomboBox1_SelectedIndexChanged);
+            // 
+            // colorGLowertextBox
+            // 
+            this.colorGLowertextBox.Location = new System.Drawing.Point(118, 207);
+            this.colorGLowertextBox.Name = "colorGLowertextBox";
+            this.colorGLowertextBox.Size = new System.Drawing.Size(108, 21);
+            this.colorGLowertextBox.TabIndex = 48;
+            // 
+            // colorGUpperTextBox
+            // 
+            this.colorGUpperTextBox.Location = new System.Drawing.Point(118, 179);
+            this.colorGUpperTextBox.Name = "colorGUpperTextBox";
+            this.colorGUpperTextBox.Size = new System.Drawing.Size(108, 21);
+            this.colorGUpperTextBox.TabIndex = 47;
+            // 
+            // colorBLowertextBox
+            // 
+            this.colorBLowertextBox.Location = new System.Drawing.Point(118, 151);
+            this.colorBLowertextBox.Name = "colorBLowertextBox";
+            this.colorBLowertextBox.Size = new System.Drawing.Size(108, 21);
+            this.colorBLowertextBox.TabIndex = 46;
+            // 
+            // label39
+            // 
+            this.label39.AutoSize = true;
+            this.label39.Location = new System.Drawing.Point(76, 212);
+            this.label39.Name = "label39";
+            this.label39.Size = new System.Drawing.Size(35, 12);
+            this.label39.TabIndex = 45;
+            this.label39.Text = "G下限";
+            // 
+            // label40
+            // 
+            this.label40.AutoSize = true;
+            this.label40.Location = new System.Drawing.Point(76, 185);
+            this.label40.Name = "label40";
+            this.label40.Size = new System.Drawing.Size(35, 12);
+            this.label40.TabIndex = 44;
+            this.label40.Text = "G上限";
+            // 
+            // label41
+            // 
+            this.label41.AutoSize = true;
+            this.label41.Location = new System.Drawing.Point(76, 154);
+            this.label41.Name = "label41";
+            this.label41.Size = new System.Drawing.Size(35, 12);
+            this.label41.TabIndex = 43;
+            this.label41.Text = "B下限";
+            // 
+            // colorBUpperTextBox
+            // 
+            this.colorBUpperTextBox.Location = new System.Drawing.Point(118, 117);
+            this.colorBUpperTextBox.Name = "colorBUpperTextBox";
+            this.colorBUpperTextBox.Size = new System.Drawing.Size(108, 21);
+            this.colorBUpperTextBox.TabIndex = 42;
+            // 
+            // colorRLowerTextBox
+            // 
+            this.colorRLowerTextBox.Location = new System.Drawing.Point(118, 89);
+            this.colorRLowerTextBox.Name = "colorRLowerTextBox";
+            this.colorRLowerTextBox.Size = new System.Drawing.Size(108, 21);
+            this.colorRLowerTextBox.TabIndex = 41;
+            // 
+            // colorRUpperTextBox
+            // 
+            this.colorRUpperTextBox.Location = new System.Drawing.Point(118, 61);
+            this.colorRUpperTextBox.Name = "colorRUpperTextBox";
+            this.colorRUpperTextBox.Size = new System.Drawing.Size(108, 21);
+            this.colorRUpperTextBox.TabIndex = 40;
+            // 
+            // label22
+            // 
+            this.label22.AutoSize = true;
+            this.label22.Location = new System.Drawing.Point(76, 120);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(35, 12);
+            this.label22.TabIndex = 39;
+            this.label22.Text = "B上限";
+            // 
+            // label21
+            // 
+            this.label21.AutoSize = true;
+            this.label21.Location = new System.Drawing.Point(76, 92);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(47, 12);
+            this.label21.TabIndex = 38;
+            this.label21.Text = "R下限：";
+            // 
+            // label20
+            // 
+            this.label20.AutoSize = true;
+            this.label20.Location = new System.Drawing.Point(76, 64);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(35, 12);
+            this.label20.TabIndex = 37;
+            this.label20.Text = "R上限";
+            // 
             // CloneSelectionDeviceForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -1088,10 +1190,6 @@
         private System.Windows.Forms.TextBox jieZhongTingLiuShiJianTextBox;
         private System.Windows.Forms.TextBox tiaoXuanTingLiuShiJianTextBox;
         private System.Windows.Forms.TextBox tiaoXuanZongShuTextBox;
-        private System.Windows.Forms.TextBox gongZuoFangShiTextBox;
-        private System.Windows.Forms.TextBox kongBanLeiXingTextBox;
-        private System.Windows.Forms.TextBox pingMinLeiXingTextBox;
-        private System.Windows.Forms.TextBox zhaoMingFangShiTextBox;
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.TextBox qingXiCiShuTextBox;
         private System.Windows.Forms.TextBox qingXiShiJianTextBox;
@@ -1137,12 +1235,6 @@
         private System.Windows.Forms.Label label25;
         private System.Windows.Forms.Label label24;
         private System.Windows.Forms.Label label23;
-        private System.Windows.Forms.TextBox colorBTextBox;
-        private System.Windows.Forms.TextBox colorGTextBox;
-        private System.Windows.Forms.TextBox colorRTextBox;
-        private System.Windows.Forms.Label label22;
-        private System.Windows.Forms.Label label21;
-        private System.Windows.Forms.Label label20;
         private System.Windows.Forms.Label label19;
         private System.Windows.Forms.Label label18;
         private System.Windows.Forms.TabPage tabPage3;
@@ -1165,7 +1257,6 @@
         private System.Windows.Forms.PictureBox junLuoPictureBox;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button4;
@@ -1178,6 +1269,25 @@
         private System.Windows.Forms.Button button7;
         private System.Windows.Forms.TextBox currentCmdTextBox;
         private System.Windows.Forms.Label label36;
+        private System.Windows.Forms.Timer refreshTimer;
+        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button button11;
+        private System.Windows.Forms.ComboBox LightcomboBox;
+        private System.Windows.Forms.ComboBox PingminTypecomboBox;
+        private System.Windows.Forms.ComboBox KongbanTypecomboBox1;
+        private System.Windows.Forms.ComboBox GongzuoFanngshicomboBox1;
+        private System.Windows.Forms.TextBox colorGLowertextBox;
+        private System.Windows.Forms.TextBox colorGUpperTextBox;
+        private System.Windows.Forms.TextBox colorBLowertextBox;
+        private System.Windows.Forms.Label label39;
+        private System.Windows.Forms.Label label40;
+        private System.Windows.Forms.Label label41;
+        private System.Windows.Forms.TextBox colorBUpperTextBox;
+        private System.Windows.Forms.TextBox colorRLowerTextBox;
+        private System.Windows.Forms.TextBox colorRUpperTextBox;
+        private System.Windows.Forms.Label label22;
+        private System.Windows.Forms.Label label21;
+        private System.Windows.Forms.Label label20;
 
     }
 }
