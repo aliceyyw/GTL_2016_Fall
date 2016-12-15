@@ -38,6 +38,46 @@ namespace Instrument
             return ModbusMessageHelper.createModbusMessage(ModbusMessage.messageTypeToByte(ModbusMessage.MessageType.SET), creator.getDataBytes());
         }
 
+        public static String createSetChangDuanJing(String arg1, String arg2, String arg3, String arg4, String arg5, String arg6)
+        {
+            ModbusMessageDataCreator creator = new ModbusMessageDataCreator();
+            creator.addKeyPair("SetType", "ChangDuanJingShaiXuan");
+            creator.addKeyPair("ChangJing_Max", arg1);
+            creator.addKeyPair("ChangJing_Min", arg2);
+            creator.addKeyPair("DuanJing_Max", arg3);
+            creator.addKeyPair("DuanJing_Min", arg4);
+            creator.addKeyPair("BiZhi_Max", arg5);
+            creator.addKeyPair("BiZhi_Min", arg6);
+            return ModbusMessageHelper.createModbusMessage(ModbusMessage.messageTypeToByte(ModbusMessage.MessageType.SET), creator.getDataBytes());
+        }
+
+        public static String createSetColor(String arg1, String arg2, String arg3, String arg4, String arg5, String arg6)
+        {
+            ModbusMessageDataCreator creator = new ModbusMessageDataCreator();
+            creator.addKeyPair("SetType", "SeDuPingJunZhi");
+            creator.addKeyPair("RUpper", arg1);
+            creator.addKeyPair("RLower", arg2);
+            creator.addKeyPair("GUpper", arg3);
+            creator.addKeyPair("GLower", arg4);
+            creator.addKeyPair("BUpper", arg5);
+            creator.addKeyPair("BLower", arg6);
+            return ModbusMessageHelper.createModbusMessage(ModbusMessage.messageTypeToByte(ModbusMessage.MessageType.SET), creator.getDataBytes());
+        
+        }
+        public static String createSetKongBanXuanZe(String arg1, String arg2, String arg3, String arg4, String arg5, String arg6, String arg7, String arg8)
+        {
+            ModbusMessageDataCreator creator = new ModbusMessageDataCreator();
+            creator.addKeyPair("SetType", "KongBanXuanZe");
+            creator.addKeyPair("TiaoXuanTingLiuShiJian", arg1);
+            creator.addKeyPair("JieZhongZhenDong", arg2);
+            creator.addKeyPair("JieZhongTingLiuShiJian", arg3);
+            creator.addKeyPair("lightType", arg4);
+            creator.addKeyPair("PingminType", arg5);
+            creator.addKeyPair("KongbanType", arg6);
+            creator.addKeyPair("GongzuoFanngshi", arg7);
+            creator.addKeyPair("TiaoXuanZongShu", arg8);
+            return ModbusMessageHelper.createModbusMessage(ModbusMessage.messageTypeToByte(ModbusMessage.MessageType.SET), creator.getDataBytes());
+        }
         
     }
     public class CloneSelectionVirtualDevice : BaseVirtualDevice
@@ -85,7 +125,6 @@ namespace Instrument
         public int SCP_GreyLevel = 0;
         public int SCP_Scale = 0;
 
-
         //灭菌与清洗
         public UInt32 SCP_HeatTime = 0;
         public UInt32 SCP_FlushTime = 0;
@@ -108,23 +147,27 @@ namespace Instrument
         public int SCP_ControlPoint = 0;
 
         //筛选条件
-        public double SCP_MaxPARate = 0.0;
-        public double SCP_MinPARate = 0.0;
-        public double SCP_SizeMax = 3.0;
-        public double SCP_SizeMin = 2.0;
-        public double SCP_MaxLength = 3.0;
-        public double SCP_MinLength = 2.5;
-        public double SCP_MaxShort = 7.0;
-        public double SCP_MinShort = 6.0;
-        public double SCP_MaxRate = 4.0;
-        public double SCP_MinRate = 3.0;
-        public int SCP_AreaFilter = 0;
-        public int SCP_PARate = 0;
-        public int SCP_LengthFilter = 0;
-        public int SCP_ColorFlag = 0;
-        public Int16 SCP_R = 18;
-        public Int16 SCP_G = 21;
-        public Int16 SCP_B = 75;
+        public double SCP_MaxPARate = 9.8;
+        public double SCP_MinPARate = 5.6;
+        public double SCP_SizeMax = 1000;
+        public double SCP_SizeMin = 100;
+        public double SCP_MaxLength = 20;
+        public double SCP_MinLength = 5;
+        public double SCP_MaxShort = 15;
+        public double SCP_MinShort = 5;
+        public double SCP_MaxRate = 1.8;
+        public double SCP_MinRate = 1.0;
+        public int SCP_AreaFilter = 1;
+        public int SCP_PARate = 1;
+        public int SCP_LengthFilter = 1;
+        public int SCP_ColorFlag = 1;
+
+        public int SCP_RedMin = 0;
+        public int SCP_RedMax = 255;
+        public int SCP_GreenMin = 0;
+        public int SCP_GreenMax = 255;
+        public int SCP_BlueMin = 0;
+        public int SCP_BlueMax = 255;
 
         //上层Form需要用到这些函数，所以暂时保留，但底层类操作中不需要这些函数
         public UInt32 getJiaReShiJian() { return this.SCP_HeatTime; }
@@ -142,15 +185,15 @@ namespace Instrument
         public double getDuanJing_Min() { return this.SCP_MinShort; }
         public double getBiZhi_Max() { return this.SCP_MaxRate; }
         public double getBiZhi_Min() { return this.SCP_MinRate; }
-        public Int16 getR() { return this.SCP_R; }
-        public Int16 getG() { return this.SCP_G; }
-        public Int16 getB() { return this.SCP_B; }
 
         public void setZhouChangMianJiBi_Max(string max) {  SCP_MaxPARate = double.Parse(max); }
         public void setZhouChangMianJiBi_Min(string min) {  SCP_MinPARate = double.Parse(min); }
 
+        public override void decodeReportMessage(ModbusMessage msg)//解码报告消息
+        {
+            String reportType = (String)msg.Data["ReportType"];
+            
+        }
        
     }
-
-
 }

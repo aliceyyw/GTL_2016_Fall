@@ -421,8 +421,8 @@ namespace CentralControl
                         CloneSelectionDeviceForm cForm = new CloneSelectionDeviceForm();
                         cForm.FatherForm = this;
                         cForm.IsSocket = true;
-                        cForm.DeviceInfo = (CloneSelectionVirtualDevice)device;
-                        cForm.DeviceInfo.cmdEvent += new BaseVirtualDevice.cmdDelegate(cForm.CloneSelectionDevice_cmdEvent);
+                        cForm.CloneSelectionDevice = (CloneSelectionVirtualDevice)device;
+                        cForm.CloneSelectionDevice.cmdEvent += new BaseVirtualDevice.cmdDelegate(cForm.CloneSelectionDevice_cmdEvent);
                         cForm.Show();
                         break;
                     case DeviceType.Liquid:

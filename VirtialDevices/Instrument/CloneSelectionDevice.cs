@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -115,9 +116,9 @@ namespace Instrument
         public double SCP_MinRate = 3.0;
         public int SCP_PARate = 0;
         public int SCP_LengthFilter = 0;
-        public Int16 SCP_R = 18;
+        /*public Int16 SCP_R = 18;
         public Int16 SCP_G = 21;
-        public Int16 SCP_B = 75;
+        public Int16 SCP_B = 75;*/
 
         //上层Form需要用到这些函数，所以暂时保留，但底层类操作中不需要这些函数
         public UInt32 getJiaReShiJian() { return this.SCP_HeatTime; }
@@ -135,13 +136,36 @@ namespace Instrument
         public double getDuanJing_Min() { return this.SCP_MinShort; }
         public double getBiZhi_Max() { return this.SCP_MaxRate; }
         public double getBiZhi_Min() { return this.SCP_MinRate; }
-        public Int16 getR() { return this.SCP_R; }
-        public Int16 getG() { return this.SCP_G; }
-        public Int16 getB() { return this.SCP_B; }
 
-        private void decodeSetMessage(ModbusMessage msg)
+
+        public void sendChangDuanJingReport(String[] changduanjing)
+        {
+            Hashtable ht = new Hashtable();
+            String devicetime = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
+            ht.Add("ReportType", "SCP_ChangDuanJing");
+            String[] s = { "MDF_Current1", "MDF_Current2", "MDF_Current3", "MDF_Current4" };
+            for (int i = 0; i < s.Length; i++)
+            {
+                ht.Add(s[i], changduanjing[i]);
+            }
+            ht.Add("Device_Time", devicetime);
+            SendModBusMsg(ModbusMessage.MessageType.REPORT, ht);
+        }
+
+        public override void decodeSetMessage(ModbusMessage msg)
         {
             String setType = (String)msg.Data["SetType"];
+            if ("KongBanXuanZe".Equals(setType))
+            {
+                this.SCP_PickStopTime = Convert.ToInt32((String)msg.Data["TiaoXuanTingLiuShiJian"]);
+                this.SCP_ShockCount = Convert.ToInt32((String)msg.Data["JieZhongZhenDong"]);
+                this.SCP_InoStopTime = Convert.ToInt32((String)msg.Data["JieZhongTingLiuShiJian"]);
+                this.SCP_LightType = Convert.ToInt32((String)msg.Data["lightType"]);
+                this.SCP_DishType= Convert.ToInt32((String)msg.Data["PingminType"]);
+                this.SCP_PlateType = Convert.ToInt32((String)msg.Data["KongbanType"]);
+                this.SCP_ProbeMethod = Convert.ToInt32((String)msg.Data["GongzuoFanngshi"]);
+                this.SCP_CloneNum = Convert.ToInt32((String)msg.Data["TiaoXuanZongShu"]);
+            }
             if ("ZhouChangMianJiBi".Equals(setType)) 
             {
                 this.SCP_MaxPARate = double.Parse((String)msg.Data["ZhouChangMianJiBi_Max"]);
@@ -166,9 +190,12 @@ namespace Instrument
 
             if ("SeDuPingJunZhi".Equals(setType))
             {
-                this.SCP_R = Int16.Parse((String)msg.Data["R"]);
-                this.SCP_G = Int16.Parse((String)msg.Data["G"]);
-                this.SCP_B = Int16.Parse((String)msg.Data["B"]);
+                this.SCP_RedMax = Int16.Parse((String)msg.Data["RUpper"]);
+                this.SCP_RedMin = Int16.Parse((String)msg.Data["RLower"]);
+                this.SCP_GreenMax = Int16.Parse((String)msg.Data["GUpper"]);
+                this.SCP_GreenMin = Int16.Parse((String)msg.Data["GLower"]);
+                this.SCP_BlueMax = Int16.Parse((String)msg.Data["BUpper"]);
+                this.SCP_BlueMin = Int16.Parse((String)msg.Data["BLower"]);
             }
 
             if ("MieJunHeQingXi".Equals(setType))
@@ -181,17 +208,6 @@ namespace Instrument
             }
 
         }
-
-        //public override void ReceiveMsg(String s)
-        //{
-        //    ModbusMessage message = ModbusMessageHelper.decodeModbusMessage(s);
-        //    switch (message.MsgType) 
-        //    {
-        //        case ModbusMessage.MessageType.SET:
-        //            decodeSetMessage(message);
-        //            break;
-        //    }
-        //}
     }
 
 }
