@@ -36,53 +36,38 @@ namespace VirtialDevices
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            //if (IsSocket)
-            {
-                //*
-                this.jiaReTextBox.Text = DeviceInfo.getJiaReShiJian().ToString();
-                this.qingXiShiJianTextBox.Text = DeviceInfo.getQingXiShiJian().ToString();
-                this.qingXiCiShuTextBox.Text = DeviceInfo.getQingXiCiShu().ToString();
-                this.lengQueTextBox.Text = DeviceInfo.getLengQueShiJian().ToString();
-                this.chouQiTextBox.Text = DeviceInfo.getChouQiShiJian().ToString();
-                this.biZhiUpperTextBox.Text = DeviceInfo.getZhouChangMianJiBi_Max().ToString();
-                this.biZhiLowerTextBox.Text = DeviceInfo.getZhouChangMianJiBi_Min().ToString();
-                this.areaUpperTextBox.Text = DeviceInfo.getMianJi_Max().ToString();
-                this.areaLowerTextBox.Text = DeviceInfo.getMianJi_Min().ToString();
-                this.changJingUpperTextBox.Text = DeviceInfo.getChangJing_Max().ToString();
-                this.changJingLowerTextBox.Text = DeviceInfo.getChangJing_Min().ToString();
-                this.duanJingUpperTextBox.Text = DeviceInfo.getDuanJing_Max().ToString();
-                this.duanJingLowerTextBox.Text = DeviceInfo.getDuanJing_Min().ToString();
-                this.jingBiZhiUpperTextBox.Text = DeviceInfo.getBiZhi_Max().ToString();
-                this.jingBiZhiLowerTextBox.Text = DeviceInfo.getBiZhi_Min().ToString();
-                this.colorRTextBox.Text = DeviceInfo.getR().ToString();
-                this.colorGTextBox.Text = DeviceInfo.getG().ToString();
-                this.colorBTextBox.Text = DeviceInfo.getB().ToString();
-                 //* */
-            }
-            //else
-            {
-                /*
-                this.jiaReTextBox.Text = DeviceInfo.getJiaReShiJian().ToString();
-                this.qingXiShiJianTextBox.Text = DeviceInfo.getQingXiShiJian().ToString();
-                this.qingXiCiShuTextBox.Text = DeviceInfo.getQingXiCiShu().ToString();
-                this.lengQueTextBox.Text = DeviceInfo.getLengQueShiJian().ToString();
-                this.chouQiTextBox.Text = DeviceInfo.getChouQiShiJian().ToString();
-                this.biZhiUpperTextBox.Text = DeviceInfo.getZhouChangMianJiBi_Max().ToString();
-                this.biZhiLowerTextBox.Text = DeviceInfo.getZhouChangMianJiBi_Min().ToString();
-                this.areaUpperTextBox.Text = DeviceInfo.getMianJi_Max().ToString();
-                this.areaLowerTextBox.Text = DeviceInfo.getMianJi_Min().ToString();
-                this.changJingUpperTextBox.Text = DeviceInfo.getChangJing_Max().ToString();
-                this.changJingLowerTextBox.Text = DeviceInfo.getChangJing_Min().ToString();
-                this.duanJingUpperTextBox.Text = DeviceInfo.getDuanJing_Max().ToString();
-                this.duanJingLowerTextBox.Text = DeviceInfo.getDuanJing_Min().ToString();
-                this.jingBiZhiUpperTextBox.Text = DeviceInfo.getBiZhi_Max().ToString();
-                this.jingBiZhiLowerTextBox.Text = DeviceInfo.getBiZhi_Min().ToString();
-                this.colorRTextBox.Text = DeviceInfo.getR().ToString();
-                this.colorGTextBox.Text = DeviceInfo.getG().ToString();
-                this.colorBTextBox.Text = DeviceInfo.getB().ToString();
-                 * */
+            this.jiaReTextBox.Text = DeviceInfo.getJiaReShiJian().ToString();
+            this.qingXiShiJianTextBox.Text = DeviceInfo.getQingXiShiJian().ToString();
+            this.qingXiCiShuTextBox.Text = DeviceInfo.getQingXiCiShu().ToString();
+            this.lengQueTextBox.Text = DeviceInfo.getLengQueShiJian().ToString();
+            this.chouQiTextBox.Text = DeviceInfo.getChouQiShiJian().ToString();
+            this.biZhiUpperTextBox.Text = DeviceInfo.getZhouChangMianJiBi_Max().ToString();
+            this.biZhiLowerTextBox.Text = DeviceInfo.getZhouChangMianJiBi_Min().ToString();
+            this.areaUpperTextBox.Text = DeviceInfo.getMianJi_Max().ToString();
+            this.areaLowerTextBox.Text = DeviceInfo.getMianJi_Min().ToString();
+            this.changJingUpperTextBox.Text = DeviceInfo.getChangJing_Max().ToString();
+            this.changJingLowerTextBox.Text = DeviceInfo.getChangJing_Min().ToString();
+            this.duanJingUpperTextBox.Text = DeviceInfo.getDuanJing_Max().ToString();
+            this.duanJingLowerTextBox.Text = DeviceInfo.getDuanJing_Min().ToString();
+            this.jingBiZhiUpperTextBox.Text = DeviceInfo.getBiZhi_Max().ToString();
+            this.jingBiZhiLowerTextBox.Text = DeviceInfo.getBiZhi_Min().ToString();
 
-            }
+            this.colorRUpperTextBox.Text = DeviceInfo.SCP_RedMax.ToString();
+            this.colorRLowerTextBox.Text = DeviceInfo.SCP_RedMin.ToString();
+            this.colorGUpperTextBox.Text = DeviceInfo.SCP_GreenMax.ToString();
+            this.colorGLowerTextBox.Text = DeviceInfo.SCP_GreenMin.ToString();
+            this.colorBUpperTextBox.Text = DeviceInfo.SCP_BlueMax.ToString();
+            this.colorBLowerTextBox.Text = DeviceInfo.SCP_BlueMin.ToString();
+
+            this.tiaoXuanTingLiuShiJianTextBox.Text = DeviceInfo.SCP_PickStopTime.ToString();
+            this.jieZhongZhenDongTextBox.Text = DeviceInfo.SCP_ShockCount.ToString();
+            this.jieZhongTingLiuShiJianTextBox.Text = DeviceInfo.SCP_InoStopTime.ToString();
+
+            this.LightcomboBox.SelectedIndex = DeviceInfo.SCP_LightType;
+            this.PingminTypecomboBox.SelectedIndex = DeviceInfo.SCP_DishType;
+            this.KongbanTypecomboBox1.SelectedIndex = DeviceInfo.SCP_PlateType;
+            this.GongzuoFanngshicomboBox1.SelectedIndex = DeviceInfo.SCP_ProbeMethod;
+            this.tiaoXuanZongShuTextBox.Text = DeviceInfo.SCP_CloneNum.ToString();
         }
 
         private void PicButton_Click(object sender, EventArgs e)
@@ -203,6 +188,86 @@ namespace VirtialDevices
         private void button10_Click(object sender, EventArgs e)
         {
             send_cmd("Auto");
+        }
+
+        private void confirmButton_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void closeButton_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void jiaReTextBox_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void changJingLowerTextBox_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label20_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox4_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox5_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label39_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label40_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label41_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox3_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void colorGTextBox_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void colorRTextBox_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label22_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label21_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void colorBTextBox_TextChanged(object sender, EventArgs e)
+        {
+
         }
 
     }
