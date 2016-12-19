@@ -1204,6 +1204,22 @@
             this.refreshTimer.Interval = 1000;
             this.refreshTimer.Tick += new System.EventHandler(this.refreshTimer_Tick);
             // 
+            // label37
+            // 
+            this.label37.AutoSize = true;
+            this.label37.Location = new System.Drawing.Point(25, 236);
+            this.label37.Name = "label37";
+            this.label37.Size = new System.Drawing.Size(53, 12);
+            this.label37.TabIndex = 8;
+            this.label37.Text = "当前图像";
+            // 
+            // currentPictxtb
+            // 
+            this.currentPictxtb.Location = new System.Drawing.Point(95, 233);
+            this.currentPictxtb.Name = "currentPictxtb";
+            this.currentPictxtb.Size = new System.Drawing.Size(100, 21);
+            this.currentPictxtb.TabIndex = 9;
+            // 
             // CloneSelectionDeviceForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
