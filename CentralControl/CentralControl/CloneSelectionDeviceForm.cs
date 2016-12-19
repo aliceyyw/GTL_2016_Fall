@@ -237,6 +237,7 @@ namespace CentralControl
         private void refreshTimer_Tick(object sender, EventArgs e)
         {
             this.currentPictxtb.Text = CloneSelectionDevice.SCP_Pic.ToString();
+            this.currentdatatxtb.Text = CloneSelectionDevice.SCP_Data.ToString();
         }
 
         private void LightcomboBox_SelectedIndexChanged(object sender, EventArgs e)

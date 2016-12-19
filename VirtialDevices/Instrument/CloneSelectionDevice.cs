@@ -163,12 +163,19 @@ namespace Instrument
             SendModBusMsg(ModbusMessage.MessageType.REPORT, ht);
         }
 
-
+        public void dataSendReport(string filename)
+        {
+            Hashtable ht = new Hashtable();
+            ht.Add("ReportType", "READ_DATA");
+            ht.Add("SCP_Data", filename);
+            SendModBusMsg(ModbusMessage.MessageType.REPORT, ht);
+        }
 
 
         public override void decodeSetMessage(ModbusMessage msg)
         {
             String setType = (String)msg.Data["SetType"];
+            //孔板选择
             if ("KongBanXuanZe".Equals(setType))
             {
                 this.SCP_PickStopTime = Convert.ToInt32((String)msg.Data["SCP_PickStopTime"]);
@@ -180,18 +187,19 @@ namespace Instrument
                 this.SCP_ProbeMethod = Convert.ToInt32((String)msg.Data["SCP_ProbeMethod"]);
                 this.SCP_CloneNum = Convert.ToInt32((String)msg.Data["SCP_CloneNum"]);
             }
+            //周长面积比
             if ("ZhouChangMianJiBi".Equals(setType)) 
             {
                 this.SCP_MaxPARate = double.Parse((String)msg.Data["SCP_MaxPARate"]);
                 this.SCP_MinPARate = double.Parse((String)msg.Data["SCP_MinPARate"]);
             }
-
+            //面积筛选
             if ("MianJiShaiXuan".Equals(setType))
             {
                 this.SCP_SizeMax = double.Parse((String)msg.Data["SCP_SizeMax"]);
                 this.SCP_SizeMin = double.Parse((String)msg.Data["SCP_SizeMin"]);
             } 
-
+            //长短径筛选
             if ("ChangDuanJingShaiXuan".Equals(setType))
             {
                 this.SCP_MaxLength = double.Parse((String)msg.Data["SCP_MaxLength"]);
@@ -201,7 +209,7 @@ namespace Instrument
                 this.SCP_MaxRate = double.Parse((String)msg.Data["SCP_MaxRate"]);
                 this.SCP_MinRate = double.Parse((String)msg.Data["SCP_MinRate"]);
             } 
-
+            //色度平均值
             if ("SeDuPingJunZhi".Equals(setType))
             {
                 this.SCP_RedMax = Int16.Parse((String)msg.Data["SCP_RedMax"]);
@@ -211,7 +219,7 @@ namespace Instrument
                 this.SCP_BlueMax = Int16.Parse((String)msg.Data["SCP_BlueMax"]);
                 this.SCP_BlueMin = Int16.Parse((String)msg.Data["SCP_BlueMin"]);
             }
-
+            //灭菌和清洗
             if ("MieJunHeQingXi".Equals(setType))
             {
                 this.SCP_HeatTime = UInt32.Parse((String)msg.Data["SCP_HeatTime"]);
