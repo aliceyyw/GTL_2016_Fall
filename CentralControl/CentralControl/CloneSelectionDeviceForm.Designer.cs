@@ -1204,7 +1204,6 @@
             this.refreshTimer.Interval = 1000;
             this.refreshTimer.Tick += new System.EventHandler(this.refreshTimer_Tick);
             // 
-<<<<<<< 1d2123fba6e497bc652c8d8d22e596f186a4c972
             // label37
             // 
             this.label37.AutoSize = true;
@@ -1221,8 +1220,6 @@
             this.currentPictxtb.Size = new System.Drawing.Size(100, 21);
             this.currentPictxtb.TabIndex = 9;
             // 
-=======
->>>>>>> eventual SCP tested
             // CloneSelectionDeviceForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
