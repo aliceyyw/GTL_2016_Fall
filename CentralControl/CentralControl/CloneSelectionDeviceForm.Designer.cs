@@ -1075,7 +1075,7 @@
             // 
             // button5
             // 
-            this.button5.Location = new System.Drawing.Point(484, 246);
+            this.button5.Location = new System.Drawing.Point(498, 262);
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(75, 21);
             this.button5.TabIndex = 6;
@@ -1166,7 +1166,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(25, 235);
+            this.label3.Location = new System.Drawing.Point(25, 271);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(29, 12);
             this.label3.TabIndex = 4;
@@ -1358,7 +1358,7 @@
         private System.Windows.Forms.Label label22;
         private System.Windows.Forms.Label label21;
         private System.Windows.Forms.Label label20;
-        private System.Windows.Forms.Button button12;
+        private System.Windows.Forms.TextBox currentPictxtb;
         private System.Windows.Forms.Label label37;
         private System.Windows.Forms.TextBox currentdatatxtb;
         private System.Windows.Forms.Label label38;
