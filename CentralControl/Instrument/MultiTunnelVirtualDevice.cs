@@ -59,6 +59,47 @@ namespace Instrument
             return ModbusMessageHelper.createModbusMessage(ModbusMessage.messageTypeToByte(ModbusMessage.MessageType.REPORT), creator.getDataBytes());
         }
 
+        //加样仪信息设定
+        public static String createSampleAddingDevice(int MMA_TipIdx,string MMA_TargetIdx,int MMA_ContainerType,int MMA_Volume,string MMA_SampleIdx,
+            int MMA_SampleType,int MMA_HeatFlag,float MMA_Temp,int MMA_VibrateFlag,float MMA_VibrateTime)
+        {
+            ModbusMessageDataCreator creator = new ModbusMessageDataCreator();
+            creator.addKeyPair("SetType", "SampleAddingDevice");
+            creator.addKeyPair("MMA_TipIdx", MMA_TipIdx.ToString());
+            creator.addKeyPair("MMA_TargetIdx", MMA_TargetIdx.ToString());
+            creator.addKeyPair("MMA_ContainerType", MMA_ContainerType.ToString());
+            creator.addKeyPair("MMA_Volume", MMA_Volume.ToString());
+            creator.addKeyPair("MMA_SampleIdx", MMA_SampleIdx.ToString());
+            creator.addKeyPair("MMA_SampleType", MMA_SampleType.ToString());
+            creator.addKeyPair("MMA_HeatFlag", MMA_HeatFlag.ToString());
+            creator.addKeyPair("MMA_Temp", MMA_Temp.ToString());
+            creator.addKeyPair("MMA_VibrateFlag", MMA_VibrateFlag.ToString());
+            creator.addKeyPair("MMA_VibrateTime", MMA_VibrateTime.ToString());
+            return ModbusMessageHelper.createModbusMessage(ModbusMessage.messageTypeToByte(ModbusMessage.MessageType.SET), creator.getDataBytes());
+        }
+
+        //酶标仪信息设定
+        public static String createEliasa(int MMA_TestType,int MMA_LightType,int MMA_WaveLength,int MMA_OrificeType,
+               int MMA_MeasureArea,int MMA_Time,int MMA_IntegralTime,int MMA_TestRowIndex,int MMA_TestColumnIndex,
+            float MMA_WaveLengthUp,float MMA_WaveLengthDown,int MMA_MeasureTime)
+        {
+            ModbusMessageDataCreator creator = new ModbusMessageDataCreator();
+            creator.addKeyPair("SetType", "Eliasa");
+            creator.addKeyPair("", "");
+            creator.addKeyPair("", "");
+            creator.addKeyPair("MMA_TestType", MMA_TestType.ToString());
+            creator.addKeyPair("MMA_LightType", MMA_LightType.ToString());
+            creator.addKeyPair("MMA_WaveLength", MMA_WaveLength.ToString());
+            creator.addKeyPair("MMA_OrificeType", MMA_OrificeType.ToString());
+            creator.addKeyPair("MMA_MeasureArea", MMA_MeasureArea.ToString());
+            creator.addKeyPair("MMA_IntegralTime", MMA_IntegralTime.ToString());
+            creator.addKeyPair("MMA_TestRowIndex", MMA_TestRowIndex.ToString());
+            creator.addKeyPair("MMA_TestColumnIndex", MMA_TestColumnIndex.ToString());
+            creator.addKeyPair("MMA_WaveLengthUp", MMA_WaveLengthUp.ToString());
+            creator.addKeyPair("MMA_WaveLengthDown", MMA_WaveLengthDown.ToString());
+            creator.addKeyPair("MMA_MeasureTime", MMA_MeasureTime.ToString());
+            return ModbusMessageHelper.createModbusMessage(ModbusMessage.messageTypeToByte(ModbusMessage.MessageType.SET), creator.getDataBytes());
+        }
     }
 
     public class MultiTunnelVirtualDevice : BaseVirtualDevice
@@ -81,8 +122,9 @@ namespace Instrument
         private int MMA_VibrateFlag;//振动标志
         private float MMA_VibrateTime; //振动时间
         //酶标仪
-        public enum MMA_TestMethod { OD, Flu, Che };  //检测方式
-        private MMA_TestMethod MMA_TestMode = MMA_TestMethod.OD;  //检测模式
+        //public enum MMA_TestMethod { OD, Flu, Che };  //检测方式，吸光度检测/y荧光检测/化学发光检测
+        public int MMA_TestMethod = 0;  //OD, Flu, Che 检测方式
+        private int MMA_TestMode = 0;  //光学模式OM，MC单色仪模式，Flc荧光接插件模式
         private int MMA_TestType = 0; //终点0/动态1
         private int MMA_LightType; //光波类型
         private int MMA_WaveLength; //光波波长
@@ -113,56 +155,38 @@ namespace Instrument
         private bool MMA_SendBarCodeFlag = true; //是否需要发送条码
         private float[][] MMA_DetectValues = null; //当前检测参数
 
-        public static MMA_TestMethod stringToJianCeMoShi(String mode)
+        public static int stringToJianCeMoShi(String mode)
         {
-            if ("OD".Equals(mode)) return MMA_TestMethod.OD;
-            if ("YG".Equals(mode)) return MMA_TestMethod.Flu;
-            if ("HXFG".Equals(mode)) return MMA_TestMethod.Che;
-            return MMA_TestMethod.OD;
+            if ("OD".Equals(mode)) return 0;
+            if ("Flu".Equals(mode)) return 1;
+            if ("Che".Equals(mode)) return 2;
+            return 0;
         }
 
-        public static String jianCeMoShiToString(MMA_TestMethod m)
+        public static String TestMethodToString(int m)
         {
             switch (m)
             {
-                case MMA_TestMethod.OD:
+                case 0:
                     return "OD";
-                case MMA_TestMethod.Flu:
-                    return "YG";
-                case MMA_TestMethod.Che:
-                    return "HXFG";
+                case 1:
+                    return "Flu";
+                case 2:
+                    return "Che";
             }
             return "OD";
         }
 
-        public void send_moshi()
+        public void send_TestMethod()
         {
-            String msg = MultiTunnelDeviceMessageCreator.createSetMode(jianCeMoShiToString(MMA_TestMode));
+            String msg = MultiTunnelDeviceMessageCreator.createSetMode(TestMethodToString(MMA_TestMethod));
             SendMsg(msg);
         }
-
-
 
         public String getTiaoMaHao()
         {
             return MMA_preBarCode;
         }
-
-
-        public MMA_TestMethod MoShi
-        {
-            get
-            {
-                return this.MMA_TestMode;
-            }
-            set
-            {
-                this.MMA_TestMode = value;
-            }
-        }
-
-
-
 
         public float[][] getDetectValues()
         {

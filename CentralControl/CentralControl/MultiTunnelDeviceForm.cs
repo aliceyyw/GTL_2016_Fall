@@ -66,10 +66,10 @@ namespace CentralControl
         private void runButton_Click(object sender, EventArgs e)
         {
             int index = jianCeMoShiComboBox.SelectedIndex;
-            if (index == 0) DeviceInfo.MoShi = MultiTunnelVirtualDevice.MMA_TestMethod.OD;
-            if (index == 1) DeviceInfo.MoShi = MultiTunnelVirtualDevice.MMA_TestMethod.Flu;
-            if (index == 2) DeviceInfo.MoShi = MultiTunnelVirtualDevice.MMA_TestMethod.Che;
-            DeviceInfo.send_moshi();
+            if (index == 0) DeviceInfo.MMA_TestMethod = 0;
+            if (index == 1) DeviceInfo.MMA_TestMethod = 1;
+            if (index == 2) DeviceInfo.MMA_TestMethod = 2;
+            DeviceInfo.send_TestMethod();
             DeviceInfo.send_cmd("Start");
         }
 
