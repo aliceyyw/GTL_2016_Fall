@@ -991,7 +991,8 @@
             // 
             // panel2
             // 
-            this.panel2.Controls.Add(this.button12);
+            this.panel2.Controls.Add(this.currentPictxtb);
+            this.panel2.Controls.Add(this.label37);
             this.panel2.Controls.Add(this.button6);
             this.panel2.Controls.Add(this.button5);
             this.panel2.Controls.Add(this.listView1);
@@ -1017,7 +1018,7 @@
             // 
             // button5
             // 
-            this.button5.Location = new System.Drawing.Point(484, 246);
+            this.button5.Location = new System.Drawing.Point(498, 262);
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(75, 21);
             this.button5.TabIndex = 6;
@@ -1108,7 +1109,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(25, 235);
+            this.label3.Location = new System.Drawing.Point(25, 271);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(29, 12);
             this.label3.TabIndex = 4;
@@ -1153,6 +1154,22 @@
             this.refreshTimer.Enabled = true;
             this.refreshTimer.Interval = 1000;
             this.refreshTimer.Tick += new System.EventHandler(this.refreshTimer_Tick);
+            // 
+            // label37
+            // 
+            this.label37.AutoSize = true;
+            this.label37.Location = new System.Drawing.Point(25, 236);
+            this.label37.Name = "label37";
+            this.label37.Size = new System.Drawing.Size(53, 12);
+            this.label37.TabIndex = 8;
+            this.label37.Text = "当前图像";
+            // 
+            // currentPictxtb
+            // 
+            this.currentPictxtb.Location = new System.Drawing.Point(95, 233);
+            this.currentPictxtb.Name = "currentPictxtb";
+            this.currentPictxtb.Size = new System.Drawing.Size(100, 21);
+            this.currentPictxtb.TabIndex = 9;
             // 
             // CloneSelectionDeviceForm
             // 
@@ -1293,7 +1310,7 @@
         private System.Windows.Forms.Label label22;
         private System.Windows.Forms.Label label21;
         private System.Windows.Forms.Label label20;
-        private System.Windows.Forms.Button button12;
+        private System.Windows.Forms.TextBox currentPictxtb;
         private System.Windows.Forms.Label label37;
 
     }
