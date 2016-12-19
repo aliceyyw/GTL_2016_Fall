@@ -136,11 +136,15 @@ namespace VirtialDevices
                         }
                     }
                     CloneSelectFileHelper.setJianCeShuJu(fileName, v, JianCeLieShu);
+                    int index = fileName.LastIndexOf("\\");
+                    //文件保存成功后发送READ_DATA 的report
+                    DeviceInfo.dataSendReport(fileName.Substring(index + 1)); 
                 }
                 catch (Exception ex)
                 {
 
                 }
+                
              }
         }
 
@@ -302,9 +306,10 @@ namespace VirtialDevices
                 }
                 //从路径中截取文件名
                 int index = filename.LastIndexOf("\\");
+                //存取成功发送一个Report命令
                 DeviceInfo.imageSendReport(filename.Substring(index+1));              
              }
-                //存取成功发送一个Report命令
+               
 
 
             }

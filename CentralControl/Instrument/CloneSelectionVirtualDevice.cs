@@ -8,6 +8,7 @@ namespace Instrument
 {
     public class CloneSelectionDeviceMessageCreator
     {
+        //孔板选择
         public static String createSetKongBanXuanZe(String arg1, String arg2, String arg3, String arg4, String arg5, String arg6, String arg7, String arg8)
         {
             ModbusMessageDataCreator creator = new ModbusMessageDataCreator();
@@ -22,6 +23,7 @@ namespace Instrument
             creator.addKeyPair("SCP_CloneNum", arg8);
             return ModbusMessageHelper.createModbusMessage(ModbusMessage.messageTypeToByte(ModbusMessage.MessageType.SET), creator.getDataBytes());
         }
+       // 周长面积比
         public static String createSetLowAndUpp(String Lower, String Upper)
         {
             ModbusMessageDataCreator creator = new ModbusMessageDataCreator();
@@ -192,6 +194,7 @@ namespace Instrument
         public int SCP_ColorG;
         public int SCP_ColorB;
         public string SCP_Pic="null";
+        public string SCP_Data = "null";
 
         //上层Form需要用到这些函数，所以暂时保留，但底层类操作中不需要这些函数
         public UInt32 getJiaReShiJian() { return this.SCP_HeatTime; }
@@ -219,6 +222,10 @@ namespace Instrument
             if ("READ_IMAGE".Equals(reportType))
             {
                 SCP_Pic = (string)msg.Data["SCP_Pic"];
+            }
+            if ("READ_DATA".Equals(reportType))
+            {
+                SCP_Data = (string)msg.Data["SCP_Data"];
             }
             
         }

@@ -116,6 +116,8 @@
             this.label18 = new System.Windows.Forms.Label();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.currentPictxtb = new System.Windows.Forms.TextBox();
+            this.label37 = new System.Windows.Forms.Label();
             this.button6 = new System.Windows.Forms.Button();
             this.button5 = new System.Windows.Forms.Button();
             this.listView1 = new System.Windows.Forms.ListView();
@@ -137,8 +139,8 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.refreshTimer = new System.Windows.Forms.Timer(this.components);
-            this.label37 = new System.Windows.Forms.Label();
-            this.currentPictxtb = new System.Windows.Forms.TextBox();
+            this.label38 = new System.Windows.Forms.Label();
+            this.currentdatatxtb = new System.Windows.Forms.TextBox();
             this.panel1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -991,6 +993,8 @@
             // 
             // panel2
             // 
+            this.panel2.Controls.Add(this.currentdatatxtb);
+            this.panel2.Controls.Add(this.label38);
             this.panel2.Controls.Add(this.currentPictxtb);
             this.panel2.Controls.Add(this.label37);
             this.panel2.Controls.Add(this.button6);
@@ -1005,6 +1009,22 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(621, 422);
             this.panel2.TabIndex = 1;
+            // 
+            // currentPictxtb
+            // 
+            this.currentPictxtb.Location = new System.Drawing.Point(95, 233);
+            this.currentPictxtb.Name = "currentPictxtb";
+            this.currentPictxtb.Size = new System.Drawing.Size(100, 21);
+            this.currentPictxtb.TabIndex = 9;
+            // 
+            // label37
+            // 
+            this.label37.AutoSize = true;
+            this.label37.Location = new System.Drawing.Point(25, 236);
+            this.label37.Name = "label37";
+            this.label37.Size = new System.Drawing.Size(53, 12);
+            this.label37.TabIndex = 8;
+            this.label37.Text = "当前图像";
             // 
             // button6
             // 
@@ -1155,21 +1175,21 @@
             this.refreshTimer.Interval = 1000;
             this.refreshTimer.Tick += new System.EventHandler(this.refreshTimer_Tick);
             // 
-            // label37
+            // label38
             // 
-            this.label37.AutoSize = true;
-            this.label37.Location = new System.Drawing.Point(25, 236);
-            this.label37.Name = "label37";
-            this.label37.Size = new System.Drawing.Size(53, 12);
-            this.label37.TabIndex = 8;
-            this.label37.Text = "当前图像";
+            this.label38.AutoSize = true;
+            this.label38.Location = new System.Drawing.Point(320, 241);
+            this.label38.Name = "label38";
+            this.label38.Size = new System.Drawing.Size(77, 12);
+            this.label38.TabIndex = 10;
+            this.label38.Text = "当前数据文件";
             // 
-            // currentPictxtb
+            // currentdatatxtb
             // 
-            this.currentPictxtb.Location = new System.Drawing.Point(95, 233);
-            this.currentPictxtb.Name = "currentPictxtb";
-            this.currentPictxtb.Size = new System.Drawing.Size(100, 21);
-            this.currentPictxtb.TabIndex = 9;
+            this.currentdatatxtb.Location = new System.Drawing.Point(403, 235);
+            this.currentdatatxtb.Name = "currentdatatxtb";
+            this.currentdatatxtb.Size = new System.Drawing.Size(100, 21);
+            this.currentdatatxtb.TabIndex = 11;
             // 
             // CloneSelectionDeviceForm
             // 
@@ -1312,6 +1332,8 @@
         private System.Windows.Forms.Label label20;
         private System.Windows.Forms.TextBox currentPictxtb;
         private System.Windows.Forms.Label label37;
+        private System.Windows.Forms.TextBox currentdatatxtb;
+        private System.Windows.Forms.Label label38;
 
     }
 }

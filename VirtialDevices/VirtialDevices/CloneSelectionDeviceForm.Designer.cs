@@ -111,6 +111,7 @@
             this.label18 = new System.Windows.Forms.Label();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.SendImagebtn = new System.Windows.Forms.Button();
             this.label37 = new System.Windows.Forms.Label();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.label36 = new System.Windows.Forms.Label();
@@ -139,7 +140,6 @@
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            this.SendImagebtn = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -967,6 +967,16 @@
             this.panel2.Size = new System.Drawing.Size(621, 433);
             this.panel2.TabIndex = 1;
             // 
+            // SendImagebtn
+            // 
+            this.SendImagebtn.Location = new System.Drawing.Point(485, 10);
+            this.SendImagebtn.Name = "SendImagebtn";
+            this.SendImagebtn.Size = new System.Drawing.Size(75, 23);
+            this.SendImagebtn.TabIndex = 13;
+            this.SendImagebtn.Text = "上传图像";
+            this.SendImagebtn.UseVisualStyleBackColor = true;
+            this.SendImagebtn.Click += new System.EventHandler(this.SendImagebtn_Click);
+            // 
             // label37
             // 
             this.label37.AutoSize = true;
@@ -982,6 +992,7 @@
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(61, 21);
             this.textBox2.TabIndex = 11;
+            this.textBox2.Text = "1";
             // 
             // label36
             // 
@@ -1007,6 +1018,7 @@
             this.button2.TabIndex = 8;
             this.button2.Text = "导入";
             this.button2.UseVisualStyleBackColor = true;
+            this.button2.Visible = false;
             this.button2.Click += new System.EventHandler(this.daoRuButton_Click);
             // 
             // button1
@@ -1159,19 +1171,13 @@
             this.timer1.Interval = 1000;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
+            // saveFileDialog1
+            // 
+            this.saveFileDialog1.Filter = "xml文件(*.xml)|*.xml|文本文件(*.txt)|*.txt";
+            // 
             // openFileDialog1
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
-            // 
-            // SendImagebtn
-            // 
-            this.SendImagebtn.Location = new System.Drawing.Point(485, 10);
-            this.SendImagebtn.Name = "SendImagebtn";
-            this.SendImagebtn.Size = new System.Drawing.Size(75, 23);
-            this.SendImagebtn.TabIndex = 13;
-            this.SendImagebtn.Text = "上传图像";
-            this.SendImagebtn.UseVisualStyleBackColor = true;
-            this.SendImagebtn.Click += new System.EventHandler(this.SendImagebtn_Click);
             // 
             // CloneSelectionDeviceForm
             // 
