@@ -41,6 +41,10 @@
             this.button8 = new System.Windows.Forms.Button();
             this.button7 = new System.Windows.Forms.Button();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.GongzuoFanngshicomboBox1 = new System.Windows.Forms.ComboBox();
+            this.KongbanTypecomboBox1 = new System.Windows.Forms.ComboBox();
+            this.PingminTypecomboBox = new System.Windows.Forms.ComboBox();
+            this.LightcomboBox = new System.Windows.Forms.ComboBox();
             this.button11 = new System.Windows.Forms.Button();
             this.jieZhongZhenDongTextBox = new System.Windows.Forms.TextBox();
             this.jieZhongTingLiuShiJianTextBox = new System.Windows.Forms.TextBox();
@@ -69,6 +73,18 @@
             this.label4 = new System.Windows.Forms.Label();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.panel5 = new System.Windows.Forms.Panel();
+            this.colorGLowertextBox = new System.Windows.Forms.TextBox();
+            this.colorGUpperTextBox = new System.Windows.Forms.TextBox();
+            this.colorBLowertextBox = new System.Windows.Forms.TextBox();
+            this.label39 = new System.Windows.Forms.Label();
+            this.label40 = new System.Windows.Forms.Label();
+            this.label41 = new System.Windows.Forms.Label();
+            this.colorBUpperTextBox = new System.Windows.Forms.TextBox();
+            this.colorRLowerTextBox = new System.Windows.Forms.TextBox();
+            this.colorRUpperTextBox = new System.Windows.Forms.TextBox();
+            this.label22 = new System.Windows.Forms.Label();
+            this.label21 = new System.Windows.Forms.Label();
+            this.label20 = new System.Windows.Forms.Label();
             this.button3 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
@@ -121,22 +137,8 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.refreshTimer = new System.Windows.Forms.Timer(this.components);
-            this.LightcomboBox = new System.Windows.Forms.ComboBox();
-            this.PingminTypecomboBox = new System.Windows.Forms.ComboBox();
-            this.KongbanTypecomboBox1 = new System.Windows.Forms.ComboBox();
-            this.GongzuoFanngshicomboBox1 = new System.Windows.Forms.ComboBox();
-            this.colorGLowertextBox = new System.Windows.Forms.TextBox();
-            this.colorGUpperTextBox = new System.Windows.Forms.TextBox();
-            this.colorBLowertextBox = new System.Windows.Forms.TextBox();
-            this.label39 = new System.Windows.Forms.Label();
-            this.label40 = new System.Windows.Forms.Label();
-            this.label41 = new System.Windows.Forms.Label();
-            this.colorBUpperTextBox = new System.Windows.Forms.TextBox();
-            this.colorRLowerTextBox = new System.Windows.Forms.TextBox();
-            this.colorRUpperTextBox = new System.Windows.Forms.TextBox();
-            this.label22 = new System.Windows.Forms.Label();
-            this.label21 = new System.Windows.Forms.Label();
-            this.label20 = new System.Windows.Forms.Label();
+            this.label37 = new System.Windows.Forms.Label();
+            this.currentPictxtb = new System.Windows.Forms.TextBox();
             this.panel1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -290,6 +292,53 @@
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(621, 353);
             this.panel3.TabIndex = 0;
+            // 
+            // GongzuoFanngshicomboBox1
+            // 
+            this.GongzuoFanngshicomboBox1.FormattingEnabled = true;
+            this.GongzuoFanngshicomboBox1.Items.AddRange(new object[] {
+            "单针",
+            "多针"});
+            this.GongzuoFanngshicomboBox1.Location = new System.Drawing.Point(439, 18);
+            this.GongzuoFanngshicomboBox1.Name = "GongzuoFanngshicomboBox1";
+            this.GongzuoFanngshicomboBox1.Size = new System.Drawing.Size(154, 20);
+            this.GongzuoFanngshicomboBox1.TabIndex = 30;
+            this.GongzuoFanngshicomboBox1.SelectedIndexChanged += new System.EventHandler(this.GongzuoFanngshicomboBox1_SelectedIndexChanged);
+            // 
+            // KongbanTypecomboBox1
+            // 
+            this.KongbanTypecomboBox1.FormattingEnabled = true;
+            this.KongbanTypecomboBox1.Items.AddRange(new object[] {
+            "96孔板"});
+            this.KongbanTypecomboBox1.Location = new System.Drawing.Point(111, 77);
+            this.KongbanTypecomboBox1.Name = "KongbanTypecomboBox1";
+            this.KongbanTypecomboBox1.Size = new System.Drawing.Size(154, 20);
+            this.KongbanTypecomboBox1.TabIndex = 29;
+            this.KongbanTypecomboBox1.SelectedIndexChanged += new System.EventHandler(this.KongbanTypecomboBox1_SelectedIndexChanged);
+            // 
+            // PingminTypecomboBox
+            // 
+            this.PingminTypecomboBox.FormattingEnabled = true;
+            this.PingminTypecomboBox.Items.AddRange(new object[] {
+            "10CM平皿"});
+            this.PingminTypecomboBox.Location = new System.Drawing.Point(111, 47);
+            this.PingminTypecomboBox.Name = "PingminTypecomboBox";
+            this.PingminTypecomboBox.Size = new System.Drawing.Size(154, 20);
+            this.PingminTypecomboBox.TabIndex = 28;
+            this.PingminTypecomboBox.SelectedIndexChanged += new System.EventHandler(this.PingminTypecomboBox_SelectedIndexChanged);
+            // 
+            // LightcomboBox
+            // 
+            this.LightcomboBox.FormattingEnabled = true;
+            this.LightcomboBox.Items.AddRange(new object[] {
+            "测光源",
+            "背光源",
+            "侧光源和背光源"});
+            this.LightcomboBox.Location = new System.Drawing.Point(111, 15);
+            this.LightcomboBox.Name = "LightcomboBox";
+            this.LightcomboBox.Size = new System.Drawing.Size(154, 20);
+            this.LightcomboBox.TabIndex = 27;
+            this.LightcomboBox.SelectedIndexChanged += new System.EventHandler(this.LightcomboBox_SelectedIndexChanged);
             // 
             // button11
             // 
@@ -583,6 +632,102 @@
             this.panel5.Size = new System.Drawing.Size(621, 419);
             this.panel5.TabIndex = 0;
             // 
+            // colorGLowertextBox
+            // 
+            this.colorGLowertextBox.Location = new System.Drawing.Point(118, 207);
+            this.colorGLowertextBox.Name = "colorGLowertextBox";
+            this.colorGLowertextBox.Size = new System.Drawing.Size(108, 21);
+            this.colorGLowertextBox.TabIndex = 48;
+            // 
+            // colorGUpperTextBox
+            // 
+            this.colorGUpperTextBox.Location = new System.Drawing.Point(118, 179);
+            this.colorGUpperTextBox.Name = "colorGUpperTextBox";
+            this.colorGUpperTextBox.Size = new System.Drawing.Size(108, 21);
+            this.colorGUpperTextBox.TabIndex = 47;
+            // 
+            // colorBLowertextBox
+            // 
+            this.colorBLowertextBox.Location = new System.Drawing.Point(118, 151);
+            this.colorBLowertextBox.Name = "colorBLowertextBox";
+            this.colorBLowertextBox.Size = new System.Drawing.Size(108, 21);
+            this.colorBLowertextBox.TabIndex = 46;
+            // 
+            // label39
+            // 
+            this.label39.AutoSize = true;
+            this.label39.Location = new System.Drawing.Point(76, 212);
+            this.label39.Name = "label39";
+            this.label39.Size = new System.Drawing.Size(35, 12);
+            this.label39.TabIndex = 45;
+            this.label39.Text = "G下限";
+            // 
+            // label40
+            // 
+            this.label40.AutoSize = true;
+            this.label40.Location = new System.Drawing.Point(76, 185);
+            this.label40.Name = "label40";
+            this.label40.Size = new System.Drawing.Size(35, 12);
+            this.label40.TabIndex = 44;
+            this.label40.Text = "G上限";
+            // 
+            // label41
+            // 
+            this.label41.AutoSize = true;
+            this.label41.Location = new System.Drawing.Point(76, 154);
+            this.label41.Name = "label41";
+            this.label41.Size = new System.Drawing.Size(35, 12);
+            this.label41.TabIndex = 43;
+            this.label41.Text = "B下限";
+            // 
+            // colorBUpperTextBox
+            // 
+            this.colorBUpperTextBox.Location = new System.Drawing.Point(118, 117);
+            this.colorBUpperTextBox.Name = "colorBUpperTextBox";
+            this.colorBUpperTextBox.Size = new System.Drawing.Size(108, 21);
+            this.colorBUpperTextBox.TabIndex = 42;
+            // 
+            // colorRLowerTextBox
+            // 
+            this.colorRLowerTextBox.Location = new System.Drawing.Point(118, 89);
+            this.colorRLowerTextBox.Name = "colorRLowerTextBox";
+            this.colorRLowerTextBox.Size = new System.Drawing.Size(108, 21);
+            this.colorRLowerTextBox.TabIndex = 41;
+            // 
+            // colorRUpperTextBox
+            // 
+            this.colorRUpperTextBox.Location = new System.Drawing.Point(118, 61);
+            this.colorRUpperTextBox.Name = "colorRUpperTextBox";
+            this.colorRUpperTextBox.Size = new System.Drawing.Size(108, 21);
+            this.colorRUpperTextBox.TabIndex = 40;
+            // 
+            // label22
+            // 
+            this.label22.AutoSize = true;
+            this.label22.Location = new System.Drawing.Point(76, 120);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(35, 12);
+            this.label22.TabIndex = 39;
+            this.label22.Text = "B上限";
+            // 
+            // label21
+            // 
+            this.label21.AutoSize = true;
+            this.label21.Location = new System.Drawing.Point(76, 92);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(47, 12);
+            this.label21.TabIndex = 38;
+            this.label21.Text = "R下限：";
+            // 
+            // label20
+            // 
+            this.label20.AutoSize = true;
+            this.label20.Location = new System.Drawing.Point(76, 64);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(35, 12);
+            this.label20.TabIndex = 37;
+            this.label20.Text = "R上限";
+            // 
             // button3
             // 
             this.button3.Location = new System.Drawing.Point(311, 363);
@@ -846,6 +991,8 @@
             // 
             // panel2
             // 
+            this.panel2.Controls.Add(this.currentPictxtb);
+            this.panel2.Controls.Add(this.label37);
             this.panel2.Controls.Add(this.button6);
             this.panel2.Controls.Add(this.button5);
             this.panel2.Controls.Add(this.listView1);
@@ -871,7 +1018,7 @@
             // 
             // button5
             // 
-            this.button5.Location = new System.Drawing.Point(484, 246);
+            this.button5.Location = new System.Drawing.Point(498, 262);
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(75, 21);
             this.button5.TabIndex = 6;
@@ -962,7 +1109,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(25, 235);
+            this.label3.Location = new System.Drawing.Point(25, 271);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(29, 12);
             this.label3.TabIndex = 4;
@@ -1004,150 +1151,25 @@
             // 
             // refreshTimer
             // 
+            this.refreshTimer.Enabled = true;
+            this.refreshTimer.Interval = 1000;
             this.refreshTimer.Tick += new System.EventHandler(this.refreshTimer_Tick);
             // 
-            // LightcomboBox
+            // label37
             // 
-            this.LightcomboBox.FormattingEnabled = true;
-            this.LightcomboBox.Items.AddRange(new object[] {
-            "测光源",
-            "背光源",
-            "侧光源和背光源"});
-            this.LightcomboBox.Location = new System.Drawing.Point(111, 15);
-            this.LightcomboBox.Name = "LightcomboBox";
-            this.LightcomboBox.Size = new System.Drawing.Size(154, 20);
-            this.LightcomboBox.TabIndex = 27;
-            this.LightcomboBox.SelectedIndexChanged += new System.EventHandler(this.LightcomboBox_SelectedIndexChanged);
+            this.label37.AutoSize = true;
+            this.label37.Location = new System.Drawing.Point(25, 236);
+            this.label37.Name = "label37";
+            this.label37.Size = new System.Drawing.Size(53, 12);
+            this.label37.TabIndex = 8;
+            this.label37.Text = "当前图像";
             // 
-            // PingminTypecomboBox
+            // currentPictxtb
             // 
-            this.PingminTypecomboBox.FormattingEnabled = true;
-            this.PingminTypecomboBox.Items.AddRange(new object[] {
-            "10CM平皿"});
-            this.PingminTypecomboBox.Location = new System.Drawing.Point(111, 47);
-            this.PingminTypecomboBox.Name = "PingminTypecomboBox";
-            this.PingminTypecomboBox.Size = new System.Drawing.Size(154, 20);
-            this.PingminTypecomboBox.TabIndex = 28;
-            this.PingminTypecomboBox.SelectedIndexChanged += new System.EventHandler(this.PingminTypecomboBox_SelectedIndexChanged);
-            // 
-            // KongbanTypecomboBox1
-            // 
-            this.KongbanTypecomboBox1.FormattingEnabled = true;
-            this.KongbanTypecomboBox1.Items.AddRange(new object[] {
-            "96孔板"});
-            this.KongbanTypecomboBox1.Location = new System.Drawing.Point(111, 77);
-            this.KongbanTypecomboBox1.Name = "KongbanTypecomboBox1";
-            this.KongbanTypecomboBox1.Size = new System.Drawing.Size(154, 20);
-            this.KongbanTypecomboBox1.TabIndex = 29;
-            this.KongbanTypecomboBox1.SelectedIndexChanged += new System.EventHandler(this.KongbanTypecomboBox1_SelectedIndexChanged);
-            // 
-            // GongzuoFanngshicomboBox1
-            // 
-            this.GongzuoFanngshicomboBox1.FormattingEnabled = true;
-            this.GongzuoFanngshicomboBox1.Items.AddRange(new object[] {
-            "单针",
-            "多针"});
-            this.GongzuoFanngshicomboBox1.Location = new System.Drawing.Point(439, 18);
-            this.GongzuoFanngshicomboBox1.Name = "GongzuoFanngshicomboBox1";
-            this.GongzuoFanngshicomboBox1.Size = new System.Drawing.Size(154, 20);
-            this.GongzuoFanngshicomboBox1.TabIndex = 30;
-            this.GongzuoFanngshicomboBox1.SelectedIndexChanged += new System.EventHandler(this.GongzuoFanngshicomboBox1_SelectedIndexChanged);
-            // 
-            // colorGLowertextBox
-            // 
-            this.colorGLowertextBox.Location = new System.Drawing.Point(118, 207);
-            this.colorGLowertextBox.Name = "colorGLowertextBox";
-            this.colorGLowertextBox.Size = new System.Drawing.Size(108, 21);
-            this.colorGLowertextBox.TabIndex = 48;
-            // 
-            // colorGUpperTextBox
-            // 
-            this.colorGUpperTextBox.Location = new System.Drawing.Point(118, 179);
-            this.colorGUpperTextBox.Name = "colorGUpperTextBox";
-            this.colorGUpperTextBox.Size = new System.Drawing.Size(108, 21);
-            this.colorGUpperTextBox.TabIndex = 47;
-            // 
-            // colorBLowertextBox
-            // 
-            this.colorBLowertextBox.Location = new System.Drawing.Point(118, 151);
-            this.colorBLowertextBox.Name = "colorBLowertextBox";
-            this.colorBLowertextBox.Size = new System.Drawing.Size(108, 21);
-            this.colorBLowertextBox.TabIndex = 46;
-            // 
-            // label39
-            // 
-            this.label39.AutoSize = true;
-            this.label39.Location = new System.Drawing.Point(76, 212);
-            this.label39.Name = "label39";
-            this.label39.Size = new System.Drawing.Size(35, 12);
-            this.label39.TabIndex = 45;
-            this.label39.Text = "G下限";
-            // 
-            // label40
-            // 
-            this.label40.AutoSize = true;
-            this.label40.Location = new System.Drawing.Point(76, 185);
-            this.label40.Name = "label40";
-            this.label40.Size = new System.Drawing.Size(35, 12);
-            this.label40.TabIndex = 44;
-            this.label40.Text = "G上限";
-            // 
-            // label41
-            // 
-            this.label41.AutoSize = true;
-            this.label41.Location = new System.Drawing.Point(76, 154);
-            this.label41.Name = "label41";
-            this.label41.Size = new System.Drawing.Size(35, 12);
-            this.label41.TabIndex = 43;
-            this.label41.Text = "B下限";
-            // 
-            // colorBUpperTextBox
-            // 
-            this.colorBUpperTextBox.Location = new System.Drawing.Point(118, 117);
-            this.colorBUpperTextBox.Name = "colorBUpperTextBox";
-            this.colorBUpperTextBox.Size = new System.Drawing.Size(108, 21);
-            this.colorBUpperTextBox.TabIndex = 42;
-            // 
-            // colorRLowerTextBox
-            // 
-            this.colorRLowerTextBox.Location = new System.Drawing.Point(118, 89);
-            this.colorRLowerTextBox.Name = "colorRLowerTextBox";
-            this.colorRLowerTextBox.Size = new System.Drawing.Size(108, 21);
-            this.colorRLowerTextBox.TabIndex = 41;
-            // 
-            // colorRUpperTextBox
-            // 
-            this.colorRUpperTextBox.Location = new System.Drawing.Point(118, 61);
-            this.colorRUpperTextBox.Name = "colorRUpperTextBox";
-            this.colorRUpperTextBox.Size = new System.Drawing.Size(108, 21);
-            this.colorRUpperTextBox.TabIndex = 40;
-            // 
-            // label22
-            // 
-            this.label22.AutoSize = true;
-            this.label22.Location = new System.Drawing.Point(76, 120);
-            this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(35, 12);
-            this.label22.TabIndex = 39;
-            this.label22.Text = "B上限";
-            // 
-            // label21
-            // 
-            this.label21.AutoSize = true;
-            this.label21.Location = new System.Drawing.Point(76, 92);
-            this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(47, 12);
-            this.label21.TabIndex = 38;
-            this.label21.Text = "R下限：";
-            // 
-            // label20
-            // 
-            this.label20.AutoSize = true;
-            this.label20.Location = new System.Drawing.Point(76, 64);
-            this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(35, 12);
-            this.label20.TabIndex = 37;
-            this.label20.Text = "R上限";
+            this.currentPictxtb.Location = new System.Drawing.Point(95, 233);
+            this.currentPictxtb.Name = "currentPictxtb";
+            this.currentPictxtb.Size = new System.Drawing.Size(100, 21);
+            this.currentPictxtb.TabIndex = 9;
             // 
             // CloneSelectionDeviceForm
             // 
@@ -1288,6 +1310,8 @@
         private System.Windows.Forms.Label label22;
         private System.Windows.Forms.Label label21;
         private System.Windows.Forms.Label label20;
+        private System.Windows.Forms.TextBox currentPictxtb;
+        private System.Windows.Forms.Label label37;
 
     }
 }

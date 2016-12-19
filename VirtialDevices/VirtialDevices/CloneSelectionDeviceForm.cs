@@ -18,7 +18,7 @@ namespace VirtialDevices
         public DeviceForm FatherForm;
         public bool IsSocket;
         public CloneSelectionDevice DeviceInfo;
-
+        public Bitmap bmPic;
         public CloneSelectionDeviceForm()
         {
             InitializeComponent();
@@ -85,7 +85,8 @@ namespace VirtialDevices
                 string sPicName = fiPicInfo.Name;
                 string sPicDirectory = fiPicInfo.Directory.ToString();
                 string sPicDirectoryPath = fiPicInfo.DirectoryName;
-                Bitmap bmPic = new Bitmap(sPicPaht);
+                //Bitmap bmPic = new Bitmap(sPicPaht);
+                bmPic = new Bitmap(sPicPaht);
                 if (lPicLong > 400)
                 {
                     MessageBox.Show("此文件大小" + lPicLong + "K；已超最大限制！");
@@ -268,6 +269,46 @@ namespace VirtialDevices
         private void colorBTextBox_TextChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void SendImagebtn_Click(object sender, EventArgs e)
+        {
+            // 存文件
+            if (bmPic != null)
+            { 
+            SaveFileDialog saveImage = new SaveFileDialog();
+            saveImage.Filter = "jpg文件(*.jpg)|*.jpg|gif文件(*.gif)|*.gif|png文件(*.png)|*.png|bmp文件(*.bmp)|*.bmp";
+            saveImage.ShowHelp = true;
+            //saveImage.AddExtension = true;
+            saveImage.RestoreDirectory = true;
+            if (saveImage.ShowDialog() == DialogResult.OK)
+             {
+                string filename = saveImage.FileName;  //pic path
+                string fileExtn = filename.Remove(0, filename.Length - 3);
+                switch (fileExtn)
+                {
+                    case "jpg":
+                        bmPic.Save(filename, System.Drawing.Imaging.ImageFormat.Jpeg);
+                        break;
+                    case "gif":
+                        bmPic.Save(filename, System.Drawing.Imaging.ImageFormat.Gif);
+                        break;
+                    case "png":
+                        bmPic.Save(filename, System.Drawing.Imaging.ImageFormat.Png);
+                        break;
+                    case "bmp":
+                        bmPic.Save(filename, System.Drawing.Imaging.ImageFormat.Bmp);
+                        break;
+                }
+                //从路径中截取文件名
+                int index = filename.LastIndexOf("\\");
+                DeviceInfo.imageSendReport(filename.Substring(index+1));              
+             }
+                //存取成功发送一个Report命令
+
+
+            }
+            
         }
 
     }

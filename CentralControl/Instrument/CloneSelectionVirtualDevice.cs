@@ -191,7 +191,7 @@ namespace Instrument
         public int SCP_ColorR;
         public int SCP_ColorG;
         public int SCP_ColorB;
-        public string SCP_Pic;
+        public string SCP_Pic="null";
 
         //上层Form需要用到这些函数，所以暂时保留，但底层类操作中不需要这些函数
         public UInt32 getJiaReShiJian() { return this.SCP_HeatTime; }
@@ -216,6 +216,10 @@ namespace Instrument
         public override void decodeReportMessage(ModbusMessage msg)//解码报告消息
         {
             String reportType = (String)msg.Data["ReportType"];
+            if ("READ_IMAGE".Equals(reportType))
+            {
+                SCP_Pic = (string)msg.Data["SCP_Pic"];
+            }
             
         }
        

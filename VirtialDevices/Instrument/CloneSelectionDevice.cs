@@ -154,6 +154,18 @@ namespace Instrument
         public double getBiZhi_Max() { return this.SCP_MaxRate; }
         public double getBiZhi_Min() { return this.SCP_MinRate; }
 
+
+        public void imageSendReport(string filename)
+        {
+            Hashtable ht = new Hashtable();
+            ht.Add("ReportType", "READ_IMAGE");
+            ht.Add("SCP_Pic", filename);
+            SendModBusMsg(ModbusMessage.MessageType.REPORT, ht);
+        }
+
+
+
+
         public override void decodeSetMessage(ModbusMessage msg)
         {
             String setType = (String)msg.Data["SetType"];

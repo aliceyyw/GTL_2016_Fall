@@ -200,6 +200,8 @@ namespace CentralControl
             InitializeComponent();
         }
 
+
+
         private void CloneSelectionDeviceForm_FormClosing(object sender, FormClosingEventArgs e)
         {
             FatherForm.Enabled = true;
@@ -234,7 +236,7 @@ namespace CentralControl
 
         private void refreshTimer_Tick(object sender, EventArgs e)
         {
-            
+            this.currentPictxtb.Text = CloneSelectionDevice.SCP_Pic.ToString();
         }
 
         private void LightcomboBox_SelectedIndexChanged(object sender, EventArgs e)
