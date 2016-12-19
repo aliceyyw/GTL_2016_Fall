@@ -26,8 +26,8 @@ namespace Instrument
         ///上位机发向仪器
         //平皿和孔板选择
         public int SCP_LightType = 0;
-        public int SCP_DishType = 1;
-        public int SCP_PlateType = 2;
+        public int SCP_DishType = 0;
+        public int SCP_PlateType = 0;
         public int SCP_ProbeMethod = 0;
         public int SCP_NeedleFlag = 0;
         public int SCP_NeedleNum = 0;
