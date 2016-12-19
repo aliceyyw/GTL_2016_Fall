@@ -26,24 +26,94 @@ namespace Instrument
         ///上位机发向仪器
         //平皿和孔板选择
         public int SCP_LightType = 0;
-        public int SCP_DishType = 0;
-        public int SCP_PlateType = 0;
+        public int SCP_DishType = 1;
+        public int SCP_PlateType = 2;
         public int SCP_ProbeMethod = 0;
         public int SCP_NeedleFlag = 0;
         public int SCP_NeedleNum = 0;
         public int SCP_DishNeedleFlag = 0;
-        public int SCP_CloneNum = 0;
+        public int SCP_CloneNum = 96;
         public int SCP_PlateFlag = 0;
         public int SCP_SpaceFlag = 0;
-        public static int SCP_TestRowNum = 12;  //Miwa 文档里没找到
 
         //过程设置
-        public int SCP_PickStopTime = 0;
-        public int SCP_InoStopTime = 0;
-        public int SCP_ShockCount = 0;
+        public int SCP_PickStopTime = 1;
+        public int SCP_InoStopTime = 1;
+        public int SCP_ShockCount = 10;
 
-        //相机参数 Miwa 文档里没找到
-        //色彩处理
+        //灭菌与清洗
+        public UInt32 SCP_HeatTime = 10;
+        public UInt32 SCP_CoolTime = 0;
+        public UInt32 SCP_ExhaustTime = 0;
+        public UInt32 SCP_FlushTime = 0;
+        public UInt32 SCP_FlushNo = 0;
+
+        //筛选过程
+        public int SCP_CircleLoc = 0;
+        public int SCP_X = 403;
+        public int SCP_Y = 281;
+        public int SCP_Radius = 245;
+        public int SCP_MatrixLoc = 1;
+        public int SCP_CenterX = 400;
+        public int SCP_CenterY = 300;
+        public int SCP_Length = 320;
+        public int SCP_Width = 220;
+        /*public int SCP_Calibrate = 0;
+        public int SCP_OriginPoint = 0;
+        public int SCP_ControlPoint = 0;*/
+
+        //筛选条件
+        public int SCP_ColorFlag = 1;
+        public int SCP_RedMin = 0;
+        public int SCP_RedMax = 255;
+        public int SCP_GreenMin = 0;
+        public int SCP_GreenMax = 255;
+        public int SCP_BlueMin = 0;
+        public int SCP_BlueMax = 255;
+        public int SCP_AreaFilter = 1;
+        public double SCP_SizeMin = 100;
+        public double SCP_SizeMax = 1000;
+        public int SCP_LengthFilter = 1;
+        public double SCP_MinLength = 5;
+        public double SCP_MaxLength = 20;
+        public double SCP_MinShort = 5;
+        public double SCP_MaxShort = 15;
+        public double SCP_MinRate = 1.0;
+        public double SCP_MaxRate = 1.8;
+        public int SCP_PARate = 1;
+        public double SCP_MinPARate = 5.6;
+        public double SCP_MaxPARate = 9.8;
+
+        public static int SCP_TestRowNum = 1;
+
+        //仪器发向上位机
+        public int SCP_Dish;
+        public string SCP_DishCode;
+        public int SCP_Plate1;
+        public int SCP_Plate2;
+        public int SCP_Plate3;
+        public int SCP_Plate4;
+        public string SCP_Plate1Code;
+        public string SCP_Plate2Code;
+        public string SCP_Plate3Code;
+        public string SCP_Plate4Code;
+        public string SCP_HoleX;
+        public string SCP_HoleY;
+        public float SCP_PointX;
+        public float SCP_PointY;
+        public int SCP_CentroidX;
+        public int SCP_CentroidY;
+        public int SCP_Area;
+        public int SCP_Perimeter;
+        public int SCP_MajorDiameter;
+        public int SCP_MinorDiameter;
+        public float SCP_MajToMinAxisRatio;
+        public int SCP_ColorR;
+        public int SCP_ColorG;
+        public int SCP_ColorB;
+        public string SCP_Pic;
+
+        /*//色彩处理
         public int SCP_Gamma = 0;
         public int SCP_Contrast = 0;
         public int SCP_ColEnhance = 0;
@@ -65,60 +135,7 @@ namespace Instrument
         public int SCP_Flip= 0;
         public int SCP_Horizontal= 0;
         public int SCP_GreyLevel= 0;
-        public int SCP_Scale= 0;
-
-
-        //灭菌与清洗
-        public UInt32 SCP_HeatTime = 0;
-        public UInt32 SCP_CoolTime = 0;
-        public UInt32 SCP_ExhaustTime = 0;
-        public UInt32 SCP_FlushTime = 0;
-        public UInt32 SCP_FlushNo = 0;
-
-        //筛选过程
-        public int SCP_CircleLoc = 0;
-        public int SCP_X = 403;
-        public int SCP_Y = 281;
-        public int SCP_Radius = 245;
-        public int SCP_MatrixLoc = 1;
-        public int SCP_CenterX = 400;
-        public int SCP_CenterY = 300;
-        public int SCP_Length = 320;
-        public int SCP_Width = 220;
-        //Miwa 新加字段，根据数据总结
-        public int SCP_CalibLoc = 1;
-        //Miwa 新加字段，根据数据总结
-        public int SCP_OriginPoint = 0;
-        public int SCP_ControlPoint = 0;
-        public int SCP_Calibrate = 0;
-
-        //筛选条件
-        public int SCP_ColorFlag = 1;
-        //Miwa 新加字段，根据数据总结
-        public int SCP_RedMin = 0;
-        public int SCP_RedMax = 255;
-        public int SCP_GreenMin = 0;
-        public int SCP_GreenMax = 255;
-        public int SCP_BlueMin = 0;
-        public int SCP_BlueMax = 255;
-        public double SCP_SizeMin = 100;
-        public double SCP_SizeMax = 1000;
-
-        //Miwa 新加字段，根据数据总结
-        public int SCP_AreaFilter = 0;
-        public double SCP_MaxPARate = 0.0;
-        public double SCP_MinPARate = 0.0;
-        public double SCP_MaxLength = 3.0;
-        public double SCP_MinLength = 2.5;
-        public double SCP_MaxShort = 7.0;
-        public double SCP_MinShort = 6.0;
-        public double SCP_MaxRate = 4.0;
-        public double SCP_MinRate = 3.0;
-        public int SCP_PARate = 0;
-        public int SCP_LengthFilter = 0;
-        /*public Int16 SCP_R = 18;
-        public Int16 SCP_G = 21;
-        public Int16 SCP_B = 75;*/
+        public int SCP_Scale= 0;*/
 
         //上层Form需要用到这些函数，所以暂时保留，但底层类操作中不需要这些函数
         public UInt32 getJiaReShiJian() { return this.SCP_HeatTime; }
@@ -137,74 +154,59 @@ namespace Instrument
         public double getBiZhi_Max() { return this.SCP_MaxRate; }
         public double getBiZhi_Min() { return this.SCP_MinRate; }
 
-
-        public void sendChangDuanJingReport(String[] changduanjing)
-        {
-            Hashtable ht = new Hashtable();
-            String devicetime = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
-            ht.Add("ReportType", "SCP_ChangDuanJing");
-            String[] s = { "MDF_Current1", "MDF_Current2", "MDF_Current3", "MDF_Current4" };
-            for (int i = 0; i < s.Length; i++)
-            {
-                ht.Add(s[i], changduanjing[i]);
-            }
-            ht.Add("Device_Time", devicetime);
-            SendModBusMsg(ModbusMessage.MessageType.REPORT, ht);
-        }
-
         public override void decodeSetMessage(ModbusMessage msg)
         {
             String setType = (String)msg.Data["SetType"];
             if ("KongBanXuanZe".Equals(setType))
             {
-                this.SCP_PickStopTime = Convert.ToInt32((String)msg.Data["TiaoXuanTingLiuShiJian"]);
-                this.SCP_ShockCount = Convert.ToInt32((String)msg.Data["JieZhongZhenDong"]);
-                this.SCP_InoStopTime = Convert.ToInt32((String)msg.Data["JieZhongTingLiuShiJian"]);
-                this.SCP_LightType = Convert.ToInt32((String)msg.Data["lightType"]);
-                this.SCP_DishType= Convert.ToInt32((String)msg.Data["PingminType"]);
-                this.SCP_PlateType = Convert.ToInt32((String)msg.Data["KongbanType"]);
-                this.SCP_ProbeMethod = Convert.ToInt32((String)msg.Data["GongzuoFanngshi"]);
-                this.SCP_CloneNum = Convert.ToInt32((String)msg.Data["TiaoXuanZongShu"]);
+                this.SCP_PickStopTime = Convert.ToInt32((String)msg.Data["SCP_PickStopTime"]);
+                this.SCP_ShockCount = Convert.ToInt32((String)msg.Data["SCP_ShockCount"]);
+                this.SCP_InoStopTime = Convert.ToInt32((String)msg.Data["SCP_InoStopTime"]);
+                this.SCP_LightType = Convert.ToInt32((String)msg.Data["SCP_LightType"]);
+                this.SCP_DishType = Convert.ToInt32((String)msg.Data["SCP_DishType"]);
+                this.SCP_PlateType = Convert.ToInt32((String)msg.Data["SCP_PlateType"]);
+                this.SCP_ProbeMethod = Convert.ToInt32((String)msg.Data["SCP_ProbeMethod"]);
+                this.SCP_CloneNum = Convert.ToInt32((String)msg.Data["SCP_CloneNum"]);
             }
             if ("ZhouChangMianJiBi".Equals(setType)) 
             {
-                this.SCP_MaxPARate = double.Parse((String)msg.Data["ZhouChangMianJiBi_Max"]);
-                this.SCP_MinPARate = double.Parse((String)msg.Data["ZhouChangMianJiBi_Min"]);
+                this.SCP_MaxPARate = double.Parse((String)msg.Data["SCP_MaxPARate"]);
+                this.SCP_MinPARate = double.Parse((String)msg.Data["SCP_MinPARate"]);
             }
 
             if ("MianJiShaiXuan".Equals(setType))
             {
-                this.SCP_SizeMax = double.Parse((String)msg.Data["MianJi_Max"]);
-                this.SCP_SizeMin = double.Parse((String)msg.Data["MianJi_Min"]);
+                this.SCP_SizeMax = double.Parse((String)msg.Data["SCP_SizeMax"]);
+                this.SCP_SizeMin = double.Parse((String)msg.Data["SCP_SizeMin"]);
             } 
 
             if ("ChangDuanJingShaiXuan".Equals(setType))
             {
-                this.SCP_MaxLength = double.Parse((String)msg.Data["ChangJing_Max"]);
-                this.SCP_MinLength = double.Parse((String)msg.Data["ChangJing_Min"]);
-                this.SCP_MaxShort = double.Parse((String)msg.Data["DuanJing_Max"]);
-                this.SCP_MinShort = double.Parse((String)msg.Data["DuanJing_Min"]);
-                this.SCP_MaxRate = double.Parse((String)msg.Data["BiZhi_Max"]);
-                this.SCP_MinRate = double.Parse((String)msg.Data["BiZhi_Min"]);
+                this.SCP_MaxLength = double.Parse((String)msg.Data["SCP_MaxLength"]);
+                this.SCP_MinLength = double.Parse((String)msg.Data["SCP_MinLength"]);
+                this.SCP_MaxShort = double.Parse((String)msg.Data["SCP_MaxShort"]);
+                this.SCP_MinShort = double.Parse((String)msg.Data["SCP_MinShort"]);
+                this.SCP_MaxRate = double.Parse((String)msg.Data["SCP_MaxRate"]);
+                this.SCP_MinRate = double.Parse((String)msg.Data["SCP_MinRate"]);
             } 
 
             if ("SeDuPingJunZhi".Equals(setType))
             {
-                this.SCP_RedMax = Int16.Parse((String)msg.Data["RUpper"]);
-                this.SCP_RedMin = Int16.Parse((String)msg.Data["RLower"]);
-                this.SCP_GreenMax = Int16.Parse((String)msg.Data["GUpper"]);
-                this.SCP_GreenMin = Int16.Parse((String)msg.Data["GLower"]);
-                this.SCP_BlueMax = Int16.Parse((String)msg.Data["BUpper"]);
-                this.SCP_BlueMin = Int16.Parse((String)msg.Data["BLower"]);
+                this.SCP_RedMax = Int16.Parse((String)msg.Data["SCP_RedMax"]);
+                this.SCP_RedMin = Int16.Parse((String)msg.Data["SCP_RedMin"]);
+                this.SCP_GreenMax = Int16.Parse((String)msg.Data["SCP_GreenMax"]);
+                this.SCP_GreenMin = Int16.Parse((String)msg.Data["SCP_GreenMin"]);
+                this.SCP_BlueMax = Int16.Parse((String)msg.Data["SCP_BlueMax"]);
+                this.SCP_BlueMin = Int16.Parse((String)msg.Data["SCP_BlueMin"]);
             }
 
             if ("MieJunHeQingXi".Equals(setType))
             {
-                this.SCP_HeatTime = UInt32.Parse((String)msg.Data["JiaReShiJian"]);
-                this.SCP_FlushTime = UInt32.Parse((String)msg.Data["QingXiShiJian"]);
-                this.SCP_FlushNo = UInt32.Parse((String)msg.Data["QingXiCiShu"]);
-                this.SCP_ExhaustTime = UInt32.Parse((String)msg.Data["ChouQiShiJian"]);
-                this.SCP_CoolTime = UInt32.Parse((String)msg.Data["LengQueShiJian"]);
+                this.SCP_HeatTime = UInt32.Parse((String)msg.Data["SCP_HeatTime"]);
+                this.SCP_FlushTime = UInt32.Parse((String)msg.Data["SCP_FlushTime"]);
+                this.SCP_FlushNo = UInt32.Parse((String)msg.Data["SCP_FlushNo"]);
+                this.SCP_ExhaustTime = UInt32.Parse((String)msg.Data["SCP_ExhaustTime"]);
+                this.SCP_CoolTime = UInt32.Parse((String)msg.Data["SCP_CoolTime"]);
             }
 
         }
