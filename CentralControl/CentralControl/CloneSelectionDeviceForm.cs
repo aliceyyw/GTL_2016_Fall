@@ -161,7 +161,7 @@ namespace CentralControl
         private void PicButton_Click(object sender, EventArgs e)
         {
             OpenFileDialog ofdPic = new OpenFileDialog();
-            ofdPic.Filter = "JPG(*.JPG;*.JPEG);gif文件(*.GIF)|*.jpg;*.jpeg;*.gif";
+            ofdPic.Filter = "JPG(*.JPG;*.JPEG);gif文件(*.GIF);BMP文件(*.bmp)|*.jpg;*.jpeg;*.gif;*.bmp";
             ofdPic.FilterIndex = 1;
             ofdPic.RestoreDirectory = true;
             ofdPic.FileName = "";
@@ -174,7 +174,7 @@ namespace CentralControl
                 string sPicDirectory = fiPicInfo.Directory.ToString();
                 string sPicDirectoryPath = fiPicInfo.DirectoryName;
                 Bitmap bmPic = new Bitmap(sPicPaht);
-                if (lPicLong > 400)
+                if (lPicLong > 10000)
                 {
                     MessageBox.Show("此文件大小" + lPicLong + "K；已超最大限制！");
                 }
@@ -191,7 +191,6 @@ namespace CentralControl
                     }
                 }
                 junLuoPictureBox.LoadAsync(sPicPaht);
-                this.shiBieHouPictureBox.LoadAsync(sPicPaht);
             }
         }
 
@@ -263,6 +262,42 @@ namespace CentralControl
         private void closeButton_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void button12_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog ofdPic = new OpenFileDialog();
+            ofdPic.Filter = "JPG(*.JPG;*.JPEG);gif文件(*.GIF);BMP文件(*.bmp)|*.jpg;*.jpeg;*.gif;*.bmp";
+            ofdPic.FilterIndex = 1;
+            ofdPic.RestoreDirectory = true;
+            ofdPic.FileName = "";
+            if (ofdPic.ShowDialog() == DialogResult.OK)
+            {
+                string sPicPaht = ofdPic.FileName.ToString();
+                FileInfo fiPicInfo = new FileInfo(sPicPaht);
+                long lPicLong = fiPicInfo.Length / 1024;
+                string sPicName = fiPicInfo.Name;
+                string sPicDirectory = fiPicInfo.Directory.ToString();
+                string sPicDirectoryPath = fiPicInfo.DirectoryName;
+                Bitmap bmPic = new Bitmap(sPicPaht);
+                if (lPicLong > 10000)
+                {
+                    MessageBox.Show("此文件大小" + lPicLong + "K；已超最大限制！");
+                }
+                else
+                {
+                    Point ptLoction = new Point(bmPic.Size);
+                    if (ptLoction.X > this.junLuoPictureBox.Size.Width || ptLoction.Y > junLuoPictureBox.Size.Height)
+                    {
+                        junLuoPictureBox.SizeMode = PictureBoxSizeMode.Zoom;
+                    }
+                    else
+                    {
+                        junLuoPictureBox.SizeMode = PictureBoxSizeMode.CenterImage;
+                    }
+                }
+                this.pictureBox1.LoadAsync(sPicPaht);
+            }
         }
     }
 }
