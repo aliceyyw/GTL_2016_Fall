@@ -89,10 +89,15 @@ namespace Instrument
         //仪器发向上位机
         public int SCP_Dish;
         public string SCP_DishCode;
-        public int SCP_Plate1;
-        public int SCP_Plate2;
-        public int SCP_Plate3;
-        public int SCP_Plate4;
+        //public int SCP_Plate1;
+        //public int SCP_Plate2;
+        //public int SCP_Plate3;
+        //public int SCP_Plate4;
+        //public int SCP_Plate5;
+        //public int SCP_Plate6;
+        //public int SCP_Plate7;
+        //public int SCP_Plate8;
+        public int[] SCP_Plate = new int[8];
         public string SCP_Plate1Code;
         public string SCP_Plate2Code;
         public string SCP_Plate3Code;
@@ -171,6 +176,26 @@ namespace Instrument
             SendModBusMsg(ModbusMessage.MessageType.REPORT, ht);
         }
 
+        public void dishSendReport(int scp_dish,string scp_dishcode,int[] scp_plate)
+        {
+            Hashtable ht = new Hashtable();
+            ht.Add("ReportType", "isDishAndPlate");
+            ht.Add("SCP_Dish", scp_dish.ToString());
+            ht.Add("SCP_DishCode",scp_dishcode);
+            string[] key = new string[8];
+            for (int i = 0; i < 8; i++)
+            {
+                key[i] = "SCP_Plate" + (i+1).ToString();
+            }
+            for (int j = 0; j <8; j++)
+            {
+                ht.Add(key[j], scp_plate[j].ToString());
+            }
+                SendModBusMsg(ModbusMessage.MessageType.REPORT, ht);
+
+        }
+
+       
 
         public override void decodeSetMessage(ModbusMessage msg)
         {

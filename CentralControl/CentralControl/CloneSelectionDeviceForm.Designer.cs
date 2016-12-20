@@ -116,6 +116,10 @@
             this.label18 = new System.Windows.Forms.Label();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.button12 = new System.Windows.Forms.Button();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.currentdatatxtb = new System.Windows.Forms.TextBox();
+            this.label38 = new System.Windows.Forms.Label();
             this.currentPictxtb = new System.Windows.Forms.TextBox();
             this.label37 = new System.Windows.Forms.Label();
             this.button6 = new System.Windows.Forms.Button();
@@ -134,13 +138,10 @@
             this.columnHeader11 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader12 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.label3 = new System.Windows.Forms.Label();
-            this.shiBieHouPictureBox = new System.Windows.Forms.PictureBox();
             this.junLuoPictureBox = new System.Windows.Forms.PictureBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.refreshTimer = new System.Windows.Forms.Timer(this.components);
-            this.label38 = new System.Windows.Forms.Label();
-            this.currentdatatxtb = new System.Windows.Forms.TextBox();
             this.panel1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -151,7 +152,7 @@
             this.panel5.SuspendLayout();
             this.tabPage3.SuspendLayout();
             this.panel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.shiBieHouPictureBox)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.junLuoPictureBox)).BeginInit();
             this.SuspendLayout();
             // 
@@ -993,6 +994,8 @@
             // 
             // panel2
             // 
+            this.panel2.Controls.Add(this.button12);
+            this.panel2.Controls.Add(this.pictureBox1);
             this.panel2.Controls.Add(this.currentdatatxtb);
             this.panel2.Controls.Add(this.label38);
             this.panel2.Controls.Add(this.currentPictxtb);
@@ -1001,7 +1004,6 @@
             this.panel2.Controls.Add(this.button5);
             this.panel2.Controls.Add(this.listView1);
             this.panel2.Controls.Add(this.label3);
-            this.panel2.Controls.Add(this.shiBieHouPictureBox);
             this.panel2.Controls.Add(this.junLuoPictureBox);
             this.panel2.Controls.Add(this.label2);
             this.panel2.Controls.Add(this.label1);
@@ -1009,6 +1011,41 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(621, 422);
             this.panel2.TabIndex = 1;
+            // 
+            // button12
+            // 
+            this.button12.Location = new System.Drawing.Point(484, 7);
+            this.button12.Name = "button12";
+            this.button12.Size = new System.Drawing.Size(75, 21);
+            this.button12.TabIndex = 13;
+            this.button12.Text = "导入";
+            this.button12.UseVisualStyleBackColor = true;
+            this.button12.Click += new System.EventHandler(this.button12_Click);
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Location = new System.Drawing.Point(322, 34);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(239, 187);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox1.TabIndex = 12;
+            this.pictureBox1.TabStop = false;
+            // 
+            // currentdatatxtb
+            // 
+            this.currentdatatxtb.Location = new System.Drawing.Point(403, 235);
+            this.currentdatatxtb.Name = "currentdatatxtb";
+            this.currentdatatxtb.Size = new System.Drawing.Size(100, 21);
+            this.currentdatatxtb.TabIndex = 11;
+            // 
+            // label38
+            // 
+            this.label38.AutoSize = true;
+            this.label38.Location = new System.Drawing.Point(320, 241);
+            this.label38.Name = "label38";
+            this.label38.Size = new System.Drawing.Size(77, 12);
+            this.label38.TabIndex = 10;
+            this.label38.Text = "当前数据文件";
             // 
             // currentPictxtb
             // 
@@ -1135,14 +1172,6 @@
             this.label3.TabIndex = 4;
             this.label3.Text = "数据";
             // 
-            // shiBieHouPictureBox
-            // 
-            this.shiBieHouPictureBox.Location = new System.Drawing.Point(320, 34);
-            this.shiBieHouPictureBox.Name = "shiBieHouPictureBox";
-            this.shiBieHouPictureBox.Size = new System.Drawing.Size(239, 187);
-            this.shiBieHouPictureBox.TabIndex = 3;
-            this.shiBieHouPictureBox.TabStop = false;
-            // 
             // junLuoPictureBox
             // 
             this.junLuoPictureBox.Location = new System.Drawing.Point(27, 34);
@@ -1175,22 +1204,6 @@
             this.refreshTimer.Interval = 1000;
             this.refreshTimer.Tick += new System.EventHandler(this.refreshTimer_Tick);
             // 
-            // label38
-            // 
-            this.label38.AutoSize = true;
-            this.label38.Location = new System.Drawing.Point(320, 241);
-            this.label38.Name = "label38";
-            this.label38.Size = new System.Drawing.Size(77, 12);
-            this.label38.TabIndex = 10;
-            this.label38.Text = "当前数据文件";
-            // 
-            // currentdatatxtb
-            // 
-            this.currentdatatxtb.Location = new System.Drawing.Point(403, 235);
-            this.currentdatatxtb.Name = "currentdatatxtb";
-            this.currentdatatxtb.Size = new System.Drawing.Size(100, 21);
-            this.currentdatatxtb.TabIndex = 11;
-            // 
             // CloneSelectionDeviceForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -1214,7 +1227,7 @@
             this.tabPage3.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.shiBieHouPictureBox)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.junLuoPictureBox)).EndInit();
             this.ResumeLayout(false);
 
@@ -1295,7 +1308,6 @@
         private System.Windows.Forms.ColumnHeader columnHeader11;
         private System.Windows.Forms.ColumnHeader columnHeader12;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.PictureBox shiBieHouPictureBox;
         private System.Windows.Forms.PictureBox junLuoPictureBox;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
@@ -1334,6 +1346,8 @@
         private System.Windows.Forms.Label label37;
         private System.Windows.Forms.TextBox currentdatatxtb;
         private System.Windows.Forms.Label label38;
+        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.Button button12;
 
     }
 }

@@ -171,10 +171,15 @@ namespace Instrument
         //仪器发向上位机
         public int SCP_Dish;
         public string SCP_DishCode;
-        public int SCP_Plate1;
-        public int SCP_Plate2;
-        public int SCP_Plate3;
-        public int SCP_Plate4;
+        //public int SCP_Plate1;
+        //public int SCP_Plate2;
+        //public int SCP_Plate3;
+        //public int SCP_Plate4;
+        //public int SCP_Plate5;
+        //public int SCP_Plate6;
+        //public int SCP_Plate7;
+        //public int SCP_Plate8;
+        public int[] SCP_Plate= new int[8];
         public string SCP_Plate1Code;
         public string SCP_Plate2Code;
         public string SCP_Plate3Code;
@@ -226,6 +231,26 @@ namespace Instrument
             if ("READ_DATA".Equals(reportType))
             {
                 SCP_Data = (string)msg.Data["SCP_Data"];
+            }
+            if ("READ_DATA".Equals(reportType))
+            {
+                SCP_Data = (string)msg.Data["SCP_Data"];
+            }
+            if ("isDishAndPlate".Equals(reportType))
+            {
+                SCP_Dish = int.Parse((string)msg.Data["SCP_Dish"]);
+                SCP_DishCode = (string)msg.Data["SCP_DishCode"];
+                string[] key = new string[8];
+                for (int i = 0; i < 8; i++)
+            {
+                key[i] = "SCP_Plate" + (i+1).ToString();
+            }
+
+                for (int j = 0; j < 8; j++)
+                {
+                    SCP_Plate[j] = int.Parse((string)msg.Data[key[j]]);
+                }
+              
             }
             
         }
