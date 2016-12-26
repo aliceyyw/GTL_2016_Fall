@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,7 +20,7 @@ namespace Instrument
             return ModbusMessageHelper.createModbusMessage(ModbusMessage.messageTypeToByte(ModbusMessage.MessageType.RESPONSE), creator.getDataBytes());
         }
 
-        public static String createKongBanReport(bool YouKongBan, String TiaoMaHao)
+        public static String createPlateReport(bool YouKongBan, String TiaoMaHao)
         {
             ModbusMessageDataCreator creator = new ModbusMessageDataCreator();
             creator.addKeyPair("ReportType", "YouKongBan");
@@ -82,14 +83,15 @@ namespace Instrument
 
         //仪器发给上位机
         //加样仪
-        private bool[] MMA_PlateFlag;//有无放孔板*10
+        private int MMA_RestTip;  //剩余吸头数
+        private int[] MMA_PlateFlag;//有无放孔板*10
         private float[] MMA_PlateTemp; //当前温度*10
         //酶标仪
         private float[] MMA_ODValue;  //OD值*96
         private float[] MMA_FluCount;  //荧光检测参数*96
         private float[] MMA_CheCount;  //化学发光检测参数*96
         private float MMA_Wave;  //波长范围 
-        private float MDF_CurrentTemp; //当前温度
+        private float MMA_CurrentTemp; //当前温度
         private bool MMA_PlateDetect = false;  //有无放孔板 true表示有 false表示无
         private string MMA_InBarCode = "";
         private string MMA_OutBarCode = "";
@@ -98,29 +100,29 @@ namespace Instrument
 
         private System.Timers.Timer MMA_Timer = null;
 
-        public static MMA_TestMethod stringToJianCeMoShi(String mode)
+        public static MMA_TestMethod stringToDetectMode(String mode)
         {
-            if ("OD".Equals(mode)) return MMA_TestMethod.OD;
-            if ("YG".Equals(mode)) return MMA_TestMethod.Flu;
-            if ("HXFG".Equals(mode)) return MMA_TestMethod.Che;
+            if ("OD".Equals(mode)) return MMA_TestMethod.OD; 
+            if ("Flu".Equals(mode)) return MMA_TestMethod.Flu;
+            if ("Che".Equals(mode)) return MMA_TestMethod.Che;
             return MMA_TestMethod.OD;
         }
 
-        public static String jianCeMoShiToString(MMA_TestMethod m)
+        public static String detectModeToString(MMA_TestMethod m)
         {
             switch (m)
             {
-                case MMA_TestMethod.OD:
+                case MMA_TestMethod.OD:   //吸光
                     return "OD";
-                case MMA_TestMethod.Flu:
-                    return "YG";
-                case MMA_TestMethod.Che:
-                    return "HXFG";
+                case MMA_TestMethod.Flu:  //荧光
+                    return "Flu";
+                case MMA_TestMethod.Che:  //化学发光
+                    return "Che";
             }
             return "OD";
         }
 
-        public MMA_TestMethod MoShi
+        public MMA_TestMethod Mode
         {
             get
             {
@@ -154,6 +156,78 @@ namespace Instrument
         }
 
 
+        public void stateSendReport()
+        {
+            Hashtable ht = new Hashtable();
+            ht.Add("ReportType", "State");
+            ht.Add("MMA_RestTip", MMA_RestTip.ToString());  //剩余吸头
+            StringBuilder str = new StringBuilder();
+            for (int i = 0; i < 10; i++)
+            {
+                str.Append(MMA_PlateFlag[i].ToString());    // 有无放孔板，长度为10的字符串
+            }
+            ht.Add("MMA_PlateFlag", str.ToString());
+            for (int j = 0; j < 10; j++)
+            {
+                ht.Add("PlateTemp" + j.ToString(), MMA_PlateTemp.ToString());  //当前温度，10个浮点数，index0~9
+            }
+            SendModBusMsg(ModbusMessage.MessageType.REPORT, ht);
+        }
+
+        public void valueSendReport(string mode)  //mode 为  OD  FLU  CHE 选一
+        {
+            Hashtable ht = new Hashtable();
+            mode = mode.ToUpper();
+            switch (mode)
+            {
+                case "OD":
+                    ht.Add("ReportType", "ODValue");
+                    for (int i = 0; i < 96; i++)
+                    {
+                        ht.Add("OD"+i.ToString(), MMA_ODValue[i].ToString());   // OD0 ~OD95, i为下标
+                    }
+                        break;
+                case "FLU":
+                        ht.Add("ReportType", "FluValue");
+                        for (int j = 0; j < 96; j++)
+                        {
+                            ht.Add("FLU" + j.ToString(), MMA_FluCount[j].ToString());   // FLU0 ~FLU95, J为下标
+                        }
+                        break;
+                case "CHE":
+                        ht.Add("ReportType", "CheValue");
+                        for (int k = 0; k < 96; k++)
+                        {
+                            ht.Add("CHE" + k.ToString(), MMA_CheCount[k].ToString()); //CHE0~CHE95,k为下标
+                        }
+                        break;
+            }
+            SendModBusMsg(ModbusMessage.MessageType.REPORT, ht);
+        }
+
+        public void parameterSendReport()
+        {
+            Hashtable ht = new Hashtable();
+            ht.Add("ReportType", "Parameter");
+            ht.Add("MMA_Wave", MMA_Wave.ToString());    //波长范围
+            ht.Add("MMA_CurrentTemp", MMA_CurrentTemp.ToString()); //当前温度
+            ht.Add("MMA_PlateDetect", (MMA_PlateDetect ? "1" : "0"));  //true=1 false=0
+            SendModBusMsg(ModbusMessage.MessageType.REPORT, ht);
+            
+        }
+
+        public void barcodeSendReport()
+        {
+            Hashtable ht = new Hashtable();
+            ht.Add("ReportType", "Barcode");
+            ht.Add("MMA_SendBarCodeFlag", (MMA_SendBarCodeFlag ? "1" : "0"));  //是否需要发送条码，true1 false0
+            if (MMA_SendBarCodeFlag)
+            {
+                ht.Add("MMA_InBarCode", MMA_InBarCode);
+                ht.Add("MMA_OutBarCode", MMA_OutBarCode);
+            }
+            SendModBusMsg(ModbusMessage.MessageType.REPORT, ht);
+        }
 
         private void chuLiTimer_Elapsed(object sender, ElapsedEventArgs e)
         {
@@ -179,7 +253,7 @@ namespace Instrument
         private void startTimer()
         {
             if (MMA_PlateDetect) MMA_currentBarCode = BarCodeGenerator.generateBarCode();
-            String s = MultiTunnelDeviceMessageCreator.createKongBanReport(MMA_PlateDetect, MMA_currentBarCode);
+            String s = MultiTunnelDeviceMessageCreator.createPlateReport(MMA_PlateDetect, MMA_currentBarCode);
             SendMsg(s);
             if (MMA_PlateDetect)
             {
@@ -297,7 +371,7 @@ namespace Instrument
             if ("Mode".Equals(setType))
             {
                 String mode = (String)msg.Data["Mode"];
-                MMA_TestMode = stringToJianCeMoShi(mode);
+                MMA_TestMode = stringToDetectMode(mode);
             }
         }
 

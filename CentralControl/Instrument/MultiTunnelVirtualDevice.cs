@@ -98,14 +98,15 @@ namespace Instrument
 
         //仪器发给上位机
         //加样仪
-        private bool[] MMA_PlateFlag;//有无放孔板*10
+        private int MMA_RestTip;  //剩余吸头数
+        private int[] MMA_PlateFlag;//有无放孔板*10
         private float[] MMA_PlateTemp; //当前温度*10
         //酶标仪
         private float[] MMA_ODValue;  //OD值*96
         private float[] MMA_FluCount;  //荧光检测参数*96
         private float[] MMA_CheCount;  //化学发光检测参数*96
         private float MMA_Wave;  //波长范围 
-        private float MDF_CurrentTemp; //当前温度
+        private float MMA_CurrentTemp; //当前温度
         private bool MMA_PlateDetect = false;  //有无放孔板 true表示有 false表示无
         private string MMA_InBarCode = "";
         private string MMA_OutBarCode = "";
@@ -279,7 +280,59 @@ namespace Instrument
         public override void decodeReportMessage(ModbusMessage msg)
         {
             String reportType = (String)msg.Data["ReportType"];
-            if ("YouKongBan".Equals(reportType))
+
+            if ("State".Equals(reportType))
+            {
+                MMA_RestTip = int.Parse((string)msg.Data["MMA_RestTip"]);
+                string str = (string)msg.Data["MMA_PlateFlag"];
+                for (int i = 0; i < 10; i++)
+                {
+                    MMA_PlateFlag[i] = str[i];
+                }
+                for (int j = 0; j < 10; j++)
+                {
+                    MMA_PlateTemp[j] = float.Parse((string)msg.Data["PlateTemp"] + j.ToString());
+                }
+            }
+            if ("ODValue".Equals(reportType))
+            {
+                for(int i=0;i<96;i++){
+                    MMA_ODValue[i]=float.Parse((string)msg.Data["OD"+i.ToString()]); // OD0 ~OD95, i为下标
+                }
+            }
+            if("FluValue".Equals(reportType))
+            {
+                for(int i=0;i<96;i++){
+                    MMA_FluCount[i]=float.Parse((string)msg.Data["FLU"+i.ToString()]); // FLU0 ~FLU95, i为下标
+                }
+            }
+            if("CheValue".Equals(reportType))
+            {
+                 for(int i=0;i<96;i++){
+                      MMA_CheCount[i]=float.Parse((string)msg.Data["CHE"+i.ToString()]);// CHE0 ~CHE95, i为下标
+                 }
+            }
+            if("Parameter".Equals(reportType))
+            {
+                MMA_Wave = float.Parse((string)msg.Data["MMA_Wave"]);
+                MMA_CurrentTemp = float.Parse((string)msg.Data["MMA_CurrentTemp"]);
+                int platedetect = int.Parse((string)msg.Data["MMA_PlateDetect"]);
+                if(platedetect==0) MMA_PlateDetect=false;
+                else MMA_PlateDetect=true;
+
+            }
+            if("BarCode".Equals(reportType)){
+                int ifbar = int.Parse((string)msg.Data["MMA_SendBarCodeFlag"]);
+                if(ifbar==0) MMA_SendBarCodeFlag=false;
+                else{
+                    MMA_SendBarCodeFlag=true;
+                    MMA_InBarCode = (string)msg.Data["MMA_InBarCode"];
+                    MMA_OutBarCode = (string)msg.Data["MMA_OutBarCode"];
+                }
+            }
+           
+                
+                if ("YouKongBan".Equals(reportType))
             {
                 int f = int.Parse((String)msg.Data["Flag"]);
                 if (f > 0) MMA_PlateDetect = true;
