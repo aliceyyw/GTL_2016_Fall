@@ -155,7 +155,7 @@ namespace Instrument
         private bool MMA_SendBarCodeFlag = true; //是否需要发送条码
         private float[][] MMA_DetectValues = null; //当前检测参数
 
-        public static int stringToJianCeMoShi(String mode)
+        public static int stringToTestMethod(String mode)
         {
             if ("OD".Equals(mode)) return 0;
             if ("Flu".Equals(mode)) return 1;
