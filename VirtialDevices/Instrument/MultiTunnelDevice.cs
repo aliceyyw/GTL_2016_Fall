@@ -355,7 +355,7 @@ namespace Instrument
         //    }
         //}
 
-        private void decodeSetMessage(ModbusMessage msg)
+        private override void decodeSetMessage(ModbusMessage msg)
         {
             String setType = (String)msg.Data["SetType"];
             if ("Mode".Equals(setType))
