@@ -66,8 +66,9 @@ namespace Instrument
         private int MMA_VibrateFlag;//振动标志
         private float MMA_VibrateTime; //振动时间
         //酶标仪
-        public enum MMA_TestMethod { OD, Flu, Che };  //检测方式
-        private MMA_TestMethod MMA_TestMode = MMA_TestMethod.OD;  //检测模式
+        //public enum MMA_TestMethod { OD, Flu, Che };  //检测方式，吸光度检测/y荧光检测/化学发光检测
+        public int MMA_TestMethod = 0;  //OD, Flu, Che 检测方式
+        private int MMA_TestMode = 0;  //光学模式OM，MC单色仪模式，Flc荧光接插件模式
         private int MMA_TestType = 0; //终点0/动态1
         private int MMA_LightType; //光波类型
         private int MMA_WaveLength; //光波波长
@@ -100,39 +101,28 @@ namespace Instrument
 
         private System.Timers.Timer MMA_Timer = null;
 
-        public static MMA_TestMethod stringToDetectMode(String mode)
+        public static int stringToDetectMethod(String mode)
         {
-            if ("OD".Equals(mode)) return MMA_TestMethod.OD; 
-            if ("Flu".Equals(mode)) return MMA_TestMethod.Flu;
-            if ("Che".Equals(mode)) return MMA_TestMethod.Che;
-            return MMA_TestMethod.OD;
+            if ("OD".Equals(mode)) return 0; 
+            if ("Flu".Equals(mode)) return 1;
+            if ("Che".Equals(mode)) return 2;
+            return 0;
         }
 
-        public static String detectModeToString(MMA_TestMethod m)
+        public static String detectMethodToString(int m)
         {
             switch (m)
             {
-                case MMA_TestMethod.OD:   //吸光
+                case 0:   //吸光
                     return "OD";
-                case MMA_TestMethod.Flu:  //荧光
+                case 1:  //荧光
                     return "Flu";
-                case MMA_TestMethod.Che:  //化学发光
+                case 2:  //化学发光
                     return "Che";
             }
             return "OD";
         }
 
-        public MMA_TestMethod Mode
-        {
-            get
-            {
-                return this.MMA_TestMode;
-            }
-            set
-            {
-                this.MMA_TestMode = value;
-            }
-        }
 
         public void setDetectValues(float[][] v)
         {
@@ -371,7 +361,39 @@ namespace Instrument
             if ("Mode".Equals(setType))
             {
                 String mode = (String)msg.Data["Mode"];
-                MMA_TestMode = stringToDetectMode(mode);
+                MMA_TestMode = stringToDetectMethod(mode);
+            }
+            //加样仪
+            if ("SampleAddingDevice".Equals(setType))
+            {
+                this.MMA_TipIdx = Convert.ToInt32((String)msg.Data["MMA_TipIdx"]);
+                this.MMA_TargetIdx = (String)msg.Data["MMA_TargetIdx"];
+                this.MMA_ContainerType = Convert.ToInt32((String)msg.Data["MMA_ContainerType"]);
+                this.MMA_Volume = Convert.ToInt32((String)msg.Data["MMA_Volume"]);
+                this.MMA_SampleIdx = (String)msg.Data["MMA_SampleIdx"];
+                this.MMA_SampleType = Convert.ToInt32((String)msg.Data["MMA_SampleType"]);
+                this.MMA_HeatFlag = Convert.ToInt32((String)msg.Data["MMA_HeatFlag"]);
+                this.MMA_Temp = Convert.ToInt32((String)msg.Data["MMA_Temp"]);
+                this.MMA_VibrateFlag = Convert.ToInt32((String)msg.Data["MMA_VibrateFlag"]);
+                this.MMA_VibrateTime = float.Parse((String)msg.Data["MMA_VibrateTime"]);
+            }
+            //酶标仪
+            if ("Eliasa".Equals(setType))
+            {
+                this.MMA_TestMethod = Convert.ToInt32((String)msg.Data["MMA_TestMethod"]);
+                this.MMA_TestMode = Convert.ToInt32((String)msg.Data["MMA_TestMode"]);
+                this.MMA_TestType = Convert.ToInt32((String)msg.Data["MMA_TestType"]);
+                this.MMA_LightType = Convert.ToInt32((String)msg.Data["MMA_LightType"]);
+                this.MMA_WaveLength = Convert.ToInt32((String)msg.Data["MMA_WaveLength"]);
+                this.MMA_OrificeType = Convert.ToInt32((String)msg.Data["MMA_OrificeType"]);
+                this.MMA_MeasureArea = Convert.ToInt32((String)msg.Data["MMA_MeasureArea"]);
+                this.MMA_Time = Convert.ToInt32((String)msg.Data["MMA_Time"]);
+                this.MMA_IntegralTime = Convert.ToInt32((String)msg.Data["MMA_IntegralTime"]);
+                MultiTunnelDevice.MMA_TestRowIndex = Convert.ToInt32((String)msg.Data["MMA_TestRowIndex"]);
+                MultiTunnelDevice.MMA_TestColumnIndex = Convert.ToInt32((String)msg.Data["MMA_TestColumnIndex"]);
+                this.MMA_WaveLengthUp = float.Parse((String)msg.Data["MMA_WaveLengthUp"]);
+                this.MMA_WaveLengthDown = float.Parse((String)msg.Data["MMA_WaveLengthDown"]);
+                this.MMA_MeasureTime = Convert.ToInt32((String)msg.Data["MMA_MeasureTime"]);
             }
         }
 
