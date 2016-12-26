@@ -79,14 +79,14 @@ namespace Instrument
         }
 
         //酶标仪信息设定
-        public static String createEliasa(int MMA_TestType,int MMA_LightType,int MMA_WaveLength,int MMA_OrificeType,
+        public static String createEliasa(int MMA_TestMethod,int MMA_TestMode,int MMA_TestType,int MMA_LightType,int MMA_WaveLength,int MMA_OrificeType,
                int MMA_MeasureArea,int MMA_Time,int MMA_IntegralTime,int MMA_TestRowIndex,int MMA_TestColumnIndex,
             float MMA_WaveLengthUp,float MMA_WaveLengthDown,int MMA_MeasureTime)
         {
             ModbusMessageDataCreator creator = new ModbusMessageDataCreator();
             creator.addKeyPair("SetType", "Eliasa");
-            creator.addKeyPair("", "");
-            creator.addKeyPair("", "");
+            creator.addKeyPair("MMA_TestMethod", MMA_TestMethod.ToString());
+            creator.addKeyPair("MMA_TestMode", MMA_TestMode.ToString());
             creator.addKeyPair("MMA_TestType", MMA_TestType.ToString());
             creator.addKeyPair("MMA_LightType", MMA_LightType.ToString());
             creator.addKeyPair("MMA_WaveLength", MMA_WaveLength.ToString());
