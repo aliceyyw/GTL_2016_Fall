@@ -124,8 +124,14 @@
             this.label37 = new System.Windows.Forms.Label();
             this.button6 = new System.Windows.Forms.Button();
             this.button5 = new System.Windows.Forms.Button();
+            this.label3 = new System.Windows.Forms.Label();
+            this.junLuoPictureBox = new System.Windows.Forms.PictureBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.refreshTimer = new System.Windows.Forms.Timer(this.components);
             this.listView1 = new System.Windows.Forms.ListView();
-            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.ColumnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader16 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -137,11 +143,9 @@
             this.columnHeader10 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader11 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader12 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.label3 = new System.Windows.Forms.Label();
-            this.junLuoPictureBox = new System.Windows.Forms.PictureBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
-            this.refreshTimer = new System.Windows.Forms.Timer(this.components);
+            this.columnHeader13 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader14 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader15 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.panel1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -994,6 +998,7 @@
             // 
             // panel2
             // 
+            this.panel2.Controls.Add(this.listView1);
             this.panel2.Controls.Add(this.button12);
             this.panel2.Controls.Add(this.pictureBox1);
             this.panel2.Controls.Add(this.currentdatatxtb);
@@ -1002,7 +1007,6 @@
             this.panel2.Controls.Add(this.label37);
             this.panel2.Controls.Add(this.button6);
             this.panel2.Controls.Add(this.button5);
-            this.panel2.Controls.Add(this.listView1);
             this.panel2.Controls.Add(this.label3);
             this.panel2.Controls.Add(this.junLuoPictureBox);
             this.panel2.Controls.Add(this.label2);
@@ -1081,87 +1085,7 @@
             this.button5.TabIndex = 6;
             this.button5.Text = "导入";
             this.button5.UseVisualStyleBackColor = true;
-            // 
-            // listView1
-            // 
-            this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.columnHeader1,
-            this.columnHeader2,
-            this.columnHeader3,
-            this.columnHeader4,
-            this.columnHeader5,
-            this.columnHeader6,
-            this.columnHeader7,
-            this.columnHeader8,
-            this.columnHeader9,
-            this.columnHeader10,
-            this.columnHeader11,
-            this.columnHeader12});
-            this.listView1.GridLines = true;
-            this.listView1.Location = new System.Drawing.Point(27, 298);
-            this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(566, 111);
-            this.listView1.TabIndex = 5;
-            this.listView1.UseCompatibleStateImageBehavior = false;
-            this.listView1.View = System.Windows.Forms.View.Details;
-            // 
-            // columnHeader1
-            // 
-            this.columnHeader1.Text = "序号";
-            this.columnHeader1.Width = 40;
-            // 
-            // columnHeader2
-            // 
-            this.columnHeader2.Text = "位置";
-            this.columnHeader2.Width = 40;
-            // 
-            // columnHeader3
-            // 
-            this.columnHeader3.Text = "颜色";
-            this.columnHeader3.Width = 40;
-            // 
-            // columnHeader4
-            // 
-            this.columnHeader4.Text = "质心位置";
-            // 
-            // columnHeader5
-            // 
-            this.columnHeader5.Text = "面积";
-            this.columnHeader5.Width = 40;
-            // 
-            // columnHeader6
-            // 
-            this.columnHeader6.Text = "周长";
-            this.columnHeader6.Width = 40;
-            // 
-            // columnHeader7
-            // 
-            this.columnHeader7.Text = "面积周长比";
-            this.columnHeader7.Width = 80;
-            // 
-            // columnHeader8
-            // 
-            this.columnHeader8.Text = "长泾";
-            this.columnHeader8.Width = 40;
-            // 
-            // columnHeader9
-            // 
-            this.columnHeader9.Text = "短径";
-            this.columnHeader9.Width = 40;
-            // 
-            // columnHeader10
-            // 
-            this.columnHeader10.Text = "长短径比";
-            // 
-            // columnHeader11
-            // 
-            this.columnHeader11.Text = "条码";
-            this.columnHeader11.Width = 40;
-            // 
-            // columnHeader12
-            // 
-            this.columnHeader12.Text = "空号";
-            this.columnHeader12.Width = 40;
+            this.button5.Click += new System.EventHandler(this.button5_Click);
             // 
             // label3
             // 
@@ -1203,6 +1127,108 @@
             this.refreshTimer.Enabled = true;
             this.refreshTimer.Interval = 1000;
             this.refreshTimer.Tick += new System.EventHandler(this.refreshTimer_Tick);
+            // 
+            // listView1
+            // 
+            this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.ColumnHeader1,
+            this.columnHeader16,
+            this.columnHeader2,
+            this.columnHeader3,
+            this.columnHeader4,
+            this.columnHeader5,
+            this.columnHeader6,
+            this.columnHeader7,
+            this.columnHeader8,
+            this.columnHeader9,
+            this.columnHeader10,
+            this.columnHeader11,
+            this.columnHeader12,
+            this.columnHeader13,
+            this.columnHeader14,
+            this.columnHeader15});
+            this.listView1.GridLines = true;
+            this.listView1.Location = new System.Drawing.Point(27, 312);
+            this.listView1.Name = "listView1";
+            this.listView1.Size = new System.Drawing.Size(546, 89);
+            this.listView1.TabIndex = 14;
+            this.listView1.UseCompatibleStateImageBehavior = false;
+            this.listView1.View = System.Windows.Forms.View.Details;
+            // 
+            // ColumnHeader1
+            // 
+            this.ColumnHeader1.Text = "序号";
+            this.ColumnHeader1.Width = 37;
+            // 
+            // columnHeader16
+            // 
+            this.columnHeader16.Text = "平皿条码";
+            // 
+            // columnHeader2
+            // 
+            this.columnHeader2.Text = "图片";
+            this.columnHeader2.Width = 40;
+            // 
+            // columnHeader3
+            // 
+            this.columnHeader3.Text = "图像位置X";
+            this.columnHeader3.Width = 73;
+            // 
+            // columnHeader4
+            // 
+            this.columnHeader4.Text = "图像位置Y";
+            this.columnHeader4.Width = 80;
+            // 
+            // columnHeader5
+            // 
+            this.columnHeader5.Text = "孔板1条码";
+            this.columnHeader5.Width = 74;
+            // 
+            // columnHeader6
+            // 
+            this.columnHeader6.Text = "孔坐标X";
+            // 
+            // columnHeader7
+            // 
+            this.columnHeader7.Text = "孔坐标Y";
+            this.columnHeader7.Width = 67;
+            // 
+            // columnHeader8
+            // 
+            this.columnHeader8.Text = "面积";
+            this.columnHeader8.Width = 40;
+            // 
+            // columnHeader9
+            // 
+            this.columnHeader9.Text = "周长";
+            this.columnHeader9.Width = 40;
+            // 
+            // columnHeader10
+            // 
+            this.columnHeader10.Text = "长径";
+            this.columnHeader10.Width = 44;
+            // 
+            // columnHeader11
+            // 
+            this.columnHeader11.Text = "短径";
+            this.columnHeader11.Width = 40;
+            // 
+            // columnHeader12
+            // 
+            this.columnHeader12.Text = "长短径比";
+            this.columnHeader12.Width = 67;
+            // 
+            // columnHeader13
+            // 
+            this.columnHeader13.Text = "颜色值R";
+            // 
+            // columnHeader14
+            // 
+            this.columnHeader14.Text = "颜色值G";
+            // 
+            // columnHeader15
+            // 
+            this.columnHeader15.Text = "颜色值B";
             // 
             // CloneSelectionDeviceForm
             // 
@@ -1294,19 +1320,6 @@
         private System.Windows.Forms.Label label18;
         private System.Windows.Forms.TabPage tabPage3;
         private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.ListView listView1;
-        private System.Windows.Forms.ColumnHeader columnHeader1;
-        private System.Windows.Forms.ColumnHeader columnHeader2;
-        private System.Windows.Forms.ColumnHeader columnHeader3;
-        private System.Windows.Forms.ColumnHeader columnHeader4;
-        private System.Windows.Forms.ColumnHeader columnHeader5;
-        private System.Windows.Forms.ColumnHeader columnHeader6;
-        private System.Windows.Forms.ColumnHeader columnHeader7;
-        private System.Windows.Forms.ColumnHeader columnHeader8;
-        private System.Windows.Forms.ColumnHeader columnHeader9;
-        private System.Windows.Forms.ColumnHeader columnHeader10;
-        private System.Windows.Forms.ColumnHeader columnHeader11;
-        private System.Windows.Forms.ColumnHeader columnHeader12;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.PictureBox junLuoPictureBox;
         private System.Windows.Forms.Label label2;
@@ -1348,6 +1361,23 @@
         private System.Windows.Forms.Label label38;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Button button12;
+        private System.Windows.Forms.ListView listView1;
+        private System.Windows.Forms.ColumnHeader ColumnHeader1;
+        private System.Windows.Forms.ColumnHeader columnHeader16;
+        private System.Windows.Forms.ColumnHeader columnHeader2;
+        private System.Windows.Forms.ColumnHeader columnHeader3;
+        private System.Windows.Forms.ColumnHeader columnHeader4;
+        private System.Windows.Forms.ColumnHeader columnHeader5;
+        private System.Windows.Forms.ColumnHeader columnHeader6;
+        private System.Windows.Forms.ColumnHeader columnHeader7;
+        private System.Windows.Forms.ColumnHeader columnHeader8;
+        private System.Windows.Forms.ColumnHeader columnHeader9;
+        private System.Windows.Forms.ColumnHeader columnHeader10;
+        private System.Windows.Forms.ColumnHeader columnHeader11;
+        private System.Windows.Forms.ColumnHeader columnHeader12;
+        private System.Windows.Forms.ColumnHeader columnHeader13;
+        private System.Windows.Forms.ColumnHeader columnHeader14;
+        private System.Windows.Forms.ColumnHeader columnHeader15;
 
     }
 }
