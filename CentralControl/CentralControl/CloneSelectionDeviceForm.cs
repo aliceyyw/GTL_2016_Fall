@@ -9,6 +9,7 @@ using System.Text;
 using System.Windows.Forms;
 using GTLutils;
 using Instrument;
+using System.Xml;
 
 namespace CentralControl
 {
@@ -297,6 +298,44 @@ namespace CentralControl
                     }
                 }
                 this.pictureBox1.LoadAsync(sPicPaht);
+            }
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            XmlDocument doc = new XmlDocument();
+            doc.Load(@"..\..\test.xml");  //暂时使用这个文件，
+            //得到根节点
+            XmlNode xn = doc.SelectSingleNode("root");
+            //得到根节点的所有子节点
+            XmlNodeList xnl = xn.ChildNodes;
+
+            String index;
+            foreach (XmlNode xnd in xnl)
+            {
+                //将节点转换为元素，得到属性值
+                XmlElement xe = (XmlElement)xnd;
+                index = xe.GetAttribute("index").ToString();
+                //得到recordlist的子节点
+                XmlNodeList xnlt = xe.ChildNodes;
+                ListViewItem lvi = new ListViewItem();
+                lvi.Text = index;
+                lvi.SubItems.Add(xnlt.Item(0).InnerText);
+                lvi.SubItems.Add(xnlt.Item(1).InnerText);
+                lvi.SubItems.Add(xnlt.Item(2).InnerText);
+                lvi.SubItems.Add(xnlt.Item(3).InnerText);
+                lvi.SubItems.Add(xnlt.Item(4).InnerText);
+                lvi.SubItems.Add(xnlt.Item(5).InnerText);
+                lvi.SubItems.Add(xnlt.Item(6).InnerText);
+                lvi.SubItems.Add(xnlt.Item(7).InnerText);
+                lvi.SubItems.Add(xnlt.Item(8).InnerText);
+                lvi.SubItems.Add(xnlt.Item(9).InnerText);
+                lvi.SubItems.Add(xnlt.Item(10).InnerText);
+                lvi.SubItems.Add(xnlt.Item(11).InnerText);
+                lvi.SubItems.Add(xnlt.Item(12).InnerText);
+                lvi.SubItems.Add(xnlt.Item(13).InnerText);
+                lvi.SubItems.Add(xnlt.Item(14).InnerText);
+                this.listView1.Items.Add(lvi);
             }
         }
     }
