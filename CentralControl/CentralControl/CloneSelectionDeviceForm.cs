@@ -80,9 +80,9 @@ namespace CentralControl
             {
 
             }
-            CloneSelectionDevice.SCP_PickStopTime = Convert.ToInt32(tiaoXuanTingLiuShiJian);
+            CloneSelectionDevice.SCP_PickStopTime = float.Parse(tiaoXuanTingLiuShiJian);
             CloneSelectionDevice.SCP_ShockCount = Convert.ToInt32(jieZhongZhenDong);
-            CloneSelectionDevice.SCP_InoStopTime = Convert.ToInt32(jieZhongTingLiuShiJian);
+            CloneSelectionDevice.SCP_InoStopTime = float.Parse(jieZhongTingLiuShiJian);
         }
         private void setMieJunButton_Click(object sender, EventArgs e)
         {
