@@ -96,8 +96,8 @@ namespace Instrument
         public int SCP_SpaceFlag = 0;
 
         //过程设置
-        public int SCP_PickStopTime = 1;
-        public int SCP_InoStopTime = 1;
+        public float SCP_PickStopTime = 1;
+        public float SCP_InoStopTime = 1;
         public int SCP_ShockCount = 10;
 
         //灭菌与清洗
@@ -142,31 +142,6 @@ namespace Instrument
         public int SCP_PARate = 1;
         public double SCP_MinPARate = 5.6;
         public double SCP_MaxPARate = 9.8;
-
-        /*//相机参数
-        //色彩处理
-        public int SCP_Gamma = 0;
-        public int SCP_Contrast = 0;
-        public int SCP_ColEnhance = 0;
-        public int SCP_Saturate = 0;
-        //亮度控制
-        public int SCP_Exposure = 0;
-        public int SCP_Target = 0;
-        public int SCP_ExpoTime = 0;
-        public int SCP_Gain = 0;
-        //白平衡
-        public int SCP_Red = 0;
-        public int SCP_Green = 0;
-        public int SCP_Blue = 0;
-        //大小
-        public string SCP_Pixel = "";
-        public int SCP_FrameRate = 0;
-        public int SCP_PowerFrequency = 0;
-        public int SCP_ParaSet = 0;
-        public int SCP_Flip = 0;
-        public int SCP_Horizontal = 0;
-        public int SCP_GreyLevel = 0;
-        public int SCP_Scale = 0;*/
 
         //仪器发向上位机
         public int SCP_Dish;

@@ -37,8 +37,8 @@ namespace Instrument
         public int SCP_SpaceFlag = 0;
 
         //过程设置
-        public int SCP_PickStopTime = 1;
-        public int SCP_InoStopTime = 1;
+        public float SCP_PickStopTime = 1;
+        public float SCP_InoStopTime = 1;
         public int SCP_ShockCount = 10;
 
         //灭菌与清洗
@@ -118,30 +118,6 @@ namespace Instrument
         public int SCP_ColorB;
         public string SCP_Pic;
 
-        /*//色彩处理
-        public int SCP_Gamma = 0;
-        public int SCP_Contrast = 0;
-        public int SCP_ColEnhance = 0;
-        public int SCP_Saturate= 0;
-        //亮度控制
-        public int SCP_Exposure= 0;
-        public int SCP_Target= 0;
-        public int SCP_ExpoTime= 0;
-        public int SCP_Gain= 0;
-        //白平衡
-        public int SCP_Red= 0;
-        public int SCP_Green= 0;
-        public int SCP_Blue = 0;
-        //大小
-        public string SCP_Pixel = "";
-        public int SCP_FrameRate= 0;
-        public int SCP_PowerFrequency = 0;
-        public int SCP_ParaSet= 0;
-        public int SCP_Flip= 0;
-        public int SCP_Horizontal= 0;
-        public int SCP_GreyLevel= 0;
-        public int SCP_Scale= 0;*/
-
         //上层Form需要用到这些函数，所以暂时保留，但底层类操作中不需要这些函数
         public UInt32 getJiaReShiJian() { return this.SCP_HeatTime; }
         public UInt32 getQingXiShiJian() { return this.SCP_FlushTime; }
@@ -203,9 +179,9 @@ namespace Instrument
             //孔板选择
             if ("KongBanXuanZe".Equals(setType))
             {
-                this.SCP_PickStopTime = Convert.ToInt32((String)msg.Data["SCP_PickStopTime"]);
+                this.SCP_PickStopTime = float.Parse((String)msg.Data["SCP_PickStopTime"]);
                 this.SCP_ShockCount = Convert.ToInt32((String)msg.Data["SCP_ShockCount"]);
-                this.SCP_InoStopTime = Convert.ToInt32((String)msg.Data["SCP_InoStopTime"]);
+                this.SCP_InoStopTime = float.Parse((String)msg.Data["SCP_InoStopTime"]);
                 this.SCP_LightType = Convert.ToInt32((String)msg.Data["SCP_LightType"]);
                 this.SCP_DishType = Convert.ToInt32((String)msg.Data["SCP_DishType"]);
                 this.SCP_PlateType = Convert.ToInt32((String)msg.Data["SCP_PlateType"]);

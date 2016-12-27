@@ -34,6 +34,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="DeviceUtils">
+      <HintPath>..\DeviceUtils\bin\Debug\DeviceUtils.dll</HintPath>
+    </Reference>
+    <Reference Include="Instrument">
+      <HintPath>..\Instrument\bin\Debug\Instrument.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.ReportViewer.Common, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91" />
     <Reference Include="Microsoft.ReportViewer.WinForms, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL" />
     <Reference Include="System" />
@@ -193,16 +199,6 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\DeviceUtils\DeviceUtils.csproj">
-      <Project>{82fcda48-42e8-441c-91f3-432b8b0f98ad}</Project>
-      <Name>DeviceUtils</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Instrument\Instrument.csproj">
-      <Project>{186788b0-17c2-4ee9-873b-bf27734f9938}</Project>
-      <Name>Instrument</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
