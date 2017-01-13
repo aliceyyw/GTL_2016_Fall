@@ -1,7 +1,13 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual Studio 2010
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.21005.1
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VirtialDevices", "VirtialDevices\VirtialDevices.csproj", "{4EDC3057-6032-473C-BB79-396EC5C7A695}"
+	ProjectSection(ProjectDependencies) = postProject
+		{82FCDA48-42E8-441C-91F3-432B8B0F98AD} = {82FCDA48-42E8-441C-91F3-432B8B0F98AD}
+		{186788B0-17C2-4EE9-873B-BF27734F9938} = {186788B0-17C2-4EE9-873B-BF27734F9938}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DeviceUtils", "DeviceUtils\DeviceUtils.csproj", "{82FCDA48-42E8-441C-91F3-432B8B0F98AD}"
 EndProject

@@ -109,5 +109,30 @@ namespace VirtialDevices
              FatherForm.Enabled = true;
         }
 
+        /*
+         * 仪器——>中控 8个属性
+         * 当前模块1,2,3...8
+         */
+
+        private void SendBtn_Click(object sender, EventArgs e)
+        {
+            int mIndex = CurrentSelected - 1;
+            mrDevice.MMR_PH[mIndex] = float.Parse(PHtxtb.Text);
+            mrDevice.MMR_Flow[mIndex] = float.Parse(Flowtxtb.Text);
+            mrDevice.MMR_Temperature[mIndex] = float.Parse(Temperaturetxtb.Text);
+            mrDevice.MMR_Pressure[mIndex] = float.Parse(Pressuretxtb.Text);
+            mrDevice.MMR_DO[mIndex] = float.Parse(DOtxtb.Text);
+            mrDevice.MMR_TailOxygen[mIndex] = float.Parse(TailOxygentxtb.Text);
+            mrDevice.MMR_TailCarbon[mIndex] = float.Parse(TailCarbontxtb.Text);
+            mrDevice.MMR_Rspeed[mIndex] = float.Parse(Rspeedtxtb.Text);
+            mrDevice.propertySendReport(CurrentSelected);
+           
+        }
+
+        private void insertDBbtn_Click(object sender, EventArgs e)
+        {
+            //插入数据库的操作
+        }
+
     }
 }
