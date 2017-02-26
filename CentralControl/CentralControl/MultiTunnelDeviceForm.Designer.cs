@@ -31,13 +31,6 @@
             this.components = new System.ComponentModel.Container();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.currentCmdTextBox = new System.Windows.Forms.TextBox();
-            this.label36 = new System.Windows.Forms.Label();
-            this.button10 = new System.Windows.Forms.Button();
-            this.button9 = new System.Windows.Forms.Button();
-            this.button8 = new System.Windows.Forms.Button();
-            this.button7 = new System.Windows.Forms.Button();
             this.dataGridView = new System.Windows.Forms.DataGridView();
             this.kongBanTiaoMaTextBox = new System.Windows.Forms.TextBox();
             this.youWuKongBanTextBox = new System.Windows.Forms.TextBox();
@@ -56,26 +49,29 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.tabPage2 = new System.Windows.Forms.TabPage();
             this.panel1.SuspendLayout();
             this.panel3.SuspendLayout();
-            this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
             this.panel2.SuspendLayout();
+            this.tabControl1.SuspendLayout();
+            this.tabPage1.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
             // 
             this.panel1.Controls.Add(this.panel3);
             this.panel1.Controls.Add(this.panel2);
-            this.panel1.Location = new System.Drawing.Point(12, 12);
+            this.panel1.Location = new System.Drawing.Point(6, 6);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(603, 485);
+            this.panel1.Size = new System.Drawing.Size(353, 467);
             this.panel1.TabIndex = 0;
             // 
             // panel3
             // 
             this.panel3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel3.Controls.Add(this.groupBox1);
             this.panel3.Controls.Add(this.dataGridView);
             this.panel3.Controls.Add(this.kongBanTiaoMaTextBox);
             this.panel3.Controls.Add(this.youWuKongBanTextBox);
@@ -90,119 +86,46 @@
             this.panel3.Controls.Add(this.label3);
             this.panel3.Location = new System.Drawing.Point(3, 78);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(600, 404);
+            this.panel3.Size = new System.Drawing.Size(347, 383);
             this.panel3.TabIndex = 1;
-            // 
-            // groupBox1
-            // 
-            this.groupBox1.Controls.Add(this.currentCmdTextBox);
-            this.groupBox1.Controls.Add(this.label36);
-            this.groupBox1.Controls.Add(this.button10);
-            this.groupBox1.Controls.Add(this.button9);
-            this.groupBox1.Controls.Add(this.button8);
-            this.groupBox1.Controls.Add(this.button7);
-            this.groupBox1.Location = new System.Drawing.Point(3, 144);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(596, 46);
-            this.groupBox1.TabIndex = 22;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "命令";
-            // 
-            // currentCmdTextBox
-            // 
-            this.currentCmdTextBox.Enabled = false;
-            this.currentCmdTextBox.Location = new System.Drawing.Point(512, 17);
-            this.currentCmdTextBox.Name = "currentCmdTextBox";
-            this.currentCmdTextBox.ReadOnly = true;
-            this.currentCmdTextBox.Size = new System.Drawing.Size(70, 21);
-            this.currentCmdTextBox.TabIndex = 31;
-            // 
-            // label36
-            // 
-            this.label36.AutoSize = true;
-            this.label36.Location = new System.Drawing.Point(449, 20);
-            this.label36.Name = "label36";
-            this.label36.Size = new System.Drawing.Size(47, 12);
-            this.label36.TabIndex = 30;
-            this.label36.Text = "command";
-            // 
-            // button10
-            // 
-            this.button10.Location = new System.Drawing.Point(366, 17);
-            this.button10.Name = "button10";
-            this.button10.Size = new System.Drawing.Size(75, 23);
-            this.button10.TabIndex = 3;
-            this.button10.Text = "自动";
-            this.button10.UseVisualStyleBackColor = true;
-            this.button10.Click += new System.EventHandler(this.button10_Click);
-            // 
-            // button9
-            // 
-            this.button9.Location = new System.Drawing.Point(254, 17);
-            this.button9.Name = "button9";
-            this.button9.Size = new System.Drawing.Size(75, 23);
-            this.button9.TabIndex = 2;
-            this.button9.Text = "急停";
-            this.button9.UseVisualStyleBackColor = true;
-            this.button9.Click += new System.EventHandler(this.button9_Click);
-            // 
-            // button8
-            // 
-            this.button8.Location = new System.Drawing.Point(134, 17);
-            this.button8.Name = "button8";
-            this.button8.Size = new System.Drawing.Size(75, 23);
-            this.button8.TabIndex = 1;
-            this.button8.Text = "开始";
-            this.button8.UseVisualStyleBackColor = true;
-            this.button8.Click += new System.EventHandler(this.button8_Click);
-            // 
-            // button7
-            // 
-            this.button7.Location = new System.Drawing.Point(27, 17);
-            this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(75, 23);
-            this.button7.TabIndex = 0;
-            this.button7.Text = "复位";
-            this.button7.UseVisualStyleBackColor = true;
-            this.button7.Click += new System.EventHandler(this.button7_Click);
             // 
             // dataGridView
             // 
             this.dataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            this.dataGridView.Location = new System.Drawing.Point(12, 196);
+            this.dataGridView.Location = new System.Drawing.Point(12, 169);
             this.dataGridView.MultiSelect = false;
             this.dataGridView.Name = "dataGridView";
             this.dataGridView.RowHeadersWidth = 30;
             this.dataGridView.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             this.dataGridView.RowTemplate.Height = 23;
             this.dataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
-            this.dataGridView.Size = new System.Drawing.Size(575, 195);
+            this.dataGridView.Size = new System.Drawing.Size(313, 195);
             this.dataGridView.TabIndex = 21;
             // 
             // kongBanTiaoMaTextBox
             // 
-            this.kongBanTiaoMaTextBox.Location = new System.Drawing.Point(399, 117);
+            this.kongBanTiaoMaTextBox.Location = new System.Drawing.Point(95, 142);
             this.kongBanTiaoMaTextBox.Name = "kongBanTiaoMaTextBox";
             this.kongBanTiaoMaTextBox.Size = new System.Drawing.Size(100, 21);
             this.kongBanTiaoMaTextBox.TabIndex = 10;
             // 
             // youWuKongBanTextBox
             // 
-            this.youWuKongBanTextBox.Location = new System.Drawing.Point(399, 90);
+            this.youWuKongBanTextBox.Location = new System.Drawing.Point(95, 112);
             this.youWuKongBanTextBox.Name = "youWuKongBanTextBox";
             this.youWuKongBanTextBox.Size = new System.Drawing.Size(100, 21);
             this.youWuKongBanTextBox.TabIndex = 9;
             // 
             // dangQianWenDuTextBox
             // 
-            this.dangQianWenDuTextBox.Location = new System.Drawing.Point(154, 117);
+            this.dangQianWenDuTextBox.Location = new System.Drawing.Point(95, 85);
             this.dangQianWenDuTextBox.Name = "dangQianWenDuTextBox";
             this.dangQianWenDuTextBox.Size = new System.Drawing.Size(100, 21);
             this.dangQianWenDuTextBox.TabIndex = 8;
             // 
             // boChangFanWeiTextBox
             // 
-            this.boChangFanWeiTextBox.Location = new System.Drawing.Point(154, 90);
+            this.boChangFanWeiTextBox.Location = new System.Drawing.Point(95, 55);
             this.boChangFanWeiTextBox.Name = "boChangFanWeiTextBox";
             this.boChangFanWeiTextBox.Size = new System.Drawing.Size(100, 21);
             this.boChangFanWeiTextBox.TabIndex = 7;
@@ -210,7 +133,7 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(296, 121);
+            this.label8.Location = new System.Drawing.Point(27, 142);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(65, 12);
             this.label8.TabIndex = 6;
@@ -219,7 +142,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(58, 122);
+            this.label7.Location = new System.Drawing.Point(27, 90);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(65, 12);
             this.label7.TabIndex = 5;
@@ -228,7 +151,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(296, 94);
+            this.label6.Location = new System.Drawing.Point(15, 117);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(77, 12);
             this.label6.TabIndex = 4;
@@ -237,7 +160,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(58, 94);
+            this.label5.Location = new System.Drawing.Point(27, 58);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(65, 12);
             this.label5.TabIndex = 3;
@@ -245,7 +168,7 @@
             // 
             // zhuangTaiTextBox
             // 
-            this.zhuangTaiTextBox.Location = new System.Drawing.Point(154, 53);
+            this.zhuangTaiTextBox.Location = new System.Drawing.Point(95, 23);
             this.zhuangTaiTextBox.Name = "zhuangTaiTextBox";
             this.zhuangTaiTextBox.Size = new System.Drawing.Size(100, 21);
             this.zhuangTaiTextBox.TabIndex = 2;
@@ -253,7 +176,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(58, 57);
+            this.label4.Location = new System.Drawing.Point(10, 32);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(89, 12);
             this.label4.TabIndex = 1;
@@ -262,7 +185,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(29, 20);
+            this.label3.Location = new System.Drawing.Point(3, 9);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(89, 12);
             this.label3.TabIndex = 0;
@@ -277,13 +200,13 @@
             this.panel2.Controls.Add(this.label1);
             this.panel2.Location = new System.Drawing.Point(3, 3);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(600, 72);
+            this.panel2.Size = new System.Drawing.Size(347, 72);
             this.panel2.TabIndex = 0;
             this.panel2.Paint += new System.Windows.Forms.PaintEventHandler(this.panel2_Paint);
             // 
             // runButton
             // 
-            this.runButton.Location = new System.Drawing.Point(284, 32);
+            this.runButton.Location = new System.Drawing.Point(212, 30);
             this.runButton.Name = "runButton";
             this.runButton.Size = new System.Drawing.Size(75, 23);
             this.runButton.TabIndex = 3;
@@ -298,7 +221,7 @@
             "OD",
             "荧光",
             "化学发光"});
-            this.jianCeMoShiComboBox.Location = new System.Drawing.Point(127, 34);
+            this.jianCeMoShiComboBox.Location = new System.Drawing.Point(74, 32);
             this.jianCeMoShiComboBox.Name = "jianCeMoShiComboBox";
             this.jianCeMoShiComboBox.Size = new System.Drawing.Size(121, 20);
             this.jianCeMoShiComboBox.TabIndex = 2;
@@ -306,7 +229,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(56, 37);
+            this.label2.Location = new System.Drawing.Point(10, 37);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(65, 12);
             this.label2.TabIndex = 1;
@@ -315,7 +238,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(27, 13);
+            this.label1.Location = new System.Drawing.Point(10, 13);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(41, 12);
             this.label1.TabIndex = 0;
@@ -326,12 +249,43 @@
             this.timer1.Interval = 5000;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
+            // tabControl1
+            // 
+            this.tabControl1.Controls.Add(this.tabPage1);
+            this.tabControl1.Controls.Add(this.tabPage2);
+            this.tabControl1.Location = new System.Drawing.Point(12, 12);
+            this.tabControl1.Name = "tabControl1";
+            this.tabControl1.SelectedIndex = 0;
+            this.tabControl1.Size = new System.Drawing.Size(744, 498);
+            this.tabControl1.TabIndex = 1;
+            // 
+            // tabPage1
+            // 
+            this.tabPage1.Controls.Add(this.panel1);
+            this.tabPage1.Location = new System.Drawing.Point(4, 22);
+            this.tabPage1.Name = "tabPage1";
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage1.Size = new System.Drawing.Size(736, 472);
+            this.tabPage1.TabIndex = 0;
+            this.tabPage1.Text = "酶标仪";
+            this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // tabPage2
+            // 
+            this.tabPage2.Location = new System.Drawing.Point(4, 22);
+            this.tabPage2.Name = "tabPage2";
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage2.Size = new System.Drawing.Size(736, 472);
+            this.tabPage2.TabIndex = 1;
+            this.tabPage2.Text = "加样仪";
+            this.tabPage2.UseVisualStyleBackColor = true;
+            // 
             // MultiTunnelDeviceForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(627, 509);
-            this.Controls.Add(this.panel1);
+            this.ClientSize = new System.Drawing.Size(756, 510);
+            this.Controls.Add(this.tabControl1);
             this.Name = "MultiTunnelDeviceForm";
             this.Text = "多通道高速代谢性能分析仪";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MultiTunnelDeviceForm_FormClosing);
@@ -339,11 +293,11 @@
             this.panel1.ResumeLayout(false);
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).EndInit();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
+            this.tabControl1.ResumeLayout(false);
+            this.tabPage1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -370,12 +324,8 @@
         private System.Windows.Forms.TextBox boChangFanWeiTextBox;
         private System.Windows.Forms.DataGridView dataGridView;
         private System.Windows.Forms.Timer timer1;
-        private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.TextBox currentCmdTextBox;
-        private System.Windows.Forms.Label label36;
-        private System.Windows.Forms.Button button10;
-        private System.Windows.Forms.Button button9;
-        private System.Windows.Forms.Button button8;
-        private System.Windows.Forms.Button button7;
+        private System.Windows.Forms.TabControl tabControl1;
+        private System.Windows.Forms.TabPage tabPage1;
+        private System.Windows.Forms.TabPage tabPage2;
     }
 }
