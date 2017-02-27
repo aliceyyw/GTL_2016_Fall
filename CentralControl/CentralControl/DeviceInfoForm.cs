@@ -9,7 +9,6 @@ using System.Windows.Forms;
 using GTLutils;
 using Instrument;
 
-
 namespace CentralControl
 {
     public partial class DeviceInfoForm : Form

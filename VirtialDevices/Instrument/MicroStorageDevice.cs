@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections;
 using System.Linq;
 using System.Text;
 using DeviceUtils;
@@ -11,50 +12,90 @@ namespace Instrument
 
 
         private const int ModuleNum = 8; //8个模块
-        //public int MMR_CurentSelectedIndex;
-        //下列都从中控端接收
-        public bool[] MMR_ValidModule = { false, false, false, false, false, false, false, false };  //初始全为false
+        
+        
+        /*中控——>仪器*/
+        public int[] MMR_ValidModule = { 0,0,0,0,0,0,0,0};  //初始全为false
         public int[] MMR_Sample_Time = new int[ModuleNum];
-        /* 数据字典中出现的8种属性
-        * 数组长度和模块数量一致， 本来赋了一些随机的初值
+        
+        /* 
+        * 仪器——>中控 且 中控——>仪器
         */
         public float[] MMR_PH = new float[ModuleNum];
         public float[] MMR_Temperature = new float[ModuleNum];
         public float[] MMR_Flow = new float[ModuleNum];
-        public float[] MMR_DO = new float[ModuleNum];
         public float[] MMR_Rspeed = new float[ModuleNum];
         public float[] MMR_Pressure = new float[ModuleNum];
+        /*
+         * 仪器——>中控
+         */
+        public float[] MMR_DO = new float[ModuleNum];
         public float[] MMR_TailOxygen = new float[ModuleNum];
         public float[] MMR_TailCarbon = new float[ModuleNum];
-
         public string MMR_Barcode;
+
         //如果仪器收到了中控将某一模块valid的命令
         //就会回复一条respond，然后包括了自己的 PH DO和温度
-        //中控发给仪器的是set类型消息
-       
+              
 
-        private void decodeSetMessage(ModbusMessage msg)
+     
+        /*
+         * 仪器——>中控 
+         * ReportType=MMR_Report
+         * current = 1,2,3...8
+         * */
+        public void propertySendReport(int current)
+        {
+            int mIndex = current - 1;
+            Hashtable ht = new Hashtable();
+            ht.Add("ReportType", "MMR_Report");
+            ht.Add("ModuleIndex", mIndex.ToString());
+            ht.Add("MMR_PH", MMR_PH[mIndex].ToString());
+            ht.Add("MMR_Temperature", MMR_Temperature[mIndex].ToString());
+            ht.Add("MMR_Flow", MMR_Flow[mIndex].ToString());
+            ht.Add("MMR_Rspeed", MMR_Rspeed[mIndex].ToString());
+            ht.Add("MMR_Pressure", MMR_Pressure[mIndex].ToString());
+            ht.Add("MMR_DO", MMR_DO[mIndex].ToString());
+            ht.Add("MMR_TailOxygen", MMR_TailOxygen[mIndex].ToString());
+            ht.Add("MMR_TailCarbon", MMR_TailCarbon[mIndex].ToString());
+            SendModBusMsg(ModbusMessage.MessageType.REPORT, ht);
+
+        }
+        public void sendPropertyReport(int cur)
+        {
+
+        }
+
+        public override void decodeSetMessage(ModbusMessage msg)
         {
             String setType = (String)msg.Data["SetType"];
-            /* setting消息
-             * 接收的是中控端发来的一些属性，根据模块号给自己的属性赋值
-             */
-            
-            /*
-             * Start消息，就是中控那边关于某个模块是否valid的一个设置信息
-             * respond自己的某三个属性用在这里很奇怪
-             */
-
-            /*
-              * Stopt消息，就是中控那边关于某个模块invalid的一个设置信息
-              * 如果是关掉模块，就不需要respond
-              */
-           
+            if ("MMR_Set".Equals(setType))
+            {
+                int mIndex = int.Parse((string)msg.Data["ModuleIndex"]);
+                MMR_PH[mIndex] = float.Parse((string)msg.Data["MMR_PH"]);
+                MMR_Temperature[mIndex] = float.Parse((string)msg.Data["MMR_Temperature"]);
+                MMR_Flow[mIndex] = float.Parse((string)msg.Data["MMR_Flow"]);
+                MMR_Rspeed[mIndex] = float.Parse((string)msg.Data["MMR_Rspeed"]);
+                MMR_Pressure[mIndex] = float.Parse((string)msg.Data["MMR_Pressure"]);
+                MMR_Sample_Time[mIndex] = int.Parse((string)msg.Data["MMR_Sample_Time"]);
+            }
+            if ("Module_Valid".Equals(setType))
+            {
+                int mIndex = int.Parse((string)msg.Data["ModuleIndex"]);
+                MMR_ValidModule[mIndex] = 1;
+            }
+            if ("Module_Invalid".Equals(setType))
+            {
+                int mIndex = int.Parse((string)msg.Data["ModuleIndex"]);
+                MMR_ValidModule[mIndex] = 0;
+            }
         }
+         
+         
+         
+        
        
-
-       
-
+         
        
     }
 }

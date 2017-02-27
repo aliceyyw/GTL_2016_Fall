@@ -41,6 +41,9 @@
             this.button7 = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.SetBtn = new System.Windows.Forms.Button();
+            this.StopBtn = new System.Windows.Forms.Button();
+            this.StartBtn = new System.Windows.Forms.Button();
             this.SampleTimetxtb = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
             this.TailCarbontxtb = new System.Windows.Forms.TextBox();
@@ -59,9 +62,7 @@
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.StartBtn = new System.Windows.Forms.Button();
-            this.StopBtn = new System.Windows.Forms.Button();
-            this.SetBtn = new System.Windows.Forms.Button();
+            this.Validlabel = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -97,6 +98,7 @@
             // 
             // timer1
             // 
+            this.timer1.Enabled = true;
             this.timer1.Interval = 1000;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
@@ -108,7 +110,7 @@
             this.groupBox1.Controls.Add(this.button9);
             this.groupBox1.Controls.Add(this.button8);
             this.groupBox1.Controls.Add(this.button7);
-            this.groupBox1.Location = new System.Drawing.Point(27, 432);
+            this.groupBox1.Location = new System.Drawing.Point(27, 417);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(596, 46);
             this.groupBox1.TabIndex = 26;
@@ -175,7 +177,10 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.Validlabel);
+            this.panel1.Controls.Add(this.StopBtn);
             this.panel1.Controls.Add(this.groupBox3);
+            this.panel1.Controls.Add(this.StartBtn);
             this.panel1.Controls.Add(this.label1);
             this.panel1.Controls.Add(this.comboBox1);
             this.panel1.Location = new System.Drawing.Point(27, 12);
@@ -186,8 +191,6 @@
             // groupBox3
             // 
             this.groupBox3.Controls.Add(this.SetBtn);
-            this.groupBox3.Controls.Add(this.StopBtn);
-            this.groupBox3.Controls.Add(this.StartBtn);
             this.groupBox3.Controls.Add(this.SampleTimetxtb);
             this.groupBox3.Controls.Add(this.label10);
             this.groupBox3.Controls.Add(this.TailCarbontxtb);
@@ -213,6 +216,36 @@
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "模块属性";
             this.groupBox3.Enter += new System.EventHandler(this.groupBox3_Enter);
+            // 
+            // SetBtn
+            // 
+            this.SetBtn.Location = new System.Drawing.Point(307, 250);
+            this.SetBtn.Name = "SetBtn";
+            this.SetBtn.Size = new System.Drawing.Size(75, 23);
+            this.SetBtn.TabIndex = 20;
+            this.SetBtn.Text = "设定";
+            this.SetBtn.UseVisualStyleBackColor = true;
+            this.SetBtn.Click += new System.EventHandler(this.SetBtn_Click);
+            // 
+            // StopBtn
+            // 
+            this.StopBtn.Location = new System.Drawing.Point(603, 19);
+            this.StopBtn.Name = "StopBtn";
+            this.StopBtn.Size = new System.Drawing.Size(73, 29);
+            this.StopBtn.TabIndex = 19;
+            this.StopBtn.Text = "停止模块";
+            this.StopBtn.UseVisualStyleBackColor = true;
+            this.StopBtn.Click += new System.EventHandler(this.StopBtn_Click);
+            // 
+            // StartBtn
+            // 
+            this.StartBtn.Location = new System.Drawing.Point(497, 19);
+            this.StartBtn.Name = "StartBtn";
+            this.StartBtn.Size = new System.Drawing.Size(73, 29);
+            this.StartBtn.TabIndex = 18;
+            this.StartBtn.Text = "激活模块";
+            this.StartBtn.UseVisualStyleBackColor = true;
+            this.StartBtn.Click += new System.EventHandler(this.StartBtn_Click);
             // 
             // SampleTimetxtb
             // 
@@ -361,34 +394,15 @@
             this.label2.TabIndex = 0;
             this.label2.Text = "PH值";
             // 
-            // StartBtn
+            // Validlabel
             // 
-            this.StartBtn.Location = new System.Drawing.Point(477, 238);
-            this.StartBtn.Name = "StartBtn";
-            this.StartBtn.Size = new System.Drawing.Size(46, 46);
-            this.StartBtn.TabIndex = 18;
-            this.StartBtn.Text = "开始";
-            this.StartBtn.UseVisualStyleBackColor = true;
-            this.StartBtn.Click += new System.EventHandler(this.StartBtn_Click);
-            // 
-            // StopBtn
-            // 
-            this.StopBtn.Location = new System.Drawing.Point(566, 238);
-            this.StopBtn.Name = "StopBtn";
-            this.StopBtn.Size = new System.Drawing.Size(46, 46);
-            this.StopBtn.TabIndex = 19;
-            this.StopBtn.Text = "停止";
-            this.StopBtn.UseVisualStyleBackColor = true;
-            this.StopBtn.Click += new System.EventHandler(this.StopBtn_Click);
-            // 
-            // SetBtn
-            // 
-            this.SetBtn.Location = new System.Drawing.Point(307, 250);
-            this.SetBtn.Name = "SetBtn";
-            this.SetBtn.Size = new System.Drawing.Size(75, 23);
-            this.SetBtn.TabIndex = 20;
-            this.SetBtn.Text = "设定";
-            this.SetBtn.UseVisualStyleBackColor = true;
+            this.Validlabel.AutoSize = true;
+            this.Validlabel.Location = new System.Drawing.Point(219, 19);
+            this.Validlabel.Name = "Validlabel";
+            this.Validlabel.Size = new System.Drawing.Size(53, 12);
+            this.Validlabel.TabIndex = 27;
+            this.Validlabel.Text = "无反应器";
+            this.Validlabel.Click += new System.EventHandler(this.Validlabel_Click);
             // 
             // MicroReactorForm
             // 
@@ -445,5 +459,6 @@
         private System.Windows.Forms.Button SetBtn;
         private System.Windows.Forms.Button StopBtn;
         private System.Windows.Forms.Button StartBtn;
+        private System.Windows.Forms.Label Validlabel;
     }
 }

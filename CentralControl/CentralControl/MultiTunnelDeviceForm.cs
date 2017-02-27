@@ -25,13 +25,13 @@ namespace CentralControl
 
         public void MultiTunnelDevice_cmdEvent()
         {
-            currentCmdTextBox.Text = DeviceInfo.Glb_Cmd;
+            //currentCmdTextBox.Text = DeviceInfo.Glb_Cmd;
         }
 
         private void MultiTunnelDeviceForm_Load(object sender, EventArgs e)
         {
             FatherForm.Enabled = false;
-            jianCeMoShiComboBox.SelectedIndex = 0;
+            MMA_TestMethod.SelectedIndex = 0;
             dt = new DataTable();
             DataColumn dc;
             for (int i = 1; i <= MultiTunnelVirtualDevice.MMA_TestColumnIndex; i++)
@@ -65,7 +65,7 @@ namespace CentralControl
 
         private void runButton_Click(object sender, EventArgs e)
         {
-            int index = jianCeMoShiComboBox.SelectedIndex;
+            int index = MMA_TestMethod.SelectedIndex;
             if (index == 0) DeviceInfo.MMA_TestMethod = 0;
             if (index == 1) DeviceInfo.MMA_TestMethod = 1;
             if (index == 2) DeviceInfo.MMA_TestMethod = 2;
@@ -123,6 +123,54 @@ namespace CentralControl
         private void button10_Click(object sender, EventArgs e)
         {
             send_cmd("Auto");
+        }
+
+        private void label13_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label14_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        //设置酶标仪信息
+        private void button2_Click(object sender, EventArgs e)
+        {
+            DeviceInfo.MMA_TestMethod = Convert.ToInt32(MMA_TestMethod.SelectedIndex);
+            DeviceInfo.MMA_TestMode = Convert.ToInt32(MMA_TestMode.SelectedIndex);
+            DeviceInfo.MMA_TestType = Convert.ToInt32(MMA_TestType.SelectedIndex);
+            DeviceInfo.MMA_LightType = Convert.ToInt32(MMA_LightType.SelectedIndex);
+            DeviceInfo.MMA_WaveLength = Convert.ToInt32(MMA_WaveLength.Text);
+            DeviceInfo.MMA_OrificeType = Convert.ToInt32(MMA_OrificeType.SelectedIndex);
+            DeviceInfo.MMA_MeasureArea = Convert.ToInt32(MMA_MeasureArea.Text);
+            DeviceInfo.MMA_Time = Convert.ToInt32(MMA_Time.Text);
+            DeviceInfo.MMA_IntegralTime = Convert.ToInt32(MMA_IntegralTime.Text);
+            MultiTunnelVirtualDevice.MMA_TestRowIndex = Convert.ToInt32(MMA_TestRowIndex.Text);
+            MultiTunnelVirtualDevice.MMA_TestColumnIndex = Convert.ToInt32(MMA_TestColumnIndex.Text);
+            DeviceInfo.MMA_WaveLengthUp = Convert.ToInt32(MMA_WaveLengthUp.Text);
+            DeviceInfo.MMA_WaveLengthDown = Convert.ToInt32(MMA_WaveLengthDown.Text);
+            DeviceInfo.MMA_MeasureTime = Convert.ToInt32(MMA_MeasureTime.Text);
+            //发送酶标仪信息
+            DeviceInfo.sendEliasa();
+        }
+
+        //设置加样仪信息
+        private void button1_Click(object sender, EventArgs e)
+        {
+            DeviceInfo.MMA_TipIdx = Convert.ToInt32(MMA_TipIdx.Text);
+            DeviceInfo.MMA_TargetIdx = MMA_TargetIdx.Text.ToString();
+            DeviceInfo.MMA_ContainerType = Convert.ToInt32(MMA_ContainerType.SelectedIndex);
+            DeviceInfo.MMA_Volume = Convert.ToInt32(MMA_Volume.Text);
+            DeviceInfo.MMA_SampleIdx = MMA_SampleIdx.Text.ToString();
+            DeviceInfo.MMA_SampleType = Convert.ToInt32(MMA_SampleType.SelectedIndex);
+            DeviceInfo.MMA_HeatFlag = Convert.ToInt32(MMA_HeatFlag.SelectedIndex);
+            DeviceInfo.MMA_Temp = Convert.ToInt32(MMA_Temp.Text);
+            DeviceInfo.MMA_VibrateFlag = Convert.ToInt32(MMA_VibrateFlag.SelectedIndex);
+            DeviceInfo.MMA_VibrateTime = Convert.ToInt32(MMA_VibrateTime.Text);
+            //发送加样仪信息
+            DeviceInfo.sendSampleAddingDevice();
         }
     }
 }
