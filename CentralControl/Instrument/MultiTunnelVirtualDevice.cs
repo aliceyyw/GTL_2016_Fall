@@ -112,49 +112,49 @@ namespace Instrument
         private String MMA_currentBarCode = null;
         private String MMA_preBarCode = null;
         //加样仪
-        private int MMA_TipIdx = 0; //吸头索引
-        private string MMA_TargetIdx = "1-5"; //值范围是0--27，数据格式1,2或1-5等，用“，”或“-”区分，“-”表示连续。
-        private int MMA_ContainerType = 0; //容器类型
-        private int MMA_Volume = 0; //加样体积
-        private string MMA_SampleIdx = "";//加样孔板的索引，96孔板，8孔一组，10个孔板，共120组,范围0-119
-        private int MMA_SampleType = 0; //标准样品0/测量样品1/空白样品2
-        private int MMA_HeatFlag = 0; //0不需要加热/1需要加热
-        private float MMA_Temp;
-        private int MMA_VibrateFlag;//振动标志
-        private float MMA_VibrateTime; //振动时间
+        public int MMA_TipIdx = 0; //吸头索引
+        public string MMA_TargetIdx = "1-5"; //值范围是0--27，数据格式1,2或1-5等，用“，”或“-”区分，“-”表示连续。
+        public int MMA_ContainerType = 0; //容器类型
+        public int MMA_Volume = 0; //加样体积
+        public string MMA_SampleIdx = "";//加样孔板的索引，96孔板，8孔一组，10个孔板，共120组,范围0-119
+        public int MMA_SampleType = 0; //标准样品0/测量样品1/空白样品2
+        public int MMA_HeatFlag = 0; //0不需要加热/1需要加热
+        public float MMA_Temp;
+        public int MMA_VibrateFlag;//振动标志
+        public float MMA_VibrateTime; //振动时间
         //酶标仪
         //public enum MMA_TestMethod { OD, Flu, Che };  //检测方式，吸光度检测/y荧光检测/化学发光检测
         public int MMA_TestMethod = 0;  //OD, Flu, Che 检测方式
-        private int MMA_TestMode = 0;  //光学模式OM，MC单色仪模式，Flc荧光接插件模式
-        private int MMA_TestType = 0; //终点0/动态1
-        private int MMA_LightType; //光波类型
-        private int MMA_WaveLength; //光波波长
-        private int MMA_OrificeType = 0; //孔板类型，0 96孔板/1 48孔板
-        private int MMA_MeasureArea; //检测区域
-        private int MMA_Time; //时间
-        private int MMA_IntegralTime;  //积分时间
+        public int MMA_TestMode = 0;  //光学模式OM，MC单色仪模式，Flc荧光接插件模式
+        public int MMA_TestType = 0; //终点0/动态1
+        public int MMA_LightType; //光波类型
+        public int MMA_WaveLength; //光波波长
+        public int MMA_OrificeType = 0; //孔板类型，0 96孔板/1 48孔板
+        public int MMA_MeasureArea; //检测区域
+        public int MMA_Time; //时间
+        public int MMA_IntegralTime;  //积分时间
         public static int MMA_TestRowIndex = 8; //检测行数
         public static int MMA_TestColumnIndex = 12;  //检测列数
-        private float MMA_WaveLengthUp;  //波长上限
-        private float MMA_WaveLengthDown;  //波长下限
-        private int MMA_MeasureTime;  //处理时间
+        public float MMA_WaveLengthUp;  //波长上限
+        public float MMA_WaveLengthDown;  //波长下限
+        public int MMA_MeasureTime;  //处理时间
 
         //仪器发给上位机
         //加样仪
-        private int MMA_RestTip;  //剩余吸头数
-        private int[] MMA_PlateFlag;//有无放孔板*10
-        private float[] MMA_PlateTemp; //当前温度*10
+        public int MMA_RestTip;  //剩余吸头数
+        public int[] MMA_PlateFlag;//有无放孔板*10
+        public float[] MMA_PlateTemp; //当前温度*10
         //酶标仪
-        private float[] MMA_ODValue;  //OD值*96
-        private float[] MMA_FluCount;  //荧光检测参数*96
-        private float[] MMA_CheCount;  //化学发光检测参数*96
-        private float MMA_Wave;  //波长范围 
-        private float MMA_CurrentTemp; //当前温度
-        private bool MMA_PlateDetect = false;  //有无放孔板 true表示有 false表示无
-        private string MMA_InBarCode = "";
-        private string MMA_OutBarCode = "";
-        private bool MMA_SendBarCodeFlag = true; //是否需要发送条码
-        private float[][] MMA_DetectValues = null; //当前检测参数
+        public float[] MMA_ODValue;  //OD值*96
+        public float[] MMA_FluCount;  //荧光检测参数*96
+        public float[] MMA_CheCount;  //化学发光检测参数*96
+        public float MMA_Wave;  //波长范围 
+        public float MMA_CurrentTemp; //当前温度
+        public bool MMA_PlateDetect = false;  //有无放孔板 true表示有 false表示无
+        public string MMA_InBarCode = "";
+        public string MMA_OutBarCode = "";
+        public bool MMA_SendBarCodeFlag = true; //是否需要发送条码
+        public float[][] MMA_DetectValues = null; //当前检测参数
 
         public static int stringToTestMethod(String mode)
         {
@@ -302,6 +302,44 @@ namespace Instrument
             SendMsg(msg);
         }
 
+        //加样仪信息设定
+        public void sendSampleAddingDevice()
+        {
+            Hashtable ht = new Hashtable();
+            ht.Add("SetType", "SampleAddingDevice");
+            ht.Add("MMA_TipIdx", MMA_TipIdx.ToString());
+            ht.Add("MMA_TargetIdx", MMA_TargetIdx.ToString());
+            ht.Add("MMA_ContainerType", MMA_ContainerType.ToString());
+            ht.Add("MMA_Volume", MMA_Volume.ToString());
+            ht.Add("MMA_SampleIdx", MMA_SampleIdx.ToString());
+            ht.Add("MMA_SampleType", MMA_SampleType.ToString());
+            ht.Add("MMA_HeatFlag", MMA_HeatFlag.ToString());
+            ht.Add("MMA_Temp", MMA_Temp.ToString());
+            ht.Add("MMA_VibrateFlag", MMA_VibrateFlag.ToString());
+            ht.Add("MMA_VibrateTime", MMA_VibrateTime.ToString());
+            SendModBusMsg(ModbusMessage.MessageType.SET, ht);
+        }
+
+        //酶标仪信息设定
+        public void sendEliasa()
+        {
+            Hashtable ht = new Hashtable();
+            ht.Add("SetType", "Eliasa");
+            ht.Add("MMA_TestMethod", MMA_TestMethod.ToString());
+            ht.Add("MMA_TestMode", MMA_TestMode.ToString());
+            ht.Add("MMA_TestType", MMA_TestType.ToString());
+            ht.Add("MMA_LightType", MMA_LightType.ToString());
+            ht.Add("MMA_WaveLength", MMA_WaveLength.ToString());
+            ht.Add("MMA_OrificeType", MMA_OrificeType.ToString());
+            ht.Add("MMA_MeasureArea", MMA_MeasureArea.ToString());
+            ht.Add("MMA_IntegralTime", MMA_IntegralTime.ToString());
+            ht.Add("MMA_TestRowIndex", MMA_TestRowIndex.ToString());
+            ht.Add("MMA_TestColumnIndex", MMA_TestColumnIndex.ToString());
+            ht.Add("MMA_WaveLengthUp", MMA_WaveLengthUp.ToString());
+            ht.Add("MMA_WaveLengthDown", MMA_WaveLengthDown.ToString());
+            ht.Add("MMA_MeasureTime", MMA_MeasureTime.ToString());
+            SendModBusMsg(ModbusMessage.MessageType.SET, ht);
+        }
         public override void decodeReportMessage(ModbusMessage msg)
         {
             String reportType = (String)msg.Data["ReportType"];
