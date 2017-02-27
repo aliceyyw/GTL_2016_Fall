@@ -31,6 +31,16 @@
             this.components = new System.ComponentModel.Container();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.MMA_TestRowIndex = new System.Windows.Forms.TextBox();
+            this.button2 = new System.Windows.Forms.Button();
+            this.MMA_WaveLength = new System.Windows.Forms.TextBox();
+            this.label16 = new System.Windows.Forms.Label();
+            this.MMA_TestColumnIndex = new System.Windows.Forms.TextBox();
+            this.label15 = new System.Windows.Forms.Label();
+            this.MMA_IntegralTime = new System.Windows.Forms.TextBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.MMA_WaveLengthDown = new System.Windows.Forms.TextBox();
+            this.label12 = new System.Windows.Forms.Label();
             this.dataGridView = new System.Windows.Forms.DataGridView();
             this.MMA_Time = new System.Windows.Forms.TextBox();
             this.MMA_MeasureTime = new System.Windows.Forms.TextBox();
@@ -43,6 +53,16 @@
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.MMA_MeasureArea = new System.Windows.Forms.TextBox();
+            this.label14 = new System.Windows.Forms.Label();
+            this.MMA_OrificeType = new System.Windows.Forms.ComboBox();
+            this.label13 = new System.Windows.Forms.Label();
+            this.MMA_LightType = new System.Windows.Forms.ComboBox();
+            this.label11 = new System.Windows.Forms.Label();
+            this.MMA_TestType = new System.Windows.Forms.ComboBox();
+            this.label10 = new System.Windows.Forms.Label();
+            this.MMA_TestMode = new System.Windows.Forms.ComboBox();
+            this.label9 = new System.Windows.Forms.Label();
             this.runButton = new System.Windows.Forms.Button();
             this.MMA_TestMethod = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
@@ -51,49 +71,29 @@
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.label9 = new System.Windows.Forms.Label();
-            this.MMA_TestMode = new System.Windows.Forms.ComboBox();
-            this.label10 = new System.Windows.Forms.Label();
-            this.MMA_TestType = new System.Windows.Forms.ComboBox();
-            this.label11 = new System.Windows.Forms.Label();
-            this.MMA_LightType = new System.Windows.Forms.ComboBox();
-            this.label12 = new System.Windows.Forms.Label();
-            this.MMA_WaveLengthDown = new System.Windows.Forms.TextBox();
-            this.label13 = new System.Windows.Forms.Label();
-            this.MMA_OrificeType = new System.Windows.Forms.ComboBox();
-            this.label14 = new System.Windows.Forms.Label();
-            this.MMA_MeasureArea = new System.Windows.Forms.TextBox();
-            this.label7 = new System.Windows.Forms.Label();
-            this.MMA_IntegralTime = new System.Windows.Forms.TextBox();
-            this.MMA_TestColumnIndex = new System.Windows.Forms.TextBox();
-            this.label15 = new System.Windows.Forms.Label();
-            this.MMA_WaveLength = new System.Windows.Forms.TextBox();
-            this.label16 = new System.Windows.Forms.Label();
             this.panel4 = new System.Windows.Forms.Panel();
+            this.MMA_HeatFlag = new System.Windows.Forms.ComboBox();
+            this.MMA_VibrateTime = new System.Windows.Forms.TextBox();
+            this.label26 = new System.Windows.Forms.Label();
+            this.MMA_VibrateFlag = new System.Windows.Forms.ComboBox();
+            this.label25 = new System.Windows.Forms.Label();
+            this.MMA_Temp = new System.Windows.Forms.TextBox();
+            this.label24 = new System.Windows.Forms.Label();
+            this.MMA_SampleIdx = new System.Windows.Forms.TextBox();
+            this.label21 = new System.Windows.Forms.Label();
+            this.MMA_Volume = new System.Windows.Forms.TextBox();
+            this.MMA_ContainerType = new System.Windows.Forms.ComboBox();
+            this.容器类型 = new System.Windows.Forms.Label();
+            this.MMA_SampleType = new System.Windows.Forms.ComboBox();
+            this.label22 = new System.Windows.Forms.Label();
+            this.MMA_TargetIdx = new System.Windows.Forms.TextBox();
+            this.MMA_TipIdx = new System.Windows.Forms.TextBox();
             this.label17 = new System.Windows.Forms.Label();
             this.label18 = new System.Windows.Forms.Label();
             this.label19 = new System.Windows.Forms.Label();
             this.label20 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
             this.label23 = new System.Windows.Forms.Label();
-            this.MMA_TipIdx = new System.Windows.Forms.TextBox();
-            this.MMA_TargetIdx = new System.Windows.Forms.TextBox();
-            this.MMA_SampleType = new System.Windows.Forms.ComboBox();
-            this.label22 = new System.Windows.Forms.Label();
-            this.MMA_ContainerType = new System.Windows.Forms.ComboBox();
-            this.容器类型 = new System.Windows.Forms.Label();
-            this.MMA_Volume = new System.Windows.Forms.TextBox();
-            this.MMA_SampleIdx = new System.Windows.Forms.TextBox();
-            this.label21 = new System.Windows.Forms.Label();
-            this.MMA_Temp = new System.Windows.Forms.TextBox();
-            this.label24 = new System.Windows.Forms.Label();
-            this.label25 = new System.Windows.Forms.Label();
-            this.MMA_VibrateFlag = new System.Windows.Forms.ComboBox();
-            this.MMA_VibrateTime = new System.Windows.Forms.TextBox();
-            this.label26 = new System.Windows.Forms.Label();
-            this.MMA_HeatFlag = new System.Windows.Forms.ComboBox();
-            this.button2 = new System.Windows.Forms.Button();
-            this.MMA_TestRowIndex = new System.Windows.Forms.TextBox();
             this.panel1.SuspendLayout();
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
@@ -110,7 +110,7 @@
             this.panel1.Controls.Add(this.panel2);
             this.panel1.Location = new System.Drawing.Point(6, 6);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(798, 445);
+            this.panel1.Size = new System.Drawing.Size(788, 365);
             this.panel1.TabIndex = 0;
             // 
             // panel3
@@ -126,7 +126,6 @@
             this.panel3.Controls.Add(this.label7);
             this.panel3.Controls.Add(this.MMA_WaveLengthDown);
             this.panel3.Controls.Add(this.label12);
-            this.panel3.Controls.Add(this.dataGridView);
             this.panel3.Controls.Add(this.MMA_Time);
             this.panel3.Controls.Add(this.MMA_MeasureTime);
             this.panel3.Controls.Add(this.MMA_WaveLengthUp);
@@ -139,21 +138,106 @@
             this.panel3.Controls.Add(this.label3);
             this.panel3.Location = new System.Drawing.Point(3, 173);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(795, 357);
+            this.panel3.Size = new System.Drawing.Size(792, 190);
             this.panel3.TabIndex = 1;
+            // 
+            // MMA_TestRowIndex
+            // 
+            this.MMA_TestRowIndex.Location = new System.Drawing.Point(95, 122);
+            this.MMA_TestRowIndex.Name = "MMA_TestRowIndex";
+            this.MMA_TestRowIndex.Size = new System.Drawing.Size(100, 21);
+            this.MMA_TestRowIndex.TabIndex = 30;
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(334, 155);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(75, 23);
+            this.button2.TabIndex = 25;
+            this.button2.Text = "设定";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // MMA_WaveLength
+            // 
+            this.MMA_WaveLength.Location = new System.Drawing.Point(297, 33);
+            this.MMA_WaveLength.Name = "MMA_WaveLength";
+            this.MMA_WaveLength.Size = new System.Drawing.Size(100, 21);
+            this.MMA_WaveLength.TabIndex = 29;
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Location = new System.Drawing.Point(226, 36);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(65, 12);
+            this.label16.TabIndex = 28;
+            this.label16.Text = "光波波长：";
+            // 
+            // MMA_TestColumnIndex
+            // 
+            this.MMA_TestColumnIndex.Location = new System.Drawing.Point(297, 122);
+            this.MMA_TestColumnIndex.Name = "MMA_TestColumnIndex";
+            this.MMA_TestColumnIndex.Size = new System.Drawing.Size(100, 21);
+            this.MMA_TestColumnIndex.TabIndex = 27;
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Location = new System.Drawing.Point(226, 125);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(65, 12);
+            this.label15.TabIndex = 26;
+            this.label15.Text = "检测列数：";
+            // 
+            // MMA_IntegralTime
+            // 
+            this.MMA_IntegralTime.Location = new System.Drawing.Point(297, 95);
+            this.MMA_IntegralTime.Name = "MMA_IntegralTime";
+            this.MMA_IntegralTime.Size = new System.Drawing.Size(100, 21);
+            this.MMA_IntegralTime.TabIndex = 25;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(226, 100);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(65, 12);
+            this.label7.TabIndex = 24;
+            this.label7.Text = "积分时间：";
+            // 
+            // MMA_WaveLengthDown
+            // 
+            this.MMA_WaveLengthDown.Location = new System.Drawing.Point(297, 65);
+            this.MMA_WaveLengthDown.Name = "MMA_WaveLengthDown";
+            this.MMA_WaveLengthDown.Size = new System.Drawing.Size(100, 21);
+            this.MMA_WaveLengthDown.TabIndex = 23;
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(226, 68);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(65, 12);
+            this.label12.TabIndex = 22;
+            this.label12.Text = "波长下限：";
             // 
             // dataGridView
             // 
+            this.dataGridView.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.dataGridView.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.dataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            this.dataGridView.Location = new System.Drawing.Point(12, 184);
+            this.dataGridView.ColumnHeadersVisible = false;
+            this.dataGridView.Location = new System.Drawing.Point(15, 377);
             this.dataGridView.MultiSelect = false;
             this.dataGridView.Name = "dataGridView";
             this.dataGridView.RowHeadersWidth = 30;
             this.dataGridView.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             this.dataGridView.RowTemplate.Height = 23;
             this.dataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
-            this.dataGridView.Size = new System.Drawing.Size(534, 189);
+            this.dataGridView.Size = new System.Drawing.Size(534, 212);
             this.dataGridView.TabIndex = 21;
+            this.dataGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView_CellContentClick);
             // 
             // MMA_Time
             // 
@@ -260,6 +344,104 @@
             this.panel2.TabIndex = 0;
             this.panel2.Paint += new System.Windows.Forms.PaintEventHandler(this.panel2_Paint);
             // 
+            // MMA_MeasureArea
+            // 
+            this.MMA_MeasureArea.Location = new System.Drawing.Point(74, 131);
+            this.MMA_MeasureArea.Name = "MMA_MeasureArea";
+            this.MMA_MeasureArea.Size = new System.Drawing.Size(121, 21);
+            this.MMA_MeasureArea.TabIndex = 24;
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Location = new System.Drawing.Point(10, 134);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(65, 12);
+            this.label14.TabIndex = 12;
+            this.label14.Text = "检测区域：";
+            this.label14.Click += new System.EventHandler(this.label14_Click);
+            // 
+            // MMA_OrificeType
+            // 
+            this.MMA_OrificeType.FormattingEnabled = true;
+            this.MMA_OrificeType.Items.AddRange(new object[] {
+            "96",
+            "48"});
+            this.MMA_OrificeType.Location = new System.Drawing.Point(74, 99);
+            this.MMA_OrificeType.Name = "MMA_OrificeType";
+            this.MMA_OrificeType.Size = new System.Drawing.Size(121, 20);
+            this.MMA_OrificeType.TabIndex = 11;
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(10, 102);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(65, 12);
+            this.label13.TabIndex = 10;
+            this.label13.Text = "孔板类型：";
+            this.label13.Click += new System.EventHandler(this.label13_Click);
+            // 
+            // MMA_LightType
+            // 
+            this.MMA_LightType.FormattingEnabled = true;
+            this.MMA_LightType.Items.AddRange(new object[] {
+            "光波类型"});
+            this.MMA_LightType.Location = new System.Drawing.Point(288, 64);
+            this.MMA_LightType.Name = "MMA_LightType";
+            this.MMA_LightType.Size = new System.Drawing.Size(121, 20);
+            this.MMA_LightType.TabIndex = 9;
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(226, 67);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(65, 12);
+            this.label11.TabIndex = 8;
+            this.label11.Text = "光波类型：";
+            // 
+            // MMA_TestType
+            // 
+            this.MMA_TestType.FormattingEnabled = true;
+            this.MMA_TestType.Items.AddRange(new object[] {
+            "终点",
+            "动态"});
+            this.MMA_TestType.Location = new System.Drawing.Point(74, 64);
+            this.MMA_TestType.Name = "MMA_TestType";
+            this.MMA_TestType.Size = new System.Drawing.Size(121, 20);
+            this.MMA_TestType.TabIndex = 7;
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(10, 67);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(65, 12);
+            this.label10.TabIndex = 6;
+            this.label10.Text = "检测类型：";
+            // 
+            // MMA_TestMode
+            // 
+            this.MMA_TestMode.FormattingEnabled = true;
+            this.MMA_TestMode.Items.AddRange(new object[] {
+            "光学",
+            "单色仪",
+            "荧光接插件"});
+            this.MMA_TestMode.Location = new System.Drawing.Point(288, 31);
+            this.MMA_TestMode.Name = "MMA_TestMode";
+            this.MMA_TestMode.Size = new System.Drawing.Size(121, 20);
+            this.MMA_TestMode.TabIndex = 5;
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(226, 37);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(65, 12);
+            this.label9.TabIndex = 4;
+            this.label9.Text = "检测模式：";
+            // 
             // runButton
             // 
             this.runButton.Location = new System.Drawing.Point(334, 134);
@@ -309,19 +491,20 @@
             // 
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage2);
-            this.tabControl1.Location = new System.Drawing.Point(12, 12);
+            this.tabControl1.Location = new System.Drawing.Point(-4, 12);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(815, 568);
+            this.tabControl1.Size = new System.Drawing.Size(831, 628);
             this.tabControl1.TabIndex = 1;
             // 
             // tabPage1
             // 
             this.tabPage1.Controls.Add(this.panel1);
+            this.tabPage1.Controls.Add(this.dataGridView);
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(807, 542);
+            this.tabPage1.Size = new System.Drawing.Size(823, 602);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "酶标仪";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -332,172 +515,10 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(807, 542);
+            this.tabPage2.Size = new System.Drawing.Size(823, 602);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "加样仪";
             this.tabPage2.UseVisualStyleBackColor = true;
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(226, 37);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(65, 12);
-            this.label9.TabIndex = 4;
-            this.label9.Text = "检测模式：";
-            // 
-            // MMA_TestMode
-            // 
-            this.MMA_TestMode.FormattingEnabled = true;
-            this.MMA_TestMode.Items.AddRange(new object[] {
-            "光学",
-            "单色仪",
-            "荧光接插件"});
-            this.MMA_TestMode.Location = new System.Drawing.Point(288, 31);
-            this.MMA_TestMode.Name = "MMA_TestMode";
-            this.MMA_TestMode.Size = new System.Drawing.Size(121, 20);
-            this.MMA_TestMode.TabIndex = 5;
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(10, 67);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(65, 12);
-            this.label10.TabIndex = 6;
-            this.label10.Text = "检测类型：";
-            // 
-            // MMA_TestType
-            // 
-            this.MMA_TestType.FormattingEnabled = true;
-            this.MMA_TestType.Items.AddRange(new object[] {
-            "终点",
-            "动态"});
-            this.MMA_TestType.Location = new System.Drawing.Point(74, 64);
-            this.MMA_TestType.Name = "MMA_TestType";
-            this.MMA_TestType.Size = new System.Drawing.Size(121, 20);
-            this.MMA_TestType.TabIndex = 7;
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(226, 67);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(65, 12);
-            this.label11.TabIndex = 8;
-            this.label11.Text = "光波类型：";
-            // 
-            // MMA_LightType
-            // 
-            this.MMA_LightType.FormattingEnabled = true;
-            this.MMA_LightType.Items.AddRange(new object[] {
-            "光波类型"});
-            this.MMA_LightType.Location = new System.Drawing.Point(288, 64);
-            this.MMA_LightType.Name = "MMA_LightType";
-            this.MMA_LightType.Size = new System.Drawing.Size(121, 20);
-            this.MMA_LightType.TabIndex = 9;
-            // 
-            // label12
-            // 
-            this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(226, 68);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(65, 12);
-            this.label12.TabIndex = 22;
-            this.label12.Text = "波长下限：";
-            // 
-            // MMA_WaveLengthDown
-            // 
-            this.MMA_WaveLengthDown.Location = new System.Drawing.Point(297, 65);
-            this.MMA_WaveLengthDown.Name = "MMA_WaveLengthDown";
-            this.MMA_WaveLengthDown.Size = new System.Drawing.Size(100, 21);
-            this.MMA_WaveLengthDown.TabIndex = 23;
-            // 
-            // label13
-            // 
-            this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(10, 102);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(65, 12);
-            this.label13.TabIndex = 10;
-            this.label13.Text = "孔板类型：";
-            this.label13.Click += new System.EventHandler(this.label13_Click);
-            // 
-            // MMA_OrificeType
-            // 
-            this.MMA_OrificeType.FormattingEnabled = true;
-            this.MMA_OrificeType.Items.AddRange(new object[] {
-            "96",
-            "48"});
-            this.MMA_OrificeType.Location = new System.Drawing.Point(74, 99);
-            this.MMA_OrificeType.Name = "MMA_OrificeType";
-            this.MMA_OrificeType.Size = new System.Drawing.Size(121, 20);
-            this.MMA_OrificeType.TabIndex = 11;
-            // 
-            // label14
-            // 
-            this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(10, 134);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(65, 12);
-            this.label14.TabIndex = 12;
-            this.label14.Text = "检测区域：";
-            this.label14.Click += new System.EventHandler(this.label14_Click);
-            // 
-            // MMA_MeasureArea
-            // 
-            this.MMA_MeasureArea.Location = new System.Drawing.Point(74, 131);
-            this.MMA_MeasureArea.Name = "MMA_MeasureArea";
-            this.MMA_MeasureArea.Size = new System.Drawing.Size(121, 21);
-            this.MMA_MeasureArea.TabIndex = 24;
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(226, 100);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(65, 12);
-            this.label7.TabIndex = 24;
-            this.label7.Text = "积分时间：";
-            // 
-            // MMA_IntegralTime
-            // 
-            this.MMA_IntegralTime.Location = new System.Drawing.Point(297, 95);
-            this.MMA_IntegralTime.Name = "MMA_IntegralTime";
-            this.MMA_IntegralTime.Size = new System.Drawing.Size(100, 21);
-            this.MMA_IntegralTime.TabIndex = 25;
-            // 
-            // MMA_TestColumnIndex
-            // 
-            this.MMA_TestColumnIndex.Location = new System.Drawing.Point(297, 122);
-            this.MMA_TestColumnIndex.Name = "MMA_TestColumnIndex";
-            this.MMA_TestColumnIndex.Size = new System.Drawing.Size(100, 21);
-            this.MMA_TestColumnIndex.TabIndex = 27;
-            // 
-            // label15
-            // 
-            this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(226, 125);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(65, 12);
-            this.label15.TabIndex = 26;
-            this.label15.Text = "检测列数：";
-            // 
-            // MMA_WaveLength
-            // 
-            this.MMA_WaveLength.Location = new System.Drawing.Point(297, 33);
-            this.MMA_WaveLength.Name = "MMA_WaveLength";
-            this.MMA_WaveLength.Size = new System.Drawing.Size(100, 21);
-            this.MMA_WaveLength.TabIndex = 29;
-            // 
-            // label16
-            // 
-            this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(226, 36);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(65, 12);
-            this.label16.TabIndex = 28;
-            this.label16.Text = "光波波长：";
             // 
             // panel4
             // 
@@ -528,6 +549,146 @@
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(808, 211);
             this.panel4.TabIndex = 1;
+            // 
+            // MMA_HeatFlag
+            // 
+            this.MMA_HeatFlag.FormattingEnabled = true;
+            this.MMA_HeatFlag.Items.AddRange(new object[] {
+            "加热",
+            "不加热"});
+            this.MMA_HeatFlag.Location = new System.Drawing.Point(74, 132);
+            this.MMA_HeatFlag.Name = "MMA_HeatFlag";
+            this.MMA_HeatFlag.Size = new System.Drawing.Size(121, 20);
+            this.MMA_HeatFlag.TabIndex = 40;
+            // 
+            // MMA_VibrateTime
+            // 
+            this.MMA_VibrateTime.Location = new System.Drawing.Point(290, 168);
+            this.MMA_VibrateTime.Name = "MMA_VibrateTime";
+            this.MMA_VibrateTime.Size = new System.Drawing.Size(121, 21);
+            this.MMA_VibrateTime.TabIndex = 39;
+            // 
+            // label26
+            // 
+            this.label26.AutoSize = true;
+            this.label26.Location = new System.Drawing.Point(226, 171);
+            this.label26.Name = "label26";
+            this.label26.Size = new System.Drawing.Size(65, 12);
+            this.label26.TabIndex = 38;
+            this.label26.Text = "振动时间：";
+            // 
+            // MMA_VibrateFlag
+            // 
+            this.MMA_VibrateFlag.FormattingEnabled = true;
+            this.MMA_VibrateFlag.Items.AddRange(new object[] {
+            "振动",
+            "不振动"});
+            this.MMA_VibrateFlag.Location = new System.Drawing.Point(74, 168);
+            this.MMA_VibrateFlag.Name = "MMA_VibrateFlag";
+            this.MMA_VibrateFlag.Size = new System.Drawing.Size(121, 20);
+            this.MMA_VibrateFlag.TabIndex = 37;
+            // 
+            // label25
+            // 
+            this.label25.AutoSize = true;
+            this.label25.Location = new System.Drawing.Point(10, 168);
+            this.label25.Name = "label25";
+            this.label25.Size = new System.Drawing.Size(65, 12);
+            this.label25.TabIndex = 36;
+            this.label25.Text = "振动标志：";
+            // 
+            // MMA_Temp
+            // 
+            this.MMA_Temp.Location = new System.Drawing.Point(290, 131);
+            this.MMA_Temp.Name = "MMA_Temp";
+            this.MMA_Temp.Size = new System.Drawing.Size(121, 21);
+            this.MMA_Temp.TabIndex = 35;
+            // 
+            // label24
+            // 
+            this.label24.AutoSize = true;
+            this.label24.Location = new System.Drawing.Point(243, 134);
+            this.label24.Name = "label24";
+            this.label24.Size = new System.Drawing.Size(41, 12);
+            this.label24.TabIndex = 34;
+            this.label24.Text = "温度：";
+            // 
+            // MMA_SampleIdx
+            // 
+            this.MMA_SampleIdx.Location = new System.Drawing.Point(290, 98);
+            this.MMA_SampleIdx.Name = "MMA_SampleIdx";
+            this.MMA_SampleIdx.Size = new System.Drawing.Size(121, 21);
+            this.MMA_SampleIdx.TabIndex = 33;
+            // 
+            // label21
+            // 
+            this.label21.AutoSize = true;
+            this.label21.Location = new System.Drawing.Point(226, 102);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(65, 12);
+            this.label21.TabIndex = 32;
+            this.label21.Text = "加样索引：";
+            // 
+            // MMA_Volume
+            // 
+            this.MMA_Volume.Location = new System.Drawing.Point(74, 99);
+            this.MMA_Volume.Name = "MMA_Volume";
+            this.MMA_Volume.Size = new System.Drawing.Size(121, 21);
+            this.MMA_Volume.TabIndex = 31;
+            // 
+            // MMA_ContainerType
+            // 
+            this.MMA_ContainerType.FormattingEnabled = true;
+            this.MMA_ContainerType.Items.AddRange(new object[] {
+            "容器类型"});
+            this.MMA_ContainerType.Location = new System.Drawing.Point(290, 65);
+            this.MMA_ContainerType.Name = "MMA_ContainerType";
+            this.MMA_ContainerType.Size = new System.Drawing.Size(121, 20);
+            this.MMA_ContainerType.TabIndex = 30;
+            // 
+            // 容器类型
+            // 
+            this.容器类型.AutoSize = true;
+            this.容器类型.Location = new System.Drawing.Point(226, 70);
+            this.容器类型.Name = "容器类型";
+            this.容器类型.Size = new System.Drawing.Size(65, 12);
+            this.容器类型.TabIndex = 29;
+            this.容器类型.Text = "容器类型：";
+            // 
+            // MMA_SampleType
+            // 
+            this.MMA_SampleType.FormattingEnabled = true;
+            this.MMA_SampleType.Items.AddRange(new object[] {
+            "标准样品",
+            "测量样品",
+            "空白样品"});
+            this.MMA_SampleType.Location = new System.Drawing.Point(290, 31);
+            this.MMA_SampleType.Name = "MMA_SampleType";
+            this.MMA_SampleType.Size = new System.Drawing.Size(121, 20);
+            this.MMA_SampleType.TabIndex = 28;
+            // 
+            // label22
+            // 
+            this.label22.AutoSize = true;
+            this.label22.Location = new System.Drawing.Point(226, 36);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(65, 12);
+            this.label22.TabIndex = 27;
+            this.label22.Text = "样品类型：";
+            // 
+            // MMA_TargetIdx
+            // 
+            this.MMA_TargetIdx.Location = new System.Drawing.Point(74, 67);
+            this.MMA_TargetIdx.Name = "MMA_TargetIdx";
+            this.MMA_TargetIdx.Size = new System.Drawing.Size(121, 21);
+            this.MMA_TargetIdx.TabIndex = 26;
+            // 
+            // MMA_TipIdx
+            // 
+            this.MMA_TipIdx.Location = new System.Drawing.Point(74, 32);
+            this.MMA_TipIdx.Name = "MMA_TipIdx";
+            this.MMA_TipIdx.Size = new System.Drawing.Size(121, 21);
+            this.MMA_TipIdx.TabIndex = 25;
             // 
             // label17
             // 
@@ -571,7 +732,7 @@
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 3;
-            this.button1.Text = "运行";
+            this.button1.Text = "设定";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
@@ -584,168 +745,11 @@
             this.label23.TabIndex = 0;
             this.label23.Text = "设定：";
             // 
-            // MMA_TipIdx
-            // 
-            this.MMA_TipIdx.Location = new System.Drawing.Point(74, 32);
-            this.MMA_TipIdx.Name = "MMA_TipIdx";
-            this.MMA_TipIdx.Size = new System.Drawing.Size(121, 21);
-            this.MMA_TipIdx.TabIndex = 25;
-            // 
-            // MMA_TargetIdx
-            // 
-            this.MMA_TargetIdx.Location = new System.Drawing.Point(74, 67);
-            this.MMA_TargetIdx.Name = "MMA_TargetIdx";
-            this.MMA_TargetIdx.Size = new System.Drawing.Size(121, 21);
-            this.MMA_TargetIdx.TabIndex = 26;
-            // 
-            // MMA_SampleType
-            // 
-            this.MMA_SampleType.FormattingEnabled = true;
-            this.MMA_SampleType.Items.AddRange(new object[] {
-            "标准样品",
-            "测量样品",
-            "空白样品"});
-            this.MMA_SampleType.Location = new System.Drawing.Point(290, 31);
-            this.MMA_SampleType.Name = "MMA_SampleType";
-            this.MMA_SampleType.Size = new System.Drawing.Size(121, 20);
-            this.MMA_SampleType.TabIndex = 28;
-            // 
-            // label22
-            // 
-            this.label22.AutoSize = true;
-            this.label22.Location = new System.Drawing.Point(226, 36);
-            this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(65, 12);
-            this.label22.TabIndex = 27;
-            this.label22.Text = "样品类型：";
-            // 
-            // MMA_ContainerType
-            // 
-            this.MMA_ContainerType.FormattingEnabled = true;
-            this.MMA_ContainerType.Items.AddRange(new object[] {
-            "容器类型"});
-            this.MMA_ContainerType.Location = new System.Drawing.Point(290, 65);
-            this.MMA_ContainerType.Name = "MMA_ContainerType";
-            this.MMA_ContainerType.Size = new System.Drawing.Size(121, 20);
-            this.MMA_ContainerType.TabIndex = 30;
-            // 
-            // 容器类型
-            // 
-            this.容器类型.AutoSize = true;
-            this.容器类型.Location = new System.Drawing.Point(226, 70);
-            this.容器类型.Name = "容器类型";
-            this.容器类型.Size = new System.Drawing.Size(65, 12);
-            this.容器类型.TabIndex = 29;
-            this.容器类型.Text = "容器类型：";
-            // 
-            // MMA_Volume
-            // 
-            this.MMA_Volume.Location = new System.Drawing.Point(74, 99);
-            this.MMA_Volume.Name = "MMA_Volume";
-            this.MMA_Volume.Size = new System.Drawing.Size(121, 21);
-            this.MMA_Volume.TabIndex = 31;
-            // 
-            // MMA_SampleIdx
-            // 
-            this.MMA_SampleIdx.Location = new System.Drawing.Point(290, 98);
-            this.MMA_SampleIdx.Name = "MMA_SampleIdx";
-            this.MMA_SampleIdx.Size = new System.Drawing.Size(121, 21);
-            this.MMA_SampleIdx.TabIndex = 33;
-            // 
-            // label21
-            // 
-            this.label21.AutoSize = true;
-            this.label21.Location = new System.Drawing.Point(226, 102);
-            this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(65, 12);
-            this.label21.TabIndex = 32;
-            this.label21.Text = "加样索引：";
-            // 
-            // MMA_Temp
-            // 
-            this.MMA_Temp.Location = new System.Drawing.Point(290, 131);
-            this.MMA_Temp.Name = "MMA_Temp";
-            this.MMA_Temp.Size = new System.Drawing.Size(121, 21);
-            this.MMA_Temp.TabIndex = 35;
-            // 
-            // label24
-            // 
-            this.label24.AutoSize = true;
-            this.label24.Location = new System.Drawing.Point(243, 134);
-            this.label24.Name = "label24";
-            this.label24.Size = new System.Drawing.Size(41, 12);
-            this.label24.TabIndex = 34;
-            this.label24.Text = "温度：";
-            // 
-            // label25
-            // 
-            this.label25.AutoSize = true;
-            this.label25.Location = new System.Drawing.Point(10, 168);
-            this.label25.Name = "label25";
-            this.label25.Size = new System.Drawing.Size(65, 12);
-            this.label25.TabIndex = 36;
-            this.label25.Text = "振动标志：";
-            // 
-            // MMA_VibrateFlag
-            // 
-            this.MMA_VibrateFlag.FormattingEnabled = true;
-            this.MMA_VibrateFlag.Items.AddRange(new object[] {
-            "振动",
-            "不振动"});
-            this.MMA_VibrateFlag.Location = new System.Drawing.Point(74, 168);
-            this.MMA_VibrateFlag.Name = "MMA_VibrateFlag";
-            this.MMA_VibrateFlag.Size = new System.Drawing.Size(121, 20);
-            this.MMA_VibrateFlag.TabIndex = 37;
-            // 
-            // MMA_VibrateTime
-            // 
-            this.MMA_VibrateTime.Location = new System.Drawing.Point(290, 168);
-            this.MMA_VibrateTime.Name = "MMA_VibrateTime";
-            this.MMA_VibrateTime.Size = new System.Drawing.Size(121, 21);
-            this.MMA_VibrateTime.TabIndex = 39;
-            // 
-            // label26
-            // 
-            this.label26.AutoSize = true;
-            this.label26.Location = new System.Drawing.Point(226, 171);
-            this.label26.Name = "label26";
-            this.label26.Size = new System.Drawing.Size(65, 12);
-            this.label26.TabIndex = 38;
-            this.label26.Text = "振动时间：";
-            // 
-            // MMA_HeatFlag
-            // 
-            this.MMA_HeatFlag.FormattingEnabled = true;
-            this.MMA_HeatFlag.Items.AddRange(new object[] {
-            "加热",
-            "不加热"});
-            this.MMA_HeatFlag.Location = new System.Drawing.Point(74, 132);
-            this.MMA_HeatFlag.Name = "MMA_HeatFlag";
-            this.MMA_HeatFlag.Size = new System.Drawing.Size(121, 20);
-            this.MMA_HeatFlag.TabIndex = 40;
-            // 
-            // button2
-            // 
-            this.button2.Location = new System.Drawing.Point(334, 155);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 25;
-            this.button2.Text = "设定";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
-            // 
-            // MMA_TestRowIndex
-            // 
-            this.MMA_TestRowIndex.Location = new System.Drawing.Point(95, 122);
-            this.MMA_TestRowIndex.Name = "MMA_TestRowIndex";
-            this.MMA_TestRowIndex.Size = new System.Drawing.Size(100, 21);
-            this.MMA_TestRowIndex.TabIndex = 30;
-            // 
             // MultiTunnelDeviceForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(821, 592);
+            this.ClientSize = new System.Drawing.Size(821, 639);
             this.Controls.Add(this.tabControl1);
             this.Name = "MultiTunnelDeviceForm";
             this.Text = "多通道高速代谢性能分析仪";

@@ -172,5 +172,10 @@ namespace CentralControl
             //发送加样仪信息
             DeviceInfo.sendSampleAddingDevice();
         }
+
+        private void dataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
     }
 }
