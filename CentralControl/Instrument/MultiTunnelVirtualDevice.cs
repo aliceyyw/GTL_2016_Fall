@@ -142,12 +142,12 @@ namespace Instrument
         //仪器发给上位机
         //加样仪
         public int MMA_RestTip;  //剩余吸头数
-        public int[] MMA_PlateFlag;//有无放孔板*10
-        public float[] MMA_PlateTemp; //当前温度*10
+        public int[] MMA_PlateFlag = new int[10];//有无放孔板*10
+        public float[] MMA_PlateTemp = new float[10]; //当前温度*10
         //酶标仪
-        public float[] MMA_ODValue;  //OD值*96
-        public float[] MMA_FluCount;  //荧光检测参数*96
-        public float[] MMA_CheCount;  //化学发光检测参数*96
+        public float[] MMA_ODValue= new float[96];  //OD值*96
+        public float[] MMA_FluCount = new float[96];  //荧光检测参数*96
+        public float[] MMA_CheCount = new float[96];  //化学发光检测参数*96
         public float MMA_Wave;  //波长范围 
         public float MMA_CurrentTemp; //当前温度
         public bool MMA_PlateDetect = false;  //有无放孔板 true表示有 false表示无

@@ -32,6 +32,12 @@
             this.dataGridView = new System.Windows.Forms.DataGridView();
             this.shengChengButton = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.button10 = new System.Windows.Forms.Button();
+            this.button9 = new System.Windows.Forms.Button();
+            this.button8 = new System.Windows.Forms.Button();
+            this.button7 = new System.Windows.Forms.Button();
+            this.currentCmdTextBox = new System.Windows.Forms.TextBox();
+            this.label54 = new System.Windows.Forms.Label();
             this.setButton = new System.Windows.Forms.Button();
             this.upperTextBox = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -51,12 +57,7 @@
             this.detectModelComboBox = new System.Windows.Forms.ComboBox();
             this.label8 = new System.Windows.Forms.Label();
             this.shuJuOpenFileDialog = new System.Windows.Forms.OpenFileDialog();
-            this.currentCmdTextBox = new System.Windows.Forms.TextBox();
-            this.label54 = new System.Windows.Forms.Label();
-            this.button10 = new System.Windows.Forms.Button();
-            this.button9 = new System.Windows.Forms.Button();
-            this.button8 = new System.Windows.Forms.Button();
-            this.button7 = new System.Windows.Forms.Button();
+            this.sendbtn = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -64,6 +65,7 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.sendbtn);
             this.panel1.Controls.Add(this.dataGridView);
             this.panel1.Controls.Add(this.shengChengButton);
             this.panel1.Controls.Add(this.groupBox1);
@@ -87,8 +89,9 @@
             this.dataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
             this.dataGridView.Size = new System.Drawing.Size(657, 244);
             this.dataGridView.TabIndex = 20;
+           // this.dataGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView_CellContentClick);
             this.dataGridView.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView_CellEndEdit);
-            this.dataGridView.CellValidating += new System.Windows.Forms.DataGridViewCellValidatingEventHandler(this.dataGridView_CellValidating);
+           // this.dataGridView.CellValidating += new System.Windows.Forms.DataGridViewCellValidatingEventHandler(this.dataGridView_CellValidating);
             // 
             // shengChengButton
             // 
@@ -129,6 +132,64 @@
             this.groupBox1.TabIndex = 18;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "设置";
+            // 
+            // button10
+            // 
+            this.button10.Location = new System.Drawing.Point(567, 140);
+            this.button10.Name = "button10";
+            this.button10.Size = new System.Drawing.Size(75, 23);
+            this.button10.TabIndex = 39;
+            this.button10.Text = "自动";
+            this.button10.UseVisualStyleBackColor = true;
+            this.button10.Click += new System.EventHandler(this.button10_Click);
+            // 
+            // button9
+            // 
+            this.button9.Location = new System.Drawing.Point(567, 104);
+            this.button9.Name = "button9";
+            this.button9.Size = new System.Drawing.Size(75, 23);
+            this.button9.TabIndex = 38;
+            this.button9.Text = "急停";
+            this.button9.UseVisualStyleBackColor = true;
+            this.button9.Click += new System.EventHandler(this.button9_Click);
+            // 
+            // button8
+            // 
+            this.button8.Location = new System.Drawing.Point(567, 68);
+            this.button8.Name = "button8";
+            this.button8.Size = new System.Drawing.Size(75, 23);
+            this.button8.TabIndex = 37;
+            this.button8.Text = "开始";
+            this.button8.UseVisualStyleBackColor = true;
+            this.button8.Click += new System.EventHandler(this.button8_Click);
+            // 
+            // button7
+            // 
+            this.button7.Location = new System.Drawing.Point(567, 29);
+            this.button7.Name = "button7";
+            this.button7.Size = new System.Drawing.Size(75, 23);
+            this.button7.TabIndex = 36;
+            this.button7.Text = "复位";
+            this.button7.UseVisualStyleBackColor = true;
+            this.button7.Click += new System.EventHandler(this.button7_Click);
+            // 
+            // currentCmdTextBox
+            // 
+            this.currentCmdTextBox.Enabled = false;
+            this.currentCmdTextBox.Location = new System.Drawing.Point(79, 137);
+            this.currentCmdTextBox.Name = "currentCmdTextBox";
+            this.currentCmdTextBox.ReadOnly = true;
+            this.currentCmdTextBox.Size = new System.Drawing.Size(70, 21);
+            this.currentCmdTextBox.TabIndex = 35;
+            // 
+            // label54
+            // 
+            this.label54.AutoSize = true;
+            this.label54.Location = new System.Drawing.Point(16, 140);
+            this.label54.Name = "label54";
+            this.label54.Size = new System.Drawing.Size(47, 12);
+            this.label54.TabIndex = 34;
+            this.label54.Text = "command";
             // 
             // setButton
             // 
@@ -295,63 +356,15 @@
             // 
             this.shuJuOpenFileDialog.FileName = "openFileDialog1";
             // 
-            // currentCmdTextBox
+            // sendbtn
             // 
-            this.currentCmdTextBox.Enabled = false;
-            this.currentCmdTextBox.Location = new System.Drawing.Point(79, 137);
-            this.currentCmdTextBox.Name = "currentCmdTextBox";
-            this.currentCmdTextBox.ReadOnly = true;
-            this.currentCmdTextBox.Size = new System.Drawing.Size(70, 21);
-            this.currentCmdTextBox.TabIndex = 35;
-            // 
-            // label54
-            // 
-            this.label54.AutoSize = true;
-            this.label54.Location = new System.Drawing.Point(16, 140);
-            this.label54.Name = "label54";
-            this.label54.Size = new System.Drawing.Size(47, 12);
-            this.label54.TabIndex = 34;
-            this.label54.Text = "command";
-            // 
-            // button10
-            // 
-            this.button10.Location = new System.Drawing.Point(567, 140);
-            this.button10.Name = "button10";
-            this.button10.Size = new System.Drawing.Size(75, 23);
-            this.button10.TabIndex = 39;
-            this.button10.Text = "自动";
-            this.button10.UseVisualStyleBackColor = true;
-            this.button10.Click += new System.EventHandler(this.button10_Click);
-            // 
-            // button9
-            // 
-            this.button9.Location = new System.Drawing.Point(567, 104);
-            this.button9.Name = "button9";
-            this.button9.Size = new System.Drawing.Size(75, 23);
-            this.button9.TabIndex = 38;
-            this.button9.Text = "急停";
-            this.button9.UseVisualStyleBackColor = true;
-            this.button9.Click += new System.EventHandler(this.button9_Click);
-            // 
-            // button8
-            // 
-            this.button8.Location = new System.Drawing.Point(567, 68);
-            this.button8.Name = "button8";
-            this.button8.Size = new System.Drawing.Size(75, 23);
-            this.button8.TabIndex = 37;
-            this.button8.Text = "开始";
-            this.button8.UseVisualStyleBackColor = true;
-            this.button8.Click += new System.EventHandler(this.button8_Click);
-            // 
-            // button7
-            // 
-            this.button7.Location = new System.Drawing.Point(567, 29);
-            this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(75, 23);
-            this.button7.TabIndex = 36;
-            this.button7.Text = "复位";
-            this.button7.UseVisualStyleBackColor = true;
-            this.button7.Click += new System.EventHandler(this.button7_Click);
+            this.sendbtn.Location = new System.Drawing.Point(581, 184);
+            this.sendbtn.Name = "sendbtn";
+            this.sendbtn.Size = new System.Drawing.Size(75, 23);
+            this.sendbtn.TabIndex = 21;
+            this.sendbtn.Text = "send";
+            this.sendbtn.UseVisualStyleBackColor = true;
+            this.sendbtn.Click += new System.EventHandler(this.sendbtn_Click);
             // 
             // MultiTunnelDeviceForm
             // 
@@ -403,5 +416,6 @@
         private System.Windows.Forms.Button button9;
         private System.Windows.Forms.Button button8;
         private System.Windows.Forms.Button button7;
+        private System.Windows.Forms.Button sendbtn;
     }
 }

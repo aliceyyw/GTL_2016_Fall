@@ -68,36 +68,36 @@ namespace Instrument
         //酶标仪
         //public enum MMA_TestMethod { OD, Flu, Che };  //检测方式，吸光度检测/y荧光检测/化学发光检测
         public int MMA_TestMethod = 0;  //OD, Flu, Che 检测方式
-        private int MMA_TestMode = 0;  //光学模式OM，MC单色仪模式，Flc荧光接插件模式
-        private int MMA_TestType = 0; //终点0/动态1
-        private int MMA_LightType; //光波类型
-        private int MMA_WaveLength; //光波波长
-        private int MMA_OrificeType = 0; //孔板类型，0 96孔板/1 48孔板
-        private int MMA_MeasureArea; //检测区域
-        private int MMA_Time; //时间
-        private int MMA_IntegralTime;  //积分时间
+        public int MMA_TestMode = 0;  //光学模式OM，MC单色仪模式，Flc荧光接插件模式
+        public int MMA_TestType = 0; //终点0/动态1
+        public int MMA_LightType; //光波类型
+        public int MMA_WaveLength; //光波波长
+        public int MMA_OrificeType = 0; //孔板类型，0 96孔板/1 48孔板
+        public int MMA_MeasureArea; //检测区域
+        public int MMA_Time; //时间
+        public int MMA_IntegralTime;  //积分时间
         public static int MMA_TestRowIndex = 8; //检测行数
         public static int MMA_TestColumnIndex = 12;  //检测列数
-        private float MMA_WaveLengthUp;  //波长上限
-        private float MMA_WaveLengthDown;  //波长下限
-        private int MMA_MeasureTime;  //处理时间
+        public float MMA_WaveLengthUp;  //波长上限
+        public float MMA_WaveLengthDown;  //波长下限
+        public int MMA_MeasureTime;  //处理时间
 
         //仪器发给上位机
         //加样仪
-        private int MMA_RestTip;  //剩余吸头数
-        private int[] MMA_PlateFlag;//有无放孔板*10
-        private float[] MMA_PlateTemp; //当前温度*10
+        public int MMA_RestTip;  //剩余吸头数
+        public int[] MMA_PlateFlag = new int[10];//有无放孔板*10
+        public float[] MMA_PlateTemp = new float[10]{0.0f,0.0f,0.0f,0.0f,0.0f,0.0f,0.0f,0.0f,0.0f,0.0f};//度*10
         //酶标仪
-        private float[] MMA_ODValue;  //OD值*96
-        private float[] MMA_FluCount;  //荧光检测参数*96
-        private float[] MMA_CheCount;  //化学发光检测参数*96
-        private float MMA_Wave;  //波长范围 
-        private float MMA_CurrentTemp; //当前温度
-        private bool MMA_PlateDetect = false;  //有无放孔板 true表示有 false表示无
-        private string MMA_InBarCode = "";
-        private string MMA_OutBarCode = "";
-        private bool MMA_SendBarCodeFlag = true; //是否需要发送条码
-        private float[][] MMA_DetectValues = null; //当前检测参数
+        public float[] MMA_ODValue = new float[96];  //OD值*96
+        public float[] MMA_FluCount = new float[96];  //荧光检测参数*96
+        public float[] MMA_CheCount = new float[96];  //化学发光检测参数*96
+        public float MMA_Wave;  //波长范围 
+        public float MMA_CurrentTemp; //当前温度
+        public bool MMA_PlateDetect = false;  //有无放孔板 true表示有 false表示无
+        public string MMA_InBarCode = "";
+       public string MMA_OutBarCode = "";
+        public bool MMA_SendBarCodeFlag = true; //是否需要发送条码
+        public float[][] MMA_DetectValues = null; //当前检测参数
 
         private System.Timers.Timer MMA_Timer = null;
 
@@ -159,7 +159,7 @@ namespace Instrument
             ht.Add("MMA_PlateFlag", str.ToString());
             for (int j = 0; j < 10; j++)
             {
-                ht.Add("PlateTemp" + j.ToString(), MMA_PlateTemp.ToString());  //当前温度，10个浮点数，index0~9
+                ht.Add("PlateTemp" + j.ToString(), MMA_PlateTemp[j].ToString());  //当前温度，10个浮点数，index0~9
             }
             SendModBusMsg(ModbusMessage.MessageType.REPORT, ht);
         }
@@ -186,7 +186,7 @@ namespace Instrument
                         break;
                 case "CHE":
                         ht.Add("ReportType", "CheValue");
-                        for (int k = 0; k < 96; k++)
+                        for (int k = 0; k < 96; k++)                        
                         {
                             ht.Add("CHE" + k.ToString(), MMA_CheCount[k].ToString()); //CHE0~CHE95,k为下标
                         }

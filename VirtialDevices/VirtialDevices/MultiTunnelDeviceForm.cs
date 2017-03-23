@@ -114,6 +114,7 @@ namespace VirtialDevices
                 String v = (String)dataGridView.Rows[i].Cells[j].Value;
                 try
                 {
+                  
                     float.Parse(v);
                 }
                 catch (Exception ex)
@@ -175,6 +176,17 @@ namespace VirtialDevices
         {
             send_cmd("Auto");
         }
+
+        private void sendbtn_Click(object sender, EventArgs e)
+        {
+            //DeviceInfo.stateSendReport();
+            //DeviceInfo.parameterSendReport();
+            for (int i = 0; i < 96; i++)
+                DeviceInfo.MMA_ODValue[i] = 0.0f;
+            DeviceInfo.valueSendReport("OD");
+                
+        }
+
 
 
 
